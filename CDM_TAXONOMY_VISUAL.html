@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CDM Taxonomy — Visual</title>
+<style>
+  :root {
+    --bg: #F4F5F7;
+    --card: #FFFFFF;
+    --border: #DFE1E6;
+    --border-strong: #C1C7D0;
+    --text: #172B4D;
+    --text-muted: #5E6C84;
+    --text-subtle: #6B778C;
+    --blue: #0052CC;
+    --blue-dark: #0747A6;
+    --blue-light: #DEEBFF;
+    --purple: #6554C0;
+    --purple-light: #EAE6FF;
+    --green: #00875A;
+    --green-light: #E3FCEF;
+    --yellow: #FF991F;
+    --yellow-light: #FFF0B3;
+    --red: #DE350B;
+    --red-light: #FFEBE6;
+    --teal: #00A3BF;
+    --teal-light: #E6FCFF;
+    --gray-light: #EBECF0;
+    --gray-mid: #B3BAC5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 32px 24px 64px;
+    line-height: 1.5;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .lede { color: var(--text-muted); margin-bottom: 32px; }
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section { margin-bottom: 32px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  /* ============ HIERARCHY DIAGRAM ============ */
+  .hierarchy {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 24px;
+  }
+  .h-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+  }
+  .h-row.epic-row { padding-left: 0; }
+  .h-row.task-row { padding-left: 40px; }
+  .h-row.subtask-row { padding-left: 80px; }
+  .h-tier-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    width: 70px;
+    flex-shrink: 0;
+  }
+  .h-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .h-pill.epic { background: var(--purple-light); color: var(--purple); }
+  .h-pill.task { background: var(--blue-light); color: var(--blue-dark); }
+  .h-pill.subtask { background: var(--teal-light); color: var(--teal); }
+  .h-pill .icon {
+    width: 16px; height: 16px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .h-pill.epic .icon { background: var(--purple); }
+  .h-pill.task .icon { background: var(--blue); }
+  .h-pill.subtask .icon { background: var(--teal); }
+  .h-desc { color: var(--text-muted); font-size: 13px; }
+  .h-arrow {
+    color: var(--gray-mid);
+    margin-left: 22px;
+    font-size: 16px;
+  }
+
+  /* ============ EPIC GRID ============ */
+  .epic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .epic-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--purple);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .epic-card.special { border-left-color: var(--gray-mid); }
+  .epic-card .name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .epic-card .epic-icon {
+    background: var(--purple);
+    color: white;
+    width: 16px; height: 16px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .epic-card.special .epic-icon { background: var(--gray-mid); }
+  .epic-card .maps-to {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  /* ============ LABELS ============ */
+  .label-namespaces {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ns-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .ns-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+  .ns-card .ns-meta {
+    font-size: 11px;
+    color: var(--text-subtle);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .label {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 3px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    margin: 3px 4px 3px 0;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+  .label.cat { background: var(--blue-light); color: var(--blue-dark); border-color: #B3D4FF; }
+  .label.proj { background: var(--green-light); color: var(--green); border-color: #ABF5D1; }
+  .label.study { background: var(--yellow-light); color: #974F0C; border-color: #FFE380; }
+
+  /* ============ STATUSES ============ */
+  .status-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+  }
+  .status-badge.todo { background: var(--gray-light); color: var(--text); border-color: var(--border-strong); }
+  .status-badge.inprogress { background: var(--blue-light); color: var(--blue-dark); border-color: #B3D4FF; }
+  .status-badge.completed { background: var(--green-light); color: var(--green); border-color: #ABF5D1; }
+  .status-badge.ongoing { background: var(--purple-light); color: var(--purple); border-color: #C0B6F2; }
+  .status-badge.cancelled { background: var(--gray-light); color: var(--text-muted); border-color: var(--border-strong); text-decoration: line-through; }
+
+  /* ============ JIRA TICKET MOCKUP ============ */
+  .mock-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .mock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #FAFBFC;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .breadcrumb { display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a {
+    color: var(--blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .breadcrumb .sep { color: var(--gray-mid); }
+  .epic-link-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--purple-light);
+    color: var(--purple);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .epic-link-inline .icon {
+    background: var(--purple);
+    color: white;
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .task-icon-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .task-icon-line .icon {
+    background: var(--blue);
+    color: white;
+    width: 14px; height: 14px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .mock-body { display: grid; grid-template-columns: 2fr 1fr; }
+  .mock-main { padding: 20px 24px; }
+  .mock-side { padding: 20px 24px; background: #FAFBFC; border-left: 1px solid var(--border); }
+  .mock-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 4px 0 16px;
+  }
+  .mock-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .mock-btn {
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+  .mock-btn.primary { background: var(--blue); color: white; }
+  .mock-btn.secondary { background: var(--gray-light); color: var(--text); }
+  .mock-section-label {
+    font-size: 11px;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+    margin: 16px 0 8px;
+  }
+  .mock-section-label:first-child { margin-top: 0; }
+  .mock-desc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .mock-desc p { margin: 0 0 8px; }
+  .mock-desc p:last-child { margin-bottom: 0; }
+  .mock-desc ul { margin: 4px 0; padding-left: 20px; }
+
+  /* Sub-tasks list */
+  .subtasks {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--card);
+    overflow: hidden;
+  }
+  .subtask {
+    display: grid;
+    grid-template-columns: 20px 90px 1fr 100px 90px;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .subtask:last-child { border-bottom: none; }
+  .subtask .icon-cell .icon {
+    background: var(--teal);
+    color: white;
+    width: 14px; height: 14px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .subtask .key { color: var(--blue); font-weight: 500; }
+  .subtask .summary { color: var(--text); }
+  .subtask .assignee { color: var(--text-muted); font-size: 12px; }
+  .subtask .status-cell .status-badge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  /* Sidebar (details panel) */
+  .detail-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 13px;
+    align-items: start;
+  }
+  .detail-row .key {
+    color: var(--text-subtle);
+    font-weight: 500;
+  }
+  .detail-row .val { color: var(--text); }
+  .avatar-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .avatar {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .avatar.eric { background: #5243AA; }
+  .avatar.tony { background: #00875A; }
+  .avatar.erica { background: #DE350B; }
+
+  /* ===== Callouts ===== */
+  .callout {
+    margin-top: 14px;
+    background: #FFFAE6;
+    border: 1px solid #FFE380;
+    border-left: 4px solid var(--yellow);
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .callout strong { color: var(--text); }
+
+  /* ===== legend tooltip-style ===== */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 4px; }
+  .swatch {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .swatch.cat { background: var(--blue-light); border: 1px solid #B3D4FF; }
+  .swatch.proj { background: var(--green-light); border: 1px solid #ABF5D1; }
+  .swatch.study { background: var(--yellow-light); border: 1px solid #FFE380; }
+
+  @media (max-width: 800px) {
+    .epic-grid, .label-namespaces { grid-template-columns: 1fr; }
+    .mock-body { grid-template-columns: 1fr; }
+    .mock-side { border-left: none; border-top: 1px solid var(--border); }
+    .subtask { grid-template-columns: 20px 1fr; }
+    .subtask .key, .subtask .assignee, .subtask .status-cell { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>CDM Taxonomy — at a glance</h1>
+    <p class="lede">Every ticket answers 4 questions: which <strong>Epic</strong> (corporate goal), what <strong>kind of work</strong>, on which <strong>project</strong>, for which <strong>study</strong>.</p>
+
+    <!-- ============ HIERARCHY ============ -->
+    <h2>Hierarchy</h2>
+    <div class="card hierarchy">
+      <div class="h-row epic-row">
+        <span class="h-tier-label">Level 1</span>
+        <span class="h-pill epic"><span class="icon">E</span>Epic</span>
+        <span class="h-desc">A 2026 corporate goal — or Departmental Ops — or Pre-2026 Legacy</span>
+      </div>
+      <div class="h-row task-row">
+        <span class="h-tier-label">Level 2</span>
+        <span class="h-pill task"><span class="icon">T</span>Task</span>
+        <span class="h-desc">A deliverable: a feature, a DQR listing, a refactor, a report, a service activity</span>
+      </div>
+      <div class="h-row subtask-row">
+        <span class="h-tier-label">Level 3</span>
+        <span class="h-pill subtask"><span class="icon">S</span>Subtask</span>
+        <span class="h-desc">A unit of work to deliver the Task</span>
+      </div>
+    </div>
+
+    <!-- ============ EPICS ============ -->
+    <h2>Epics — 6 total (4 corporate-goal-aligned + 2 special)</h2>
+    <div class="epic-grid">
+      <div class="epic-card">
+        <div class="name"><span class="epic-icon">E</span>1. CASCADE (L201) Readout</div>
+        <div class="maps-to">Successful readout of CASCADE (L201) primary performance using locked IVD test by 2H 2026</div>
+      </div>
+      <div class="epic-card">
+        <div class="name"><span class="epic-icon">E</span>2. IVD Lung PMA Submission</div>
+        <div class="maps-to">Submission-ready PMA package — clinical, analytical, manufacturing</div>
+      </div>
+      <div class="epic-card">
+        <div class="name"><span class="epic-icon">E</span>3. 4ITLR Readout</div>
+        <div class="maps-to">Successful readout of 4ITLR by July; conference presentation in 2026</div>
+      </div>
+      <div class="epic-card">
+        <div class="name"><span class="epic-icon">E</span>4. Reimbursement &amp; Clinical Evidence</div>
+        <div class="maps-to">CU readout by January; CED Highmark Q4; two major clinical evidence publications Q2</div>
+      </div>
+      <div class="epic-card special">
+        <div class="name"><span class="epic-icon">E</span>5. Departmental Ops</div>
+        <div class="maps-to">Service work, BAU, infra, recurring metrics — anything not tied to a 2026 corporate goal</div>
+      </div>
+      <div class="epic-card special">
+        <div class="name"><span class="epic-icon">E</span>6. Pre-2026 Legacy</div>
+        <div class="maps-to">Pure archive — all pre-2026 tickets land here, no live work</div>
+      </div>
+    </div>
+
+    <!-- ============ LABELS ============ -->
+    <h2>Labels — three small prefixed namespaces</h2>
+    <div class="label-namespaces">
+      <div class="ns-card">
+        <h3>cat-* &nbsp; <em style="font-weight:normal; color:var(--text-subtle); font-size:12px;">(kind of work)</em></h3>
+        <div class="ns-meta">Exactly 1 per issue</div>
+        <span class="label cat">cat-programming</span>
+        <span class="label cat">cat-reporting</span>
+        <span class="label cat">cat-operations</span>
+      </div>
+      <div class="ns-card">
+        <h3>proj-* &nbsp; <em style="font-weight:normal; color:var(--text-subtle); font-size:12px;">(project / system)</em></h3>
+        <div class="ns-meta">1 or more per issue</div>
+        <span class="label proj">proj-cpt</span>
+        <span class="label proj">proj-dqr</span>
+        <span class="label proj">proj-edc</span>
+        <span class="label proj">proj-metrics</span>
+        <span class="label proj">proj-cancer-review</span>
+        <span class="label proj">proj-pipeline</span>
+        <span class="label proj">proj-cro</span>
+        <span class="label proj">proj-sample</span>
+        <span class="label proj">proj-data-release</span>
+        <span class="label proj">proj-cv</span>
+        <span class="label proj">proj-av</span>
+      </div>
+      <div class="ns-card">
+        <h3>study-* &nbsp; <em style="font-weight:normal; color:var(--text-subtle); font-size:12px;">(study)</em></h3>
+        <div class="ns-meta">Exactly 1 per issue</div>
+        <span class="label study">study-l101</span>
+        <span class="label study">study-l201</span>
+        <span class="label study">study-l301</span>
+        <span class="label study">study-4itlr</span>
+        <span class="label study">study-onom</span>
+        <span class="label study">study-cross</span>
+      </div>
+    </div>
+    <div class="legend">
+      <span><span class="swatch cat"></span>cat-*</span>
+      <span><span class="swatch proj"></span>proj-*</span>
+      <span><span class="swatch study"></span>study-*</span>
+    </div>
+
+    <!-- ============ STATUSES ============ -->
+    <h2>Statuses</h2>
+    <div class="card">
+      <div class="status-row">
+        <span class="status-badge todo">To Do</span>
+        <span class="status-badge inprogress">In Progress</span>
+        <span class="status-badge completed">Completed</span>
+        <span class="status-badge ongoing">Ongoing</span>
+        <span class="status-badge cancelled">Cancelled</span>
+      </div>
+      <p style="margin: 14px 0 0; color: var(--text-muted); font-size: 13px;">
+        <strong>Ongoing</strong> is for recurring service work that never naturally closes (monthly CDR refreshes, scheduled metric reports). <strong>Cancelled</strong> is distinct from <strong>Completed</strong> so they don't blur in reporting.
+      </p>
+    </div>
+
+    <!-- ============ JIRA MOCKUP ============ -->
+    <h2>How a real ticket looks in Jira (hypothetical)</h2>
+    <div class="mock-wrap">
+
+      <div class="mock-header">
+        <div class="breadcrumb">
+          <a>Projects</a>
+          <span class="sep">›</span>
+          <a>Clinical Data Management</a>
+          <span class="sep">›</span>
+          <span class="epic-link-inline"><span class="icon">E</span>CASCADE (L201) Readout</span>
+          <span class="sep">›</span>
+          <span class="task-icon-line"><span class="icon">T</span>CDM-712</span>
+        </div>
+        <div style="color: var(--text-muted);">Created 2026-04-18</div>
+      </div>
+
+      <div class="mock-body">
+
+        <!-- LEFT — main panel -->
+        <div class="mock-main">
+          <div class="mock-title">CPT (L201): Lung Cancer TNM vs Group Stage Reconciliation</div>
+          <div class="mock-actions">
+            <button class="mock-btn primary">In Progress</button>
+            <button class="mock-btn secondary">Assign</button>
+            <button class="mock-btn secondary">Comment</button>
+          </div>
+
+          <div class="mock-section-label">Description</div>
+          <div class="mock-desc">
+            <p>Cross-check TNM staging values against derived group stage in CPT for L201 enrolled subjects. Identify mismatches where the recorded T/N/M components don't reconcile with the assigned group stage. Output: DQR listing surfaced in the Clean Patient Tracker.</p>
+            <p><strong>Acceptance criteria</strong></p>
+            <ul>
+              <li>Listing flags every L201 subject with TNM/group-stage mismatch</li>
+              <li>Listing refreshes nightly from the CPT pipeline</li>
+              <li>UAT signed off by Clinical Ops</li>
+            </ul>
+          </div>
+
+          <div class="mock-section-label">Subtasks (3)</div>
+          <div class="subtasks">
+            <div class="subtask">
+              <span class="icon-cell"><span class="icon">S</span></span>
+              <span class="key">CDM-713</span>
+              <span class="summary">Define column structure for stage reconciliation</span>
+              <span class="status-cell"><span class="status-badge completed">Completed</span></span>
+              <span class="assignee"><span class="avatar tony">TW</span> Tony</span>
+            </div>
+            <div class="subtask">
+              <span class="icon-cell"><span class="icon">S</span></span>
+              <span class="key">CDM-714</span>
+              <span class="summary">Build SQL query to flag TNM/group-stage mismatches</span>
+              <span class="status-cell"><span class="status-badge inprogress">In Progress</span></span>
+              <span class="assignee"><span class="avatar eric">ED</span> Eric</span>
+            </div>
+            <div class="subtask">
+              <span class="icon-cell"><span class="icon">S</span></span>
+              <span class="key">CDM-715</span>
+              <span class="summary">UAT review with Clinical Ops</span>
+              <span class="status-cell"><span class="status-badge todo">To Do</span></span>
+              <span class="assignee"><span class="avatar erica">EP</span> Erica</span>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>Why this Task only has one <code>proj-*</code> label:</strong> the work lives entirely inside CPT, so just <code>proj-cpt</code>. If it also touched edit-check logic in the EDC, it would stack <code>proj-edc</code> too.
+          </div>
+        </div>
+
+        <!-- RIGHT — details sidebar -->
+        <div class="mock-side">
+          <div class="mock-section-label">Details</div>
+
+          <div class="detail-row">
+            <span class="key">Status</span>
+            <span class="val"><span class="status-badge inprogress">In Progress</span></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="key">Assignee</span>
+            <span class="val avatar-line"><span class="avatar eric">ED</span>Eric Dixon</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="key">Reporter</span>
+            <span class="val avatar-line"><span class="avatar tony">TW</span>Tony Wu</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="key">Epic Link</span>
+            <span class="val"><span class="epic-link-inline"><span class="icon">E</span>CASCADE (L201) Readout</span></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="key">Issue Type</span>
+            <span class="val task-icon-line"><span class="icon">T</span>Task</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="key">Priority</span>
+            <span class="val">Medium</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="key">Due Date</span>
+            <span class="val">2026-06-15</span>
+          </div>
+
+          <div class="mock-section-label" style="margin-top: 20px;">Labels</div>
+          <div>
+            <span class="label cat">cat-reporting</span>
+            <span class="label proj">proj-cpt</span>
+            <span class="label study">study-l201</span>
+          </div>
+
+          <div class="callout">
+            <strong>How to read these 4 things together:</strong><br>
+            <span style="color: var(--purple); font-weight: 600;">CASCADE Readout</span> tells you <em>why</em> we're doing it (the corporate goal);<br>
+            <code>cat-reporting</code> tells you <em>what kind</em> of work it is;<br>
+            <code>proj-cpt</code> tells you <em>where</em> it lives in our stack;<br>
+            <code>study-l201</code> tells you <em>whose data</em> it concerns.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <p style="color: var(--text-subtle); font-size: 12px; margin-top: 32px; text-align: center;">
+      CDM Project Taxonomy v3 — visual companion to CDM_TAXONOMY_SUMMARY.md
+    </p>
+
+  </div>
+</body>
+</html>

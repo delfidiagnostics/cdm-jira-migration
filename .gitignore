@@ -1,0 +1,17 @@
+.env
+.cdm-cache/
+.testcdm-cache/
+.testcdm-state/
+.testcdm-current/
+batches/
+recovery_batches/
+exec_batches/
+exec_results/
+recovery_results/
+results/
+*.pyc
+__pycache__/
+
+# Transient script outputs (regenerated each run)
+cdm_migration_log.json
+remaining_ops.json
