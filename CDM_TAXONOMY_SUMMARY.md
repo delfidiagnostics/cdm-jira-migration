@@ -87,17 +87,17 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 
 ## 4. Statuses (5)
 
-| Status (taxonomy) | Workflow status (Jira) | When to use |
-|---|---|---|
-| **To Do** | `To Do` | Identified, not started |
-| **In Progress** | `In Progress` | Actively being worked |
-| **Completed** | `Done` | Closed successfully |
-| **Ongoing** | `Ongoing` (TESTCDM); maps to `In Progress` until added to CDM workflow | Recurring service work — monthly CDR refreshes, scheduled metric reports, repeating data snapshots. Never reaches Completed because it recurs. |
-| **Cancelled** | `Dismissed` (+ Resolution `Won't Do`) | Won't be done |
+| Status | When to use |
+|---|---|
+| **To Do** | Identified, not started |
+| **In Progress** | Actively being worked |
+| **Done** | Closed successfully (Resolution = `Done`) |
+| **Ongoing** | Recurring service work — monthly CDR refreshes, scheduled metric reports, repeating data snapshots. Never reaches Done because it recurs. |
+| **Dismissed** | Won't be done (Resolution = `Won't Do`) |
 
-**Why these five**: covers the work-in-flight lifecycle plus an "Ongoing" lane for recurring service work that never naturally closes, and "Cancelled" distinguished from "Completed" so they don't blur together.
+**Why these five**: covers the work-in-flight lifecycle plus an "Ongoing" lane for recurring service work that never naturally closes, and "Dismissed" distinguished from "Done" via the Resolution field so they don't blur together in reporting.
 
-**Note on workflow names**: the conceptual taxonomy uses `Completed`/`Cancelled`/`Ongoing`. The actual Jira workflow uses `Done`/`Dismissed` (existing names — we chose not to rename them since they're semantically identical) plus a new `Ongoing` status added to TESTCDM. The migration script treats them as equivalent — `STATUS_TO_TRANSITION` accepts either name set so the same script runs against TESTCDM and CDM unmodified.
+**Implementation note**: TESTCDM has all five statuses in its workflow. Production CDM still has only four (`To Do / In Progress / Done / Dismissed`) — the `Ongoing` status will need to be added to CDM's workflow once we're ready to use it for recurring tickets. Until then, the migration script collapses `Ongoing → In Progress`. Zero worksheet rows currently use `Ongoing`, so this is dormant.
 
 ---
 
@@ -108,7 +108,7 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 **Pre-flight:**
 
 0. **Snapshot the project to CSV** via the Jira UI before any bulk operation. Five-minute insurance against a bad write.
-0a. **Communicate to the team** that pre-2026 tickets will be Cancelled. Anyone with active work on a pre-2026 ticket should open a fresh 2026 ticket *before* the cancel pass — otherwise their work disappears from boards.
+0a. **Communicate to the team** that pre-2026 tickets will be Dismissed. Anyone with active work on a pre-2026 ticket should open a fresh 2026 ticket *before* the dismiss pass — otherwise their work disappears from boards.
 
 **Structural changes:**
 
@@ -120,22 +120,22 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 
 **Cleanup pass:**
 
-3. **Cancel any ticket created before 2026-01-01 that is not Completed.** This sweeps out 4 years of accumulated open-but-stale work in one pass (~135 tickets). If a pre-2026 ticket still represents real work, open a fresh 2026 ticket for it — don't resurrect the old one.
+3. **Dismiss any ticket created before 2026-01-01 that is not Done.** This sweeps out 4 years of accumulated open-but-stale work in one pass (~135 tickets). If a pre-2026 ticket still represents real work, open a fresh 2026 ticket for it — don't resurrect the old one.
 4. **Set the Resolution field on close, and backfill existing Dismissed tickets.** The current workflow auto-sets Resolution = `Done` on every closing transition, *including* Dismissed — so today all 49 existing Dismissed tickets read Resolution = `Done`, indistinguishable from real wins. Migration steps:
-   - Cancelled tickets (the ~135 pre-2026 ones in rule 3, plus the renamed-from-Dismissed batch) → set Resolution = `Won't Do` (or `Out of Scope`)
-   - Completed tickets → Resolution = `Done` (already correct in most cases)
-   - **Workflow fix (admin task)**: configure the Cancelled transition's post-function to set Resolution = `Won't Do` automatically so this doesn't drift again.
-5. **Cascade Cancel to orphaned Subtasks.** The 6 stale 2022 Goals under [CDM-46](https://delfidiagnostics.atlassian.net/browse/CDM-46) get Cancelled by rule 3, but their 21 child Subtasks need to be Cancelled too with the same Resolution. The connector doesn't cascade automatically — explicit step.
-6. **Cancel** the 3 dismissed UAT Tests ([CDM-140](https://delfidiagnostics.atlassian.net/browse/CDM-140), [141](https://delfidiagnostics.atlassian.net/browse/CDM-141), [142](https://delfidiagnostics.atlassian.net/browse/CDM-142)) and the obvious test data ([CDM-160](https://delfidiagnostics.atlassian.net/browse/CDM-160), [CDM-157](https://delfidiagnostics.atlassian.net/browse/CDM-157)). *(Connector can Cancel; deletion needs UI.)*
+   - Dismissed tickets (the ~135 pre-2026 ones in rule 3) → set Resolution = `Won't Do` (or `Out of Scope`)
+   - Done tickets → Resolution = `Done` (already correct in most cases)
+   - **Workflow fix (admin task)**: configure the Dismissed transition's post-function to set Resolution = `Won't Do` automatically so this doesn't drift again.
+5. **Cascade Dismiss to orphaned Subtasks.** The 6 stale 2022 Goals under [CDM-46](https://delfidiagnostics.atlassian.net/browse/CDM-46) get Dismissed by rule 3, but their 21 child Subtasks need to be Dismissed too with the same Resolution. The connector doesn't cascade automatically — explicit step.
+6. **Dismiss** the 3 dismissed UAT Tests ([CDM-140](https://delfidiagnostics.atlassian.net/browse/CDM-140), [141](https://delfidiagnostics.atlassian.net/browse/CDM-141), [142](https://delfidiagnostics.atlassian.net/browse/CDM-142)) and the obvious test data ([CDM-160](https://delfidiagnostics.atlassian.net/browse/CDM-160), [CDM-157](https://delfidiagnostics.atlassian.net/browse/CDM-157)). *(Connector can Dismiss; deletion needs UI.)*
 
 **Re-organization pass:**
 
 7. **Re-parent every remaining open ticket** (2026-created or still-actively-worked) to one of the 6 epics, per the triage worksheet with your review.
-8. **Move all pre-2026 tickets** (now either Completed or freshly Cancelled per rule 3) under **Pre-2026 Legacy** for tidy archival. Legacy becomes a pure archive — no live work.
+8. **Move all pre-2026 tickets** (now either Done or freshly Dismissed per rule 3) under **Pre-2026 Legacy** for tidy archival. Legacy becomes a pure archive — no live work.
 9. **Close out** [CDM-46](https://delfidiagnostics.atlassian.net/browse/CDM-46), [CDM-79](https://delfidiagnostics.atlassian.net/browse/CDM-79), [CDM-80](https://delfidiagnostics.atlassian.net/browse/CDM-80), [CDM-467](https://delfidiagnostics.atlassian.net/browse/CDM-467) once empty.
 
 **Labels, assignees, and hygiene:**
 
-10. **Apply `cat-*` + `proj-*` + `study-*` labels** to every open 2026 ticket. Optional: backfill Completed tickets for searchability.
+10. **Apply `cat-*` + `proj-*` + `study-*` labels** to every open 2026 ticket. Optional: backfill Done tickets for searchability.
 11. **Strip legacy labels** (`DQR_Listings`, `CDM-Tools`, `Departmental`, `Corporate`, `IVD_L201_Validation`, `L201`, `UAT`, `4ITLR_Dataset`, `Study`, `CPT_Component`, `Ad_Hoc_Report`, `Functional-Area`, `threshold_release`, `Translational_Research`) once the new labels are verified — same pass as rule 10. Otherwise every ticket carries both old and new conventions and queries get noisy.
 12. **Assign unassigned tickets to the reporter.** Edge cases: if the reporter is no longer active or is a system user, leave assignee null.

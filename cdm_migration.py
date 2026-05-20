@@ -62,26 +62,30 @@ OBSOLETE_EPIC_KEYS = [
 ]
 
 # Worksheet proposed_status -> (acceptable workflow status names, transition id).
-# Status names: accepts both pre-rename (CDM: Done/Dismissed) and post-rename
-# (TESTCDM at various points: Completed/Cancelled) — first name is canonical.
-# Transition IDs: 31/51/11 are stable. In Progress is 21 on CDM but became 2 on
-# TESTCDM after the workflow edit that added Ongoing — neither is hit on the
-# current run because no row needs an In Progress transition, but keep this in
-# mind if you ever add an "In Progress" row to the worksheet.
+# Canonical taxonomy uses Done/Dismissed (matching Jira's workflow names — we
+# chose not to rename). `Completed`/`Cancelled` are kept as aliases so older
+# worksheet copies still work.
+# Transition IDs: 31/51/11 are stable across projects. In Progress is 21 on CDM
+# but became 2 on TESTCDM after the workflow edit that added Ongoing — neither
+# is hit on the current run because no row needs an In Progress transition.
 # Ongoing status (id 11266) is project-scoped to TESTCDM. On CDM this transition
 # won't exist until the workflow is edited similarly; zero worksheet rows use
 # Ongoing anyway, so the mapping is dormant in practice.
 STATUS_TO_TRANSITION = {
-    "Completed": (("Completed", "Done"), "31"),
-    "Cancelled": (("Cancelled", "Dismissed"), "51"),
+    "Done": (("Done", "Completed"), "31"),
+    "Completed": (("Done", "Completed"), "31"),  # alias
+    "Dismissed": (("Dismissed", "Cancelled"), "51"),
+    "Cancelled": (("Dismissed", "Cancelled"), "51"),  # alias
     "In Progress": (("In Progress",), "21"),
     "Ongoing": (("Ongoing", "In Progress"), "3"),
     "To Do": (("To Do",), None),
 }
 
 RESOLUTION_BY_PROPOSED_STATUS = {
-    "Completed": "Done",
-    "Cancelled": "Won't Do",
+    "Done": "Done",
+    "Completed": "Done",     # alias
+    "Dismissed": "Won't Do",
+    "Cancelled": "Won't Do",  # alias
 }
 
 SUBTASK_TYPES = {"sub-task", "subtask"}
@@ -284,12 +288,13 @@ def phase_diff():
         target_names, tid = STATUS_TO_TRANSITION.get(proposed_status, (("To Do",), None))
         target_resolution = RESOLUTION_BY_PROPOSED_STATUS.get(proposed_status)
 
-        # Goal workflow has no Cancelled/Dismissed transition; fallback lands at
-        # Completed+Won't Do (or pre-rename Done+Won't Do, for CDM). Treat both as satisfied.
+        # Goal workflow has no Dismissed transition; fallback lands at
+        # Done + Won't Do. Treat that as satisfied for proposed_status "Dismissed"
+        # (or its alias "Cancelled" from older worksheet copies).
         goal_cancelled_satisfied = (
             is_goal
-            and proposed_status == "Cancelled"
-            and cur.get("status") in ("Completed", "Done")
+            and proposed_status in ("Dismissed", "Cancelled")
+            and cur.get("status") in ("Done", "Completed")
             and cur.get("resolution") == "Won't Do"
         )
 

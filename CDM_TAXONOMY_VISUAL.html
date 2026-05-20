@@ -546,15 +546,15 @@
       <div class="status-row">
         <span class="status-badge todo">To Do</span>
         <span class="status-badge inprogress">In Progress</span>
-        <span class="status-badge completed">Completed</span>
+        <span class="status-badge completed">Done</span>
         <span class="status-badge ongoing">Ongoing</span>
-        <span class="status-badge cancelled">Cancelled</span>
+        <span class="status-badge cancelled">Dismissed</span>
       </div>
       <p style="margin: 14px 0 0; color: var(--text-muted); font-size: 13px;">
-        <strong>Ongoing</strong> is for recurring service work that never naturally closes (monthly CDR refreshes, scheduled metric reports). <strong>Cancelled</strong> is distinct from <strong>Completed</strong> so they don't blur in reporting.
+        <strong>Ongoing</strong> is for recurring service work that never naturally closes (monthly CDR refreshes, scheduled metric reports). <strong>Dismissed</strong> (Resolution = <code>Won't Do</code>) is distinct from <strong>Done</strong> (Resolution = <code>Done</code>) so they don't blur in reporting.
       </p>
       <p style="margin: 10px 0 0; color: var(--text-muted); font-size: 12px;">
-        <em>Workflow note:</em> the Jira workflow uses the existing names <code>Done</code> ≡ Completed and <code>Dismissed</code> ≡ Cancelled (we chose not to rename — semantically identical). <code>Ongoing</code> was added as a new workflow status on TESTCDM; on production CDM it maps to <code>In Progress</code> until added there too.
+        <em>Implementation:</em> all five statuses live in the TESTCDM workflow. Production CDM has only four (<code>To Do / In Progress / Done / Dismissed</code>) until <code>Ongoing</code> is added there too; the migration script collapses <code>Ongoing → In Progress</code> as a fallback for CDM.
       </p>
     </div>
 
@@ -603,7 +603,7 @@
               <span class="icon-cell"><span class="icon">S</span></span>
               <span class="key">CDM-713</span>
               <span class="summary">Define column structure for stage reconciliation</span>
-              <span class="status-cell"><span class="status-badge completed">Completed</span></span>
+              <span class="status-cell"><span class="status-badge completed">Done</span></span>
               <span class="assignee"><span class="avatar tony">TW</span> Tony</span>
             </div>
             <div class="subtask">

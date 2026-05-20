@@ -21,13 +21,18 @@ Canonical source: `CDM_TAXONOMY_SUMMARY.md`. Visual: `CDM_TAXONOMY_VISUAL.html`.
 - `proj-*` (1+ per issue, 11 values): `cpt`, `dqr`, `edc`, `metrics`, `cancer-review`, `pipeline`, `cro`, `sample`, `data-release`, `cv`, `av`
 - `study-*` (exactly 1 per issue): `l101`, `l201`, `l301`, `4itlr`, `onom`, `cross`
 
-### Taxonomy statuses ↔ workflow statuses
-TESTCDM workflow now has 5 active statuses (`To Do / In Progress / Ongoing / Done / Dismissed`); production CDM still has 4 (`To Do / In Progress / Done / Dismissed`) until the same workflow edit is applied. The migration treats them as semantically equivalent:
-- `Completed` ≡ `Done` (+ resolution `Done`)
-- `Cancelled` ≡ `Dismissed` (+ resolution `Won't Do`)
-- `Ongoing` → `Ongoing` if present in the workflow, otherwise `In Progress`
+### Statuses (5)
+TESTCDM workflow has all five; production CDM still has only four pending an admin workflow edit to add `Ongoing`.
 
-Zero worksheet rows currently use `Ongoing` (the classifier didn't tag any recurring tickets). The status exists for future tickets the team manually creates.
+| Status | Resolution on close | Notes |
+|---|---|---|
+| `To Do` | — | Identified, not started |
+| `In Progress` | — | Actively being worked |
+| `Done` | `Done` | Closed successfully |
+| `Ongoing` | — | Recurring service work; on CDM, `phase_transitions` falls back to `In Progress` until the status is added to the CDM workflow |
+| `Dismissed` | `Won't Do` | Won't be done (workflow auto-sets Resolution = `Done` on close; `phase_resolutions` corrects it) |
+
+Worksheet `proposed_status` uses these names directly. `STATUS_TO_TRANSITION` also accepts `Completed` ≡ `Done` and `Cancelled` ≡ `Dismissed` as aliases for backwards compatibility with older worksheet copies. Zero worksheet rows currently use `Ongoing`.
 
 ---
 
