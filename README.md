@@ -10,9 +10,10 @@ Reorganizing the **CDM (Clinical Data Management)** Jira project at Delfi Diagno
 | Triage worksheet (634 tickets) | ✅ |
 | TESTCDM data reconciled to worksheet | ✅ — `--phase=verify` returns zero deltas |
 | TESTCDM obsolete epics deleted | ✅ (6 epics gone; 631 tickets remain) |
-| TESTCDM workflow statuses renamed | ✅ `Done → Completed`, `Dismissed → Cancelled` (cosmetic; not strictly required for prod CDM) |
-| TESTCDM board columns aligned to taxonomy | ✅ `To Do / In Progress / Completed / Cancelled`; `Refining` and `Backlog` columns removed |
-| TESTCDM backlog flushed to board | ✅ all items render on the Board view |
+| TESTCDM workflow statuses match prod CDM | ✅ `To Do / In Progress / Done / Dismissed` (renamed during testing, then reverted to mirror what CDM will look like) |
+| TESTCDM `Ongoing` status added to workflow | ✅ available for future recurring-work tickets; zero migrated tickets use it |
+| TESTCDM board columns | ✅ 6-column setup: `Backlog / To Do / In Progress / Done / Dismissed / Ongoing` |
+| TESTCDM backlog | ✅ visible as a triage column for new tickets |
 | Production CDM run | ⛔ not started |
 
 ## What's blocking us

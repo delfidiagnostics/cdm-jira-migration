@@ -21,11 +21,13 @@ Canonical source: `CDM_TAXONOMY_SUMMARY.md`. Visual: `CDM_TAXONOMY_VISUAL.html`.
 - `proj-*` (1+ per issue, 11 values): `cpt`, `dqr`, `edc`, `metrics`, `cancer-review`, `pipeline`, `cro`, `sample`, `data-release`, `cv`, `av`
 - `study-*` (exactly 1 per issue): `l101`, `l201`, `l301`, `4itlr`, `onom`, `cross`
 
-### 5 taxonomy statuses → 4 workflow statuses
-The TESTCDM/CDM workflow only has `To Do / In Progress / Done / Dismissed`. The migration maps:
-- `Completed → Done` (+ resolution `Done`)
-- `Cancelled → Dismissed` (+ resolution `Won't Do`)
-- `Ongoing → In Progress`
+### Taxonomy statuses ↔ workflow statuses
+TESTCDM workflow now has 5 active statuses (`To Do / In Progress / Ongoing / Done / Dismissed`); production CDM still has 4 (`To Do / In Progress / Done / Dismissed`) until the same workflow edit is applied. The migration treats them as semantically equivalent:
+- `Completed` ≡ `Done` (+ resolution `Done`)
+- `Cancelled` ≡ `Dismissed` (+ resolution `Won't Do`)
+- `Ongoing` → `Ongoing` if present in the workflow, otherwise `In Progress`
+
+Zero worksheet rows currently use `Ongoing` (the classifier didn't tag any recurring tickets). The status exists for future tickets the team manually creates.
 
 ---
 
@@ -33,7 +35,8 @@ The TESTCDM/CDM workflow only has `To Do / In Progress / Done / Dismissed`. The 
 
 - **Atlassian Cloud ID**: `f33c9366-7e25-468f-8a01-6c69d59e79e4`
 - **Base URL**: `https://delfidiagnostics.atlassian.net`
-- **TESTCDM workflow transition IDs**: `11=To Do`, `21=In Progress`, `31=Done`, `41=Backlog`, `51=Dismissed`, `2=Refining`
+- **TESTCDM workflow transition IDs** (post-edit, after Ongoing was added and Backlog/Refining removed from the workflow): `11=To Do`, `2=In Progress`, `3=Ongoing`, `31=Done`, `51=Dismissed`. Original IDs (`21=In Progress`, `41=Backlog`, `2=Refining`) no longer apply. Production CDM still uses the original IDs.
+- **TESTCDM project-scoped statuses** (5 active + 1 archived): `11228=To Do`, `11229=In Progress`, `11266=Ongoing`, `11230=Done`, `11231=Dismissed`. Vestigial `Refining` (`11232`) and `Backlog` (`11233`) exist but are no longer in any workflow.
 - **TESTCDM new-taxonomy epic keys** (preserve, don't touch): `630` (CASCADE), `631` (PMA), `633` (4ITLR), `635` (Reimbursement & Clinical Evidence), `636` (Departmental Ops), `637` (Pre-2026 Legacy)
 - **TESTCDM obsolete epic keys** (to delete): `1, 29, 282, 521, 632, 634`
 
@@ -161,8 +164,11 @@ Board column edits (rename, remove, reorder) are not exposed via REST. They have
 ### Re-parenting demotes items to backlog (Team-Managed projects)
 When `PUT /issue/{key}` changes `fields.parent` in a Team-Managed Software project, Jira moves that item from the Board view to the Backlog view by default. After `phase_parents` runs against ~115 tickets, those items disappear from the Board UI even though they're returned by the board's issue feed. `phase_empty_backlog` corrects this by POSTing each backlog key back to `/rest/agile/1.0/board/{id}/issue` (Jira-side this sets the "on board" flag). The phase is idempotent — if the backlog is already empty it's a no-op. It runs near the end of the `all` pipeline so it picks up anything moved by `phase_parents`.
 
-### Workflow statuses can be renamed (`Done → Completed`, `Dismissed → Cancelled`) but it's not required
-Status renames via `PUT /rest/api/3/statuses` are project-scoped and need `Administer Project`. The migration treats `Done` ≡ `Completed` and `Dismissed` ≡ `Cancelled` (same semantics, same status category). `STATUS_TO_TRANSITION` accepts either name in the workflow, so the script runs against pre-rename (CDM) or post-rename (TESTCDM) workflows without modification. Transition IDs (`31`/`51`) are stable across the rename — only display names change.
+### Status renames are optional; `STATUS_TO_TRANSITION` accepts both name sets
+`Done` ≡ `Completed` and `Dismissed` ≡ `Cancelled` — same semantics, same status category. Status renames via `PUT /rest/api/3/statuses` are project-scoped and need `Administer Project`, but they're cosmetic. The script's `STATUS_TO_TRANSITION` lists both names per slot, so it works against either form. Transition IDs (`31`/`51`) survive renames; only display names change. **TESTCDM ended up reverted to `Done`/`Dismissed` so it mirrors what production CDM will be.**
+
+### Workflow edits can renumber transition IDs
+Adding `Ongoing` to the TESTCDM workflow (UI operation) renumbered the In Progress transition from `21` to `2`, and removed `41` (Backlog) and `2` (Refining) entirely. Transition IDs are workflow-specific and *not stable across UI edits*. If `STATUS_TO_TRANSITION` ever needs an In Progress transition (zero worksheet rows currently do), the production-CDM run will use `21` and the post-edit TESTCDM run would need `2`. The cleanest long-term fix is to look transitions up by name at runtime via `GET /issue/{key}/transitions`, but that's a refactor we deferred since no current row triggers it.
 
 ### DELETE status requires removing it from the workflow first
 `DELETE /rest/api/3/statuses?id={id}` returns 400 "currently in use" if the status appears anywhere in the workflow graph, even with 0 tickets in it. Removing the status from the workflow requires **Jira Administrator** (instance-wide, higher than Project Admin) or the Project Settings → Issue Types → Workflow UI. The vestigial `Refining` and `Backlog` statuses on TESTCDM are kept as-is for this reason.

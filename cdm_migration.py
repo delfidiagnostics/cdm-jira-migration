@@ -62,15 +62,20 @@ OBSOLETE_EPIC_KEYS = [
 ]
 
 # Worksheet proposed_status -> (acceptable workflow status names, transition id).
-# Accepts both pre-rename (CDM: Done/Dismissed) and post-rename (TESTCDM:
-# Completed/Cancelled) names; transition IDs are stable across the rename since
-# only status display names changed. First name in each tuple is canonical for
-# logging.
+# Status names: accepts both pre-rename (CDM: Done/Dismissed) and post-rename
+# (TESTCDM at various points: Completed/Cancelled) — first name is canonical.
+# Transition IDs: 31/51/11 are stable. In Progress is 21 on CDM but became 2 on
+# TESTCDM after the workflow edit that added Ongoing — neither is hit on the
+# current run because no row needs an In Progress transition, but keep this in
+# mind if you ever add an "In Progress" row to the worksheet.
+# Ongoing status (id 11266) is project-scoped to TESTCDM. On CDM this transition
+# won't exist until the workflow is edited similarly; zero worksheet rows use
+# Ongoing anyway, so the mapping is dormant in practice.
 STATUS_TO_TRANSITION = {
     "Completed": (("Completed", "Done"), "31"),
     "Cancelled": (("Cancelled", "Dismissed"), "51"),
     "In Progress": (("In Progress",), "21"),
-    "Ongoing": (("In Progress",), "21"),
+    "Ongoing": (("Ongoing", "In Progress"), "3"),
     "To Do": (("To Do",), None),
 }
 
