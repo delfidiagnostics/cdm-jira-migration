@@ -2,24 +2,28 @@
 
 Reorganizing the **CDM (Clinical Data Management)** Jira project at Delfi Diagnostics into a 2026-aligned taxonomy: 6 epics, 3 prefixed label namespaces, 5 statuses. Currently in the **dry-run-on-TESTCDM** phase; production CDM has not been touched.
 
-## Status (2026-05-18)
+## Status (2026-05-20)
 
 | Item | State |
 |---|---|
 | Taxonomy designed | ✅ |
 | Triage worksheet (634 tickets) | ✅ |
-| TESTCDM data reconciled to worksheet | ✅ — `--phase=verify` returns zero deltas across labels, status, resolution, parents, assignees |
-| Cosmetic TESTCDM cleanup | ⚠️ blocked on Project Admin permission |
+| TESTCDM data reconciled to worksheet | ✅ — `--phase=verify` returns zero deltas |
+| TESTCDM obsolete epics deleted | ✅ (6 epics gone; 631 tickets remain) |
+| TESTCDM workflow statuses renamed | ✅ `Done → Completed`, `Dismissed → Cancelled` (cosmetic; not strictly required for prod CDM) |
+| TESTCDM board columns aligned to taxonomy | ✅ `To Do / In Progress / Completed / Cancelled`; `Refining` and `Backlog` columns removed |
+| TESTCDM backlog flushed to board | ✅ all items render on the Board view |
 | Production CDM run | ⛔ not started |
 
 ## What's blocking us
 
-All remaining TESTCDM cleanup needs **Project Admin** on TESTCDM, which Tony's account lacks (`ADMINISTER_PROJECTS=False`, `DELETE_ISSUES=False`, `EDIT_WORKFLOW=False`). With that one permission unlock, four cleanup items become possible:
+The only remaining gap is the **production CDM run**. To proceed, the same Project Admin permission Tony was granted on TESTCDM needs to be granted on the production CDM project, and the team needs to confirm comfort with running.
 
-1. **DELETE the 6 obsolete epics** (`TESTCDM-1, 29, 282, 521, 632, 634`) — already prefixed `(DEPRECATED)`, all Dismissed, all have 0 children. One command: `python3 cdm_migration.py --phase=delete_epics`.
-2. **Rename workflow statuses**: `Done → Completed`, `Dismissed → Cancelled` (project-scoped, won't affect other projects).
-3. **Hide unused board columns** `Refining` and `Backlog` — must be done in the Jira UI (REST API returns `405 Method Not Allowed` on board column edits).
-4. **Mute the notification scheme** before the production CDM run to avoid ~480 update emails firing during the bulk PUTs.
+The script (`cdm_migration.py --phase=all`) is the same for production. The only manual pre-flight steps on CDM are:
+1. **Admin creates the 3 new epics** in CDM: `Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`.
+2. **Admin renames/consolidates** existing Era-3 epics: `CDM-676 → CASCADE (L201) Readout`; `CDM-677+678 → IVD Lung PMA Submission`; `CDM-679+680 → 4ITLR Readout`.
+3. **Admin mutes the CDM notification scheme** for the run window (avoids ~480 update emails).
+4. **Add `--project=CDM`** support to the script (small change — currently the project key is a constant) and update the worksheet→CDM-key resolution (identity, no mapping CSV).
 
 ## Where we're going
 

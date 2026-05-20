@@ -119,6 +119,7 @@ Single script. Phases run via `--phase=name1,name2` or `--phase=all`. `--dry-run
 | `parents` | `PUT /issue/{key}` setting `fields.parent.key`; Subtask issuetypes skipped (Jira rejects Subtask → Epic) |
 | `deprecate_epics` | Prepend `(DEPRECATED)` to each obsolete epic's `summary`; idempotent |
 | `delete_epics` | Verify each obsolete epic has 0 children via `parent = {key}` JQL; then `DELETE /rest/api/3/issue/{key}`. Requires `Delete Issues` permission |
+| `empty_backlog` | `POST /rest/agile/1.0/board/{id}/issue` in batches of 50, promoting every backlog item to the board view. Team-Managed projects auto-demote re-parented items to backlog; this drains them. |
 | `verify` | Re-audit + re-diff; should print zero deltas |
 
 **Implementation:**
@@ -156,6 +157,15 @@ Returns numbers 30%+ below the true count. Use paginated `/rest/api/3/search/jql
 
 ### `PUT /rest/agile/1.0/board/{id}/configuration` returns 405
 Board column edits (rename, remove, reorder) are not exposed via REST. They have to be done in the Project Settings → Board UI.
+
+### Re-parenting demotes items to backlog (Team-Managed projects)
+When `PUT /issue/{key}` changes `fields.parent` in a Team-Managed Software project, Jira moves that item from the Board view to the Backlog view by default. After `phase_parents` runs against ~115 tickets, those items disappear from the Board UI even though they're returned by the board's issue feed. `phase_empty_backlog` corrects this by POSTing each backlog key back to `/rest/agile/1.0/board/{id}/issue` (Jira-side this sets the "on board" flag). The phase is idempotent — if the backlog is already empty it's a no-op. It runs near the end of the `all` pipeline so it picks up anything moved by `phase_parents`.
+
+### Workflow statuses can be renamed (`Done → Completed`, `Dismissed → Cancelled`) but it's not required
+Status renames via `PUT /rest/api/3/statuses` are project-scoped and need `Administer Project`. The migration treats `Done` ≡ `Completed` and `Dismissed` ≡ `Cancelled` (same semantics, same status category). `STATUS_TO_TRANSITION` accepts either name in the workflow, so the script runs against pre-rename (CDM) or post-rename (TESTCDM) workflows without modification. Transition IDs (`31`/`51`) are stable across the rename — only display names change.
+
+### DELETE status requires removing it from the workflow first
+`DELETE /rest/api/3/statuses?id={id}` returns 400 "currently in use" if the status appears anywhere in the workflow graph, even with 0 tickets in it. Removing the status from the workflow requires **Jira Administrator** (instance-wide, higher than Project Admin) or the Project Settings → Issue Types → Workflow UI. The vestigial `Refining` and `Backlog` statuses on TESTCDM are kept as-is for this reason.
 
 ---
 

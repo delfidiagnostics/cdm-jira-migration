@@ -11,7 +11,10 @@ Phases (run any subset via --phase=a,b,c or --phase=all):
   resolutions        PUT resolution overrides
   assignees          PUT assignees (name -> accountId lookup; skips inactive)
   parents            PUT parents (skips Subtasks; they inherit via Goal/Task)
+  deprecate_epics    Prepend `(DEPRECATED)` to obsolete epic summaries
   delete_epics       DELETE the 6 obsolete epics (verifies 0 children first)
+  empty_backlog      Promote every backlog item to the board (Team-Managed
+                     projects demote re-parented items to backlog by default)
   verify             Re-audit + re-diff; should print zero deltas
   all                Run everything in order
 
@@ -58,13 +61,17 @@ OBSOLETE_EPIC_KEYS = [
     "TESTCDM-634",  # [CONSOLIDATED] 4ITLR dataset
 ]
 
-# Worksheet proposed_status -> (TESTCDM workflow status, transition id)
+# Worksheet proposed_status -> (acceptable workflow status names, transition id).
+# Accepts both pre-rename (CDM: Done/Dismissed) and post-rename (TESTCDM:
+# Completed/Cancelled) names; transition IDs are stable across the rename since
+# only status display names changed. First name in each tuple is canonical for
+# logging.
 STATUS_TO_TRANSITION = {
-    "Completed": ("Done", "31"),
-    "Cancelled": ("Dismissed", "51"),
-    "In Progress": ("In Progress", "21"),
-    "Ongoing": ("In Progress", "21"),
-    "To Do": ("To Do", None),
+    "Completed": (("Completed", "Done"), "31"),
+    "Cancelled": (("Cancelled", "Dismissed"), "51"),
+    "In Progress": (("In Progress",), "21"),
+    "Ongoing": (("In Progress",), "21"),
+    "To Do": (("To Do",), None),
 }
 
 RESOLUTION_BY_PROPOSED_STATUS = {
@@ -269,19 +276,21 @@ def phase_diff():
 
         # transition + resolution
         proposed_status = row["proposed_status"]
-        target_status, tid = STATUS_TO_TRANSITION.get(proposed_status, ("To Do", None))
+        target_names, tid = STATUS_TO_TRANSITION.get(proposed_status, (("To Do",), None))
         target_resolution = RESOLUTION_BY_PROPOSED_STATUS.get(proposed_status)
 
+        # Goal workflow has no Cancelled/Dismissed transition; fallback lands at
+        # Completed+Won't Do (or pre-rename Done+Won't Do, for CDM). Treat both as satisfied.
         goal_cancelled_satisfied = (
             is_goal
             and proposed_status == "Cancelled"
-            and cur.get("status") == "Done"
+            and cur.get("status") in ("Completed", "Done")
             and cur.get("resolution") == "Won't Do"
         )
 
-        if not goal_cancelled_satisfied and tid and cur.get("status") != target_status:
+        if not goal_cancelled_satisfied and tid and cur.get("status") not in target_names:
             transition_ops.append({"key": tk, "transition_id": tid,
-                                   "target_status": target_status,
+                                   "target_status": target_names[0],
                                    "current_status": cur.get("status"),
                                    "issuetype": cur.get("issuetype")})
 
@@ -556,12 +565,67 @@ def phase_parents(call, dry_run=False):
     return run_parallel(ops, apply, "parents")
 
 
+def phase_empty_backlog(call, dry_run=False):
+    """Promote every backlog item to the board. In Team-Managed Software projects,
+    re-parented and newly-transitioned items get demoted to backlog by default;
+    this phase clears them out so they render on the Board view."""
+    print("\n=== EMPTY BACKLOG ===")
+    # Discover board ID for the project
+    s, b = call("GET", "/rest/agile/1.0/board?projectKeyOrId=" + PROJECT)
+    if s != 200:
+        print(f"  board lookup failed: {s} {b[:200]}")
+        return [{"key": "-", "phase": "empty_backlog", "result": "failed",
+                 "error": f"board lookup {s}"}]
+    boards = json.loads(b).get("values", [])
+    if not boards:
+        print(f"  no board found for {PROJECT}")
+        return []
+    board_id = boards[0]["id"]
+    # Page through backlog
+    keys = []
+    start = 0
+    while True:
+        s, b = call("GET", f"/rest/agile/1.0/board/{board_id}/backlog?startAt={start}&maxResults=100&fields=summary")
+        if s != 200:
+            break
+        d = json.loads(b)
+        page = [i["key"] for i in d.get("issues", [])]
+        keys.extend(page)
+        if not page or d.get("isLast") or start + len(page) >= d.get("total", 0):
+            break
+        start += len(page)
+    if not keys:
+        print(f"  backlog already empty for board {board_id}")
+        return []
+    if dry_run:
+        print(f"  [dry-run] would move {len(keys)} items to board {board_id}")
+        return []
+    # Batch the POST (Atlassian caps at 50 per call)
+    results = []
+    for i in range(0, len(keys), 50):
+        batch = keys[i:i+50]
+        s, b = call("POST", f"/rest/agile/1.0/board/{board_id}/issue", body={"issues": batch})
+        if 200 <= s < 300:
+            results.append({"key": f"batch_{i}", "phase": "empty_backlog",
+                            "result": "ok", "count": len(batch)})
+        else:
+            results.append({"key": f"batch_{i}", "phase": "empty_backlog",
+                            "result": "failed", "error": f"{s}: {b[:200]}"})
+    moved = sum(r.get("count", 0) for r in results if r["result"] == "ok")
+    print(f"  moved {moved}/{len(keys)} items from backlog to board {board_id}")
+    return results
+
+
 def phase_deprecate_epics(call, dry_run=False):
     """Prepend '(DEPRECATED) ' to each obsolete epic's summary. Idempotent."""
     print("\n=== DEPRECATE OBSOLETE EPICS (summary prefix) ===")
     results = []
     for ek in OBSOLETE_EPIC_KEYS:
         s, b = call("GET", f"/rest/api/3/issue/{ek}?fields=summary")
+        if s == 404:
+            print(f"  {ek}: already deleted")
+            results.append({"key": ek, "phase": "deprecate_epics", "result": "ok"})
+            continue
         if s != 200:
             print(f"  {ek}: fetch failed {s}")
             results.append({"key": ek, "phase": "deprecate_epics",
@@ -592,6 +656,12 @@ def phase_delete_epics(call, dry_run=False):
     print("\n=== DELETE OBSOLETE EPICS ===")
     results = []
     for ek in OBSOLETE_EPIC_KEYS:
+        # Verify the epic still exists; 404 means already deleted -> idempotent ok
+        es, _ = call("GET", f"/rest/api/3/issue/{ek}?fields=summary")
+        if es == 404:
+            print(f"  {ek}: already deleted")
+            results.append({"key": ek, "phase": "delete_epics", "result": "ok"})
+            continue
         jql = f"parent = {ek}"
         path = "/rest/api/3/search/jql?" + urlencode(
             {"jql": jql, "fields": "summary", "maxResults": 100})
@@ -641,7 +711,8 @@ def main():
     parser.add_argument(
         "--phase", default="all",
         help="comma-sep: audit,diff,annotate_worksheet,labels,transitions,"
-             "resolutions,assignees,parents,delete_epics,verify,all",
+             "resolutions,assignees,parents,deprecate_epics,delete_epics,"
+             "empty_backlog,verify,all",
     )
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -656,7 +727,7 @@ def main():
     if args.phase == "all":
         phases = ["audit", "diff", "annotate_worksheet", "labels",
                   "transitions", "resolutions", "assignees", "parents",
-                  "deprecate_epics", "delete_epics", "verify"]
+                  "deprecate_epics", "delete_epics", "empty_backlog", "verify"]
     else:
         phases = [p.strip() for p in args.phase.split(",")]
 
@@ -682,6 +753,8 @@ def main():
             all_results += phase_deprecate_epics(call, args.dry_run)
         elif p == "delete_epics":
             all_results += phase_delete_epics(call, args.dry_run)
+        elif p == "empty_backlog":
+            all_results += phase_empty_backlog(call, args.dry_run)
         elif p == "verify":
             phase_verify(call)
         else:
