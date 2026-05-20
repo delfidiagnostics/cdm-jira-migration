@@ -553,6 +553,9 @@
       <p style="margin: 14px 0 0; color: var(--text-muted); font-size: 13px;">
         <strong>Ongoing</strong> is for recurring service work that never naturally closes (monthly CDR refreshes, scheduled metric reports). <strong>Cancelled</strong> is distinct from <strong>Completed</strong> so they don't blur in reporting.
       </p>
+      <p style="margin: 10px 0 0; color: var(--text-muted); font-size: 12px;">
+        <em>Workflow note:</em> the Jira workflow uses the existing names <code>Done</code> ≡ Completed and <code>Dismissed</code> ≡ Cancelled (we chose not to rename — semantically identical). <code>Ongoing</code> was added as a new workflow status on TESTCDM; on production CDM it maps to <code>In Progress</code> until added there too.
+      </p>
     </div>
 
     <!-- ============ JIRA MOCKUP ============ -->

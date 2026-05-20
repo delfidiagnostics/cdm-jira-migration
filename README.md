@@ -97,6 +97,12 @@ Then rename statuses via `PUT /rest/api/3/statuses` (Done→Completed, Dismissed
 - Run `python3 cdm_migration.py --project=CDM --phase=all`.
 - Verify with `--phase=verify`.
 
+**5. Post-migration hygiene (CDM, UI-only):**
+- **Make Labels and Parent required** on the `Task` work type (Project Settings → Issue Types → Task → mark Labels and Parent as Required). Forces every new ticket to land under one of the 6 epics with at least one label.
+- *(Optional)* **Add a ScriptRunner Behaviour** to enforce the `cat-*` / `proj-*` / `study-*` label structure on Create. ScriptRunner is already installed in this Atlassian instance. Without it, "Required: Labels" only enforces non-empty.
+- **Add `Ongoing` to the CDM workflow** (Project Settings → Issue Types → Workflow) so future recurring-work tickets can use it. After the workflow edit, find the new Ongoing transition id and update `STATUS_TO_TRANSITION["Ongoing"]` in the script (currently hardcoded to TESTCDM's id `3`).
+- *(Optional)* **Disable the Backlog feature** if the team doesn't use it for triage. UI-only — no API toggle for `jsw.agility.backlog`.
+
 ## Definition of done
 
 **TESTCDM dry-run complete** when:

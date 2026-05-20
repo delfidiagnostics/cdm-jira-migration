@@ -187,6 +187,15 @@ Adding `Ongoing` to the TESTCDM workflow (UI operation) renumbered the In Progre
 - Don't add docstrings or comments unless the *why* is non-obvious. Phase names and the table above are the spec.
 - When in doubt about a destructive Jira operation (DELETE, status rename, workflow edit), check `/rest/api/3/mypermissions?projectKey=...&permissions=ADMINISTER_PROJECTS,DELETE_ISSUES,EDIT_WORKFLOW` first.
 
+## Post-migration project hygiene (UI-only, not in script)
+
+After running `--phase=all`, these UI-only configurations should be applied to lock in the new taxonomy and prevent drift:
+
+- **Labels field: Required** on the `Task` work type (Project Settings → Issue Types → Task → Labels → Required: On). Ensures new tickets carry at least one label.
+- **Parent field: Required** on the `Task` work type. Forces every new task to land under one of the 6 epics. Don't require it on Epic or Goal (they sit at the top of the hierarchy).
+- **ScriptRunner Behaviour** on the Labels field to enforce the `cat-*` / `proj-*` / `study-*` structure on Create. ScriptRunner is installed in this Atlassian instance; pure Jira can only enforce non-empty, not pattern. Optional but recommended.
+- **Backlog feature**: either disable in Project Settings → Features (if the team doesn't use it for triage), or accept that newly-created tickets auto-land in Backlog and rely on `phase_empty_backlog` periodically. Not toggleable via API.
+
 ---
 
 ## Lessons from earlier iterations (kept as warnings)

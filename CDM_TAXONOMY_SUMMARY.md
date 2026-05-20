@@ -87,19 +87,23 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 
 ## 4. Statuses (5)
 
-| Status | When to use |
-|---|---|
-| **To Do** | Identified, not started |
-| **In Progress** | Actively being worked |
-| **Completed** | Done |
-| **Ongoing** | Recurring service work — monthly CDR refreshes, scheduled metric reports, repeating data snapshots. Never reaches Completed because it recurs. |
-| **Cancelled** | Won't be done |
+| Status (taxonomy) | Workflow status (Jira) | When to use |
+|---|---|---|
+| **To Do** | `To Do` | Identified, not started |
+| **In Progress** | `In Progress` | Actively being worked |
+| **Completed** | `Done` | Closed successfully |
+| **Ongoing** | `Ongoing` (TESTCDM); maps to `In Progress` until added to CDM workflow | Recurring service work — monthly CDR refreshes, scheduled metric reports, repeating data snapshots. Never reaches Completed because it recurs. |
+| **Cancelled** | `Dismissed` (+ Resolution `Won't Do`) | Won't be done |
 
 **Why these five**: covers the work-in-flight lifecycle plus an "Ongoing" lane for recurring service work that never naturally closes, and "Cancelled" distinguished from "Completed" so they don't blur together.
+
+**Note on workflow names**: the conceptual taxonomy uses `Completed`/`Cancelled`/`Ongoing`. The actual Jira workflow uses `Done`/`Dismissed` (existing names — we chose not to rename them since they're semantically identical) plus a new `Ongoing` status added to TESTCDM. The migration script treats them as equivalent — `STATUS_TO_TRANSITION` accepts either name set so the same script runs against TESTCDM and CDM unmodified.
 
 ---
 
 ## 5. Migration rules at a glance
+
+> **Implementation status (2026-05-20)**: all rules below have been applied to **TESTCDM** (the clone) and verified zero-delta via `cdm_migration.py --phase=verify`. Production **CDM** has not been touched. The same script and rules apply to CDM when ready; see `README.md` for the cold-start runbook.
 
 **Pre-flight:**
 
