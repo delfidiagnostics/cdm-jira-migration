@@ -57,6 +57,7 @@ EPIC_CONFIG = {
         ],
         "preflight_rename": {},   # epics already exist; nothing to rename
         "preflight_create": [],   # nothing to create
+        "ongoing_transition": "3",   # TESTCDM workflow transition id for -> Ongoing
     },
     "CDM": {
         "map_identity": True,
@@ -79,6 +80,7 @@ EPIC_CONFIG = {
             "Departmental Ops",
             "Pre-2026 Legacy",
         ],
+        "ongoing_transition": "52",  # CDM workflow transition id for -> Ongoing (added 2026-05)
     },
 }
 
@@ -101,19 +103,18 @@ NO_NOTIFY = "?notifyUsers=false"
 # Canonical taxonomy uses Done/Dismissed (matching Jira's workflow names — we
 # chose not to rename). `Completed`/`Cancelled` are kept as aliases so older
 # worksheet copies still work.
-# Transition IDs: 31/51/11 are stable across projects. In Progress is 21 on CDM
-# but became 2 on TESTCDM after the workflow edit that added Ongoing — neither
-# is hit on the current run because no row needs an In Progress transition.
-# Ongoing status (id 11266) is project-scoped to TESTCDM. On CDM this transition
-# won't exist until the workflow is edited similarly; zero worksheet rows use
-# Ongoing anyway, so the mapping is dormant in practice.
+# Transition IDs: 31=Done, 51=Dismissed, 21=In Progress, 11=To Do are identical
+# on CDM and TESTCDM (verified live). Only the Ongoing transition differs — 3 on
+# TESTCDM, 52 on CDM (added to the CDM workflow 2026-05) — so its id comes from
+# EPIC_CONFIG[PROJECT]["ongoing_transition"], applied in main(). Zero worksheet
+# rows use Ongoing today, but the mapping is now correct for when they do.
 STATUS_TO_TRANSITION = {
     "Done": (("Done", "Completed"), "31"),
     "Completed": (("Done", "Completed"), "31"),  # alias
     "Dismissed": (("Dismissed", "Cancelled"), "51"),
     "Cancelled": (("Dismissed", "Cancelled"), "51"),  # alias
     "In Progress": (("In Progress",), "21"),
-    "Ongoing": (("Ongoing", "In Progress"), "3"),
+    "Ongoing": (("Ongoing", "In Progress"), "3"),  # overridden per-project in main()
     "To Do": (("To Do",), None),
 }
 
@@ -967,6 +968,8 @@ def main():
     STATE_DIR = ROOT / f".{PROJECT.lower()}-current"
     PRESERVE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["preserve"]
     OBSOLETE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["obsolete"]
+    STATUS_TO_TRANSITION["Ongoing"] = (
+        ("Ongoing", "In Progress"), EPIC_CONFIG[PROJECT]["ongoing_transition"])
     print(f"Project: {PROJECT}  (state dir: {STATE_DIR.name})")
 
     env = load_env()
