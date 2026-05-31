@@ -91,6 +91,12 @@ LOG_PATH = ROOT / "cdm_migration_log.json"
 PRESERVE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["preserve"]
 OBSOLETE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["obsolete"]
 
+# Suppress the per-edit email Jira sends on each write. Valid on PUT /issue and
+# POST /transitions; requires project admin (granted on both TESTCDM and CDM).
+# Only affects the script's own writes — the project notification scheme is
+# untouched, so normal ticket creation/edits by users still notify as usual.
+NO_NOTIFY = "?notifyUsers=false"
+
 # Worksheet proposed_status -> (acceptable workflow status names, transition id).
 # Canonical taxonomy uses Done/Dismissed (matching Jira's workflow names — we
 # chose not to rename). `Completed`/`Cancelled` are kept as aliases so older
@@ -473,7 +479,7 @@ def phase_labels(call, dry_run=False):
         print(f"  [dry-run] {len(ops)} label updates")
         return []
     def apply(op):
-        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}",
+        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}{NO_NOTIFY}",
                     body={"fields": {"labels": op["target_labels"]}})
         if 200 <= s < 300:
             return {"key": op["key"], "phase": "labels", "result": "ok"}
@@ -513,7 +519,7 @@ def phase_resolutions(call, dry_run=False):
         print(f"  [dry-run] {len(ops)} resolution overrides")
         return []
     def apply(op):
-        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}",
+        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}{NO_NOTIFY}",
                     body={"fields": {"resolution": {"name": op["target_resolution"]}}})
         if 200 <= s < 300:
             return {"key": op["key"], "phase": "resolutions", "result": "ok"}
@@ -588,7 +594,7 @@ def phase_assignees(call, dry_run=False):
         if not aid:
             return {"key": op["key"], "phase": "assignees", "result": "skipped_no_account",
                     "target_name": op["target_name"]}
-        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}",
+        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}{NO_NOTIFY}",
                     body={"fields": {"assignee": {"accountId": aid}}})
         if 200 <= s < 300:
             return {"key": op["key"], "phase": "assignees", "result": "ok"}
@@ -697,7 +703,7 @@ def phase_convert_subtasks(call, dry_run=False):
             results.append({"key": tk, "phase": "convert_subtasks",
                             "result": "converted_no_epic"})
             continue
-        ps, pb = call("PUT", f"/rest/api/3/issue/{tk}",
+        ps, pb = call("PUT", f"/rest/api/3/issue/{tk}{NO_NOTIFY}",
                       body={"fields": {"parent": {"key": epic}}})
         if 200 <= ps < 300:
             results.append({"key": tk, "phase": "convert_subtasks", "result": "ok"})
@@ -716,7 +722,7 @@ def phase_parents(call, dry_run=False):
         print(f"  [dry-run] {len(ops)} parent re-parents")
         return []
     def apply(op):
-        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}",
+        s, b = call("PUT", f"/rest/api/3/issue/{op['key']}{NO_NOTIFY}",
                     body={"fields": {"parent": {"key": op["target_parent"]}}})
         if 200 <= s < 300:
             return {"key": op["key"], "phase": "parents", "result": "ok"}
@@ -821,7 +827,7 @@ def phase_preflight_epics(call, dry_run=False):
         if dry_run:
             print(f"  {key}: [dry-run] rename {cur!r} -> {new_name!r}")
             continue
-        ps, pb = call("PUT", f"/rest/api/3/issue/{key}",
+        ps, pb = call("PUT", f"/rest/api/3/issue/{key}{NO_NOTIFY}",
                       body={"fields": {"summary": new_name}})
         if 200 <= ps < 300:
             print(f"  {key}: renamed -> {new_name!r}")
@@ -877,7 +883,7 @@ def phase_deprecate_epics(call, dry_run=False):
         if dry_run:
             print(f"  {ek}: [dry-run] would set summary -> {new_sum[:80]}")
             continue
-        us, ub = call("PUT", f"/rest/api/3/issue/{ek}",
+        us, ub = call("PUT", f"/rest/api/3/issue/{ek}{NO_NOTIFY}",
                       body={"fields": {"summary": new_sum}})
         if 200 <= us < 300:
             print(f"  {ek}: {new_sum[:80]}")

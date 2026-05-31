@@ -24,10 +24,10 @@ Admin permission — the historical blocker — is **now granted on both TESTCDM
 
 1. ~~**Add `--project=CDM`** support to the script~~ — ✅ done. Identity key-resolution (no mapping CSV), project-scoped state dir, and `PRESERVE_EPIC_KEYS`/`OBSOLETE_EPIC_KEYS` repointed to CDM keys all live in `EPIC_CONFIG["CDM"]`.
 2. ~~**Epic create/rename/consolidate**~~ — ✅ scripted as `phase_preflight_epics` (runs first in `--phase=all`): renames `CDM-676 → CASCADE (L201) Readout`, `CDM-677 → IVD Lung PMA Submission`, `CDM-679 → 4ITLR Readout`; creates `Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`; the empty leftovers `CDM-678`/`CDM-680` are deleted by `delete_epics`. Dry-run verified against CDM. (No longer a manual admin step.)
-3. **Admin mutes the CDM notification scheme** for the run window (avoids ~480 update emails). This is the "rules we set" for the assignee writes that were deliberately deferred on TESTCDM. *(Still manual — no API.)*
+3. **Notification suppression is now automatic** — every PUT write passes `?notifyUsers=false` (works because admin is granted) and the bulk-move sets `sendBulkNotification:false`, so the run is silent without touching the project's notification scheme. No manual mute, no revert. This is the "rules we set" for the assignee writes that were deliberately deferred on TESTCDM.
 4. **6 Subtask→Task conversions** run automatically via `phase_convert_subtasks` (CDM-644, 681, 691, 694, 695, 703) before `parents`.
 
-Remaining genuinely-manual pre-flight: just **#3 (mute notifications)**. Everything else is in the script.
+Nothing left to do manually pre-run — the whole migration is in the script.
 
 ## Where we're going
 
@@ -35,7 +35,7 @@ Remaining genuinely-manual pre-flight: just **#3 (mute notifications)**. Everyth
 2. ~~**Finish TESTCDM cleanup**~~ — ✅ done: obsolete epics deleted; statuses kept as `Done`/`Dismissed` (the team chose not to rename to `Completed`/`Cancelled`); `Ongoing` added; subtask→task conversion proven.
 3. ~~**Pre-flight production CDM** (epic create/rename)~~ — ✅ scripted as `phase_preflight_epics`; dry-run verified against CDM.
 4. ~~**Parameterize the script** to take `--project=CDM`~~ — ✅ done (identity key mapping, project-scoped state, CDM epic key sets in `EPIC_CONFIG`).
-5. **Run production**: mute notifications, then `python3 cdm_migration.py --project=CDM --phase=all`. Expect ~600 ops + 6 epics created/renamed in ~1 minute.
+5. **Run production**: `python3 cdm_migration.py --project=CDM --phase=all` (notifications suppressed by the script). Expect ~600 ops + 6 epics created/renamed in ~1 minute.
 6. **Verify**: `--project=CDM --phase=verify` → target zero deltas.
 
 ## Run it
@@ -88,7 +88,7 @@ print({k: v['havePermission'] for k,v in json.loads(urllib.request.urlopen(r).re
 **3. TESTCDM cleanup → ✅ already complete.** Admin permission is granted; the 6 obsolete epics are deleted, statuses are kept as `Done`/`Dismissed` (no rename), `Ongoing` is on the workflow, and subtask→task conversion is proven. Vestigial `Refining`/`Backlog` statuses remain (removing them needs instance-wide Jira Admin to edit the workflow graph first). `--phase=verify` returns zero deltas. Nothing left to do on TESTCDM.
 
 **4. Production CDM run:**
-- Mute the CDM notification scheme for the run window (the only remaining manual pre-flight; no API).
+- (No notification mute needed — the script passes `?notifyUsers=false` on every write and `sendBulkNotification:false` on the bulk-move, so the run is silent. The project scheme is untouched; normal user notifications continue.)
 - Preview: `python3 cdm_migration.py --project=CDM --phase=preflight_epics --dry-run` (shows the 3 renames + 3 creates), then `--project=CDM --phase=audit,diff` for the full op preview (read-only).
 - Run `python3 cdm_migration.py --project=CDM --phase=all`. Order: `preflight_epics` (create/rename the 6 epics) → audit/diff → labels/transitions/resolutions/assignees → `convert_subtasks` (promotes CDM-644, 681, 691, 694, 695, 703) → `parents` → deprecate/delete the obsolete epics → `empty_backlog` → `verify`.
 - Verify with `--project=CDM --phase=verify`.
@@ -111,4 +111,4 @@ print({k: v['havePermission'] for k,v in json.loads(urllib.request.urlopen(r).re
 **Production CDM migration complete** when:
 - All of the above repeated on CDM
 - `--phase=verify --project=CDM` returns zero deltas
-- IT has confirmed notification volume was contained
+- Notification volume contained (expected ~0 from the run — every write passes `?notifyUsers=false`)
