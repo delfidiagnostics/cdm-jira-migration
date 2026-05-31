@@ -18,7 +18,7 @@ Canonical source: `CDM_TAXONOMY_SUMMARY.md`. Visual: `CDM_TAXONOMY_VISUAL.html`.
 
 ### 3 label namespaces (all prefixed)
 - `cat-*` (exactly 1 per issue): `programming`, `reporting`, `operations`
-- `proj-*` (1+ per issue, 11 values): `cpt`, `dqr`, `edc`, `metrics`, `cancer-review`, `pipeline`, `cro`, `sample`, `data-release`, `cv`, `av`
+- `proj-*` (1+ per issue, 12 values): `cpt`, `dqr`, `edc`, `metrics`, `cancer-review`, `pipeline`, `cro`, `sample`, `data-release`, `cv`, `av`, `other` (`other` is the catch-all for operational/admin/training tasks with no natural data-workstream fit)
 - `study-*` (exactly 1 per issue): `l101`, `l201`, `l301`, `4itlr`, `onom`, `cross`
 
 ### Statuses (5)
@@ -54,7 +54,7 @@ Worksheet `proposed_status` uses these names directly. `STATUS_TO_TRANSITION` al
 |---|---|
 | `CDM_TAXONOMY_SUMMARY.md` | Taxonomy reference (epics, labels, statuses) |
 | `CDM_TAXONOMY_VISUAL.html` | Stakeholder diagram |
-| `CDM_TRIAGE_WORKSHEET.csv` | Master worksheet — 634 tickets × 19 columns (schema below) |
+| `CDM_TRIAGE_WORKSHEET.csv` | Master worksheet — 643 tickets × 19 columns (schema below) |
 | `CDM_TESTCDM_KEY_MAPPING.csv` | CDM ↔ TESTCDM key map (drop after production cutover) |
 | `cdm_migration.py` | The migration script |
 | `.env` | Atlassian creds (gitignored) |
@@ -72,7 +72,9 @@ Worksheet `proposed_status` uses these names directly. `STATUS_TO_TRANSITION` al
 
 ### `CDM_TRIAGE_WORKSHEET.csv` (19 columns)
 
-One row per CDM ticket (634 rows). `current_*` columns reflect CDM at the time the worksheet was built; `proposed_*` are the target state.
+One row per CDM ticket (643 rows; originally 634, +9 added 2026-05 for tickets CDM-698…706 issued after the worksheet was first built). `current_*` columns reflect CDM at the time the worksheet was built; `proposed_*` are the target state.
+
+A handful of rows are marked `type=Task` but are still live Subtasks in Jira (carrying a `[convert Subtask->Task …]` note). These are genuinely-active items that were being tracked as subtasks of long-dead parent tasks; `phase_convert_subtasks` promotes them. See that phase below.
 
 | Column | Meaning |
 |---|---|
@@ -124,6 +126,7 @@ Single script. Phases run via `--phase=name1,name2` or `--phase=all`. `--dry-run
 | `transitions` | `POST /issue/{key}/transitions?notifyUsers=false`; Goal-workflow fallback `51 → 31` |
 | `resolutions` | `PUT /issue/{key}` setting `fields.resolution.name` (second pass, because workflow auto-fills `Resolution = Done` on close) |
 | `assignees` | Resolve name → accountId via `/rest/api/3/user/search` (exact `displayName` match only); fallback to lifting accountId from CDM source-ticket assignee; skip if `active=False` |
+| `convert_subtasks` | For rows the worksheet marks as a standard type (`Task`) but that are still live Subtasks: `POST /rest/api/3/bulk/issues/move` (async; poll the returned `taskId`) to promote Subtask → Task, then `PUT fields.parent` to set the epic. Runs before `parents`. Idempotent — a row already live as a standard type is skipped. Task issuetype id is resolved at runtime via `/issue/createmeta` (project-specific). |
 | `parents` | `PUT /issue/{key}` setting `fields.parent.key`; Subtask issuetypes skipped (Jira rejects Subtask → Epic) |
 | `deprecate_epics` | Prepend `(DEPRECATED)` to each obsolete epic's `summary`; idempotent |
 | `delete_epics` | Verify each obsolete epic has 0 children via `parent = {key}` JQL; then `DELETE /rest/api/3/issue/{key}`. Requires `Delete Issues` permission |
@@ -146,7 +149,12 @@ Single script. Phases run via `--phase=name1,name2` or `--phase=all`. `--dry-run
 The Goal issue type only allows `To Do / In Progress / Done / Backlog`. When a Goal's `proposed_status` is `Cancelled`, `phase_transitions` falls back to `31` (Done) and `phase_resolutions` sets `Won't Do`. `phase_diff` recognizes `(issuetype=Goal, status=Done, resolution=Won't Do)` as satisfied for `proposed_status=Cancelled`, so re-runs don't oscillate.
 
 ### Subtask cannot have an Epic parent
-Jira hierarchy: Subtask (`-1`) → Task/Goal (`0`) → Epic (`+1`). Setting `parent` to an Epic on a Subtask returns `400 issue type constraint`. `phase_parents` skips Subtasks based on issuetype. Subtasks inherit epic membership transitively through their Task/Goal parent (which IS re-parented). 313 Subtasks in TESTCDM fall into this pattern.
+Jira hierarchy: Subtask (`-1`) → Task/Goal (`0`) → Epic (`+1`). Setting `parent` to an Epic on a Subtask returns `400 issue type constraint`. `phase_parents` skips Subtasks based on issuetype. A subtask has **no epic field of its own** — its epic is *always* whatever its Task/Goal parent sits under, inherited transitively (and that parent IS re-parented). A subtask therefore cannot be in a different epic from its parent. ~308 Subtasks fall into this pattern.
+
+If a subtask genuinely belongs in a different epic (e.g. live work that was being tracked as a subtask under a long-dead parent task — an anti-pattern), the only fix is to promote it to a standard Task and re-parent it to the epic. See the next quirk for why a field edit can't do this and `phase_convert_subtasks` for the working path. The correct model going forward: the durable container is the **Epic**, new work is a **Task** under it (grouped by `proj-*` labels), and subtasks are the ephemeral breakdown of a single Task — not a backlog for new work.
+
+### Changing the subtask/standard boundary needs the bulk-move API, not a field edit
+`PUT /issue/{key}` with a changed `fields.issuetype` to cross between Subtask and a standard type returns `400 "The issue type selected is invalid."` (and if a parent is supplied, a misleading `pid` error). The only programmatic path is `POST /rest/api/3/bulk/issues/move` — async, returns a `taskId` to poll at `/rest/api/3/task/{id}`. It converts the type, **drops the old subtask parent**, and preserves status + labels; you then `PUT fields.parent` to attach the new Task to its epic. This is exactly what `phase_convert_subtasks` does. (Earlier docs called this UI-only — that was wrong; the bulk-move endpoint does it headlessly.)
 
 ### Inactive users can't be newly assigned
 Jira blocks `PUT assignee` when the target accountId is deactivated, *even if that same user is already the assignee on existing tickets in another project*. `phase_assignees` detects `active=False` (either from `/user/search` results or from the CDM-source-ticket fallback) and skips with `result=skipped_inactive`. Known inactives in this dataset: Erica Peters, Lee Ming Sun, Vincent Puga-Aragon, Clarice Grant, Pavlova Nalley, Spencer King. `phase_annotate_worksheet` tags those rows with `(inactive)`.

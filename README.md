@@ -2,35 +2,37 @@
 
 Reorganizing the **CDM (Clinical Data Management)** Jira project at Delfi Diagnostics into a 2026-aligned taxonomy: 6 epics, 3 prefixed label namespaces, 5 statuses. Currently in the **dry-run-on-TESTCDM** phase; production CDM has not been touched.
 
-## Status (2026-05-20)
+## Status (2026-05-31)
 
 | Item | State |
 |---|---|
-| Taxonomy designed | ✅ |
-| Triage worksheet (634 tickets) | ✅ |
+| Taxonomy designed | ✅ (proj namespace grew to 12 with `proj-other` catch-all) |
+| Triage worksheet (643 tickets) | ✅ (634 original + 9 added 2026-05 for CDM-698…706) |
 | TESTCDM data reconciled to worksheet | ✅ — `--phase=verify` returns zero deltas |
-| TESTCDM obsolete epics deleted | ✅ (6 epics gone; 631 tickets remain) |
+| TESTCDM obsolete epics deleted | ✅ (6 epics gone) |
 | TESTCDM workflow statuses match prod CDM | ✅ `To Do / In Progress / Done / Dismissed` (renamed during testing, then reverted to mirror what CDM will look like) |
 | TESTCDM `Ongoing` status added to workflow | ✅ available for future recurring-work tickets; zero migrated tickets use it |
 | TESTCDM board columns | ✅ 6-column setup: `Backlog / To Do / In Progress / Done / Dismissed / Ongoing` |
 | TESTCDM backlog | ✅ visible as a triage column for new tickets |
+| Subtask→Task conversion | ✅ proven on TESTCDM via `phase_convert_subtasks` (bulk-move API); 6 rows pending conversion on production |
+| Admin permission (TESTCDM + CDM) | ✅ granted on **both** projects (`ADMINISTER_PROJECTS`, `DELETE_ISSUES`, `EDIT_WORKFLOW`) |
 | Production CDM run | ⛔ not started |
 
 ## What's blocking us
 
-The only remaining gap is the **production CDM run**. To proceed, the same Project Admin permission Tony was granted on TESTCDM needs to be granted on the production CDM project, and the team needs to confirm comfort with running.
+Admin permission — the historical blocker — is **now granted on both TESTCDM and production CDM**. The remaining work before the **production CDM run** is the pre-flight + a small script parameterization, plus the team confirming comfort with running:
 
-The script (`cdm_migration.py --phase=all`) is the same for production. The only manual pre-flight steps on CDM are:
 1. **Admin creates the 3 new epics** in CDM: `Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`.
-2. **Admin renames/consolidates** existing Era-3 epics: `CDM-676 → CASCADE (L201) Readout`; `CDM-677+678 → IVD Lung PMA Submission`; `CDM-679+680 → 4ITLR Readout`.
-3. **Admin mutes the CDM notification scheme** for the run window (avoids ~480 update emails).
-4. **Add `--project=CDM`** support to the script (small change — currently the project key is a constant) and update the worksheet→CDM-key resolution (identity, no mapping CSV).
+2. **Admin renames/consolidates** existing Era-3 epics: `CDM-676 → CASCADE (L201) Readout`; `CDM-677+678 → IVD Lung PMA Submission`; `CDM-679+680 → 4ITLR Readout`. Epic names must match the worksheet's `proposed_epic` values **verbatim** (a mismatch silently drops parenting, no error).
+3. **Admin mutes the CDM notification scheme** for the run window (avoids ~480 update emails). This is the "rules we set" for the assignee writes that were deliberately deferred on TESTCDM.
+4. **Add `--project=CDM`** support to the script (small change — currently the project key is a constant) and update the worksheet→CDM-key resolution (identity, no mapping CSV). This must also repoint `PRESERVE_EPIC_KEYS` / `OBSOLETE_EPIC_KEYS` to the CDM epic keys — otherwise the 9 Epic rows generate invalid parent writes.
+5. **6 Subtask→Task conversions** are pending on production (CDM-644, 681, 691, 694, 695, 703). `phase_convert_subtasks` handles these headlessly; they cannot be re-parented to an epic until promoted.
 
 ## Where we're going
 
-1. **Get admin permission** on TESTCDM + CDM (a 1-hour temporary window is sufficient).
-2. **Finish TESTCDM cleanup**: run `--phase=delete_epics`, apply the two status renames, tweak the board columns in the UI.
-3. **Pre-flight production CDM**: admin manually creates the 3 new epics (`Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`) and consolidates/renames the existing Era-3 epics in CDM. Mirror of what was done in TESTCDM.
+1. ~~**Get admin permission** on TESTCDM + CDM~~ — ✅ done (granted on both).
+2. ~~**Finish TESTCDM cleanup**~~ — ✅ done: obsolete epics deleted; statuses kept as `Done`/`Dismissed` (the team chose not to rename to `Completed`/`Cancelled`); `Ongoing` added; subtask→task conversion proven.
+3. **Pre-flight production CDM**: admin creates the 3 new epics (`Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`) and consolidates/renames the existing Era-3 epics in CDM. Mirror of what was done in TESTCDM. (Admin permission is now in hand, so this can be scripted or done in the UI.)
 4. **Parameterize the script** to take `--project=CDM` and treat the key mapping as identity (no clone). ~30 minutes of work.
 5. **Run production**: `python3 cdm_migration.py --phase=all` against CDM. Expect ~600 ops in ~1 minute.
 6. **Verify**: `--phase=verify` → target zero deltas.
@@ -82,19 +84,13 @@ print({k: v['havePermission'] for k,v in json.loads(urllib.request.urlopen(r).re
 "
 ```
 
-**3a. If admin permission is granted → finish TESTCDM cleanup:**
-```bash
-python3 cdm_migration.py --phase=delete_epics    # removes the 6 obsolete epics
-```
-Then rename statuses via `PUT /rest/api/3/statuses` (Done→Completed, Dismissed→Cancelled — Tony will need a short script; the API body is documented in CLAUDE.md). Then hide `Refining` and `Backlog` columns in the Jira UI (Project Settings → Board — no API for this).
+**3. TESTCDM cleanup → ✅ already complete.** Admin permission is granted; the 6 obsolete epics are deleted, statuses are kept as `Done`/`Dismissed` (no rename), `Ongoing` is on the workflow, and subtask→task conversion is proven. Vestigial `Refining`/`Backlog` statuses remain (removing them needs instance-wide Jira Admin to edit the workflow graph first). `--phase=verify` returns zero deltas. Nothing left to do on TESTCDM.
 
-**3b. If admin permission is NOT granted yet** → escalate to IT. Until then there's nothing useful to do on TESTCDM; the data is reconciled.
-
-**4. Production CDM run (after TESTCDM cleanup is fully done):**
-- Have admin pre-flight CDM in the UI: create 3 new epics (`Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`); rename `CDM-676` to `CASCADE (L201) Readout`; consolidate `CDM-677+678` into `IVD Lung PMA Submission`; consolidate `CDM-679+680` into `4ITLR Readout`.
-- Add a `--project=CDM` flag to `cdm_migration.py` so it can skip the TESTCDM mapping (small change in `phase_diff` and `phase_annotate_worksheet`).
+**4. Production CDM run:**
+- Have admin pre-flight CDM: create 3 new epics (`Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`); rename `CDM-676` to `CASCADE (L201) Readout`; consolidate `CDM-677+678` into `IVD Lung PMA Submission`; consolidate `CDM-679+680` into `4ITLR Readout`. Epic names must match the worksheet verbatim.
+- Add a `--project=CDM` flag to `cdm_migration.py` so it can skip the TESTCDM mapping (change in `phase_diff` / `phase_annotate_worksheet`) and repoint `PRESERVE_EPIC_KEYS` / `OBSOLETE_EPIC_KEYS` to the CDM epic keys.
 - Have admin mute the CDM notification scheme for the run window.
-- Run `python3 cdm_migration.py --project=CDM --phase=all`.
+- Run `python3 cdm_migration.py --project=CDM --phase=all`. The `convert_subtasks` phase promotes the 6 pending Subtask→Task rows (CDM-644, 681, 691, 694, 695, 703) before `parents`.
 - Verify with `--phase=verify`.
 
 **5. Post-migration hygiene (CDM, UI-only):**
@@ -106,10 +102,11 @@ Then rename statuses via `PUT /rest/api/3/statuses` (Done→Completed, Dismissed
 ## Definition of done
 
 **TESTCDM dry-run complete** when:
-- ✅ `--phase=verify` returns zero deltas (already true)
-- ⏳ The 6 obsolete epics are DELETEd (blocked on admin)
-- ⏳ `Done`/`Dismissed` are renamed to `Completed`/`Cancelled` (blocked on admin)
-- ⏳ `Refining` and `Backlog` columns are removed from the TESTCDM board (UI-only, blocked on admin)
+- ✅ `--phase=verify` returns zero deltas
+- ✅ The 6 obsolete epics are DELETEd
+- ✅ Status names decided — kept as `Done`/`Dismissed` (the team chose *not* to rename to `Completed`/`Cancelled`; the script accepts both)
+- ✅ Subtask→Task conversion proven on TESTCDM via `phase_convert_subtasks`
+- ➖ Vestigial `Refining`/`Backlog` statuses remain (DELETE needs instance-wide Jira Admin to remove them from the workflow first; kept as-is — see CLAUDE.md)
 
 **Production CDM migration complete** when:
 - All of the above repeated on CDM

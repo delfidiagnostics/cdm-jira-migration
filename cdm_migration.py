@@ -558,6 +558,118 @@ def phase_assignees(call, dry_run=False):
     return run_parallel(ops, apply, "assignees")
 
 
+def _resolve_task_issuetype_id(call):
+    """Return (project_id, standard 'Task' issuetype id) for PROJECT. The Task id
+    is project-specific (11035 on TESTCDM, differs on CDM) so it's resolved at
+    runtime rather than hardcoded."""
+    s, b = call("GET", f"/rest/api/3/project/{PROJECT}")
+    if s != 200:
+        return None, None
+    pid = json.loads(b)["id"]
+    s, b = call("GET", "/rest/api/3/issue/createmeta?" + urlencode(
+        {"projectKeys": PROJECT, "expand": "projects.issuetypes"}))
+    if s != 200:
+        return pid, None
+    for p in json.loads(b).get("projects", []):
+        for it in p.get("issuetypes", []):
+            if it.get("name") == "Task" and not it.get("subtask"):
+                return pid, it["id"]
+    return pid, None
+
+
+def phase_convert_subtasks(call, dry_run=False):
+    """Convert rows the worksheet marks as a standard type (Task) but that are
+    still live Subtasks. Jira refuses to cross the subtask/standard boundary via a
+    field edit (`PUT issuetype` -> 400 "issue type selected is invalid"); the
+    bulk-move API is the only path. Two steps per ticket:
+      1. POST /rest/api/3/bulk/issues/move  (async; also drops the subtask parent)
+      2. PUT  parent = epic                 (now standard, re-parent to its epic)
+    Must run before phase_parents. Idempotent: a row already live as a standard
+    type is no longer a candidate, so a re-run is a no-op."""
+    print("\n=== CONVERT SUBTASKS -> TASKS ===")
+    audit = load_audit()
+    worksheet = load_worksheet()
+    cdm_to_test = load_mapping()
+    epic_name_to_key = build_epic_name_to_key(audit)
+    skip_keys = PRESERVE_EPIC_KEYS | set(OBSOLETE_EPIC_KEYS)
+
+    candidates = []
+    for row in worksheet:
+        if (row.get("type") or "").lower() in SUBTASK_TYPES:
+            continue
+        tk = cdm_to_test.get(row["key"])
+        if not tk or tk in skip_keys:
+            continue
+        cur = audit.get(tk)
+        if cur and (cur.get("issuetype") or "").lower() in SUBTASK_TYPES:
+            candidates.append((tk, row))
+
+    if not candidates:
+        print("  convert_subtasks: nothing to do")
+        return []
+
+    print(f"  {len(candidates)} subtask(s) to convert -> Task:")
+    for tk, row in candidates:
+        epic = epic_name_to_key.get((row.get("proposed_epic") or "").strip())
+        print(f"    {tk} ({row['key']}) -> Task, parent={epic or '(epic unresolved)'}")
+    if dry_run:
+        print("  [dry-run] no conversion performed")
+        return []
+
+    pid, task_type_id = _resolve_task_issuetype_id(call)
+    if not pid or not task_type_id:
+        print("  could not resolve project id / Task issuetype id; aborting phase")
+        return [{"key": "-", "phase": "convert_subtasks", "result": "failed",
+                 "error": "issuetype/project resolution"}]
+
+    move_keys = [tk for tk, _ in candidates]
+    payload = {"sendBulkNotification": False, "targetToSourcesMapping": {
+        f"{pid},{task_type_id}": {
+            "inferClassificationDefaults": True, "inferFieldDefaults": True,
+            "inferStatusDefaults": True, "inferSubtaskTypeDefault": True,
+            "issueIdsOrKeys": move_keys}}}
+    s, b = call("POST", "/rest/api/3/bulk/issues/move", body=payload)
+    if not (200 <= s < 300):
+        print(f"  bulk move failed: {s} {b[:200]}")
+        return [{"key": ",".join(move_keys), "phase": "convert_subtasks",
+                 "result": "failed", "error": f"bulk move {s}: {b[:200]}"}]
+    task_id = json.loads(b).get("taskId")
+    print(f"  bulk move submitted (taskId={task_id}); polling...")
+    final = None
+    for _ in range(30):
+        ts, tb = call("GET", f"/rest/api/3/task/{task_id}")
+        final = json.loads(tb).get("status") if 200 <= ts < 300 else None
+        if final == "COMPLETE":
+            break
+        if final in ("FAILED", "CANCELLED", "DEAD"):
+            print(f"  bulk move task ended {final}: {tb[:200]}")
+            return [{"key": ",".join(move_keys), "phase": "convert_subtasks",
+                     "result": "failed", "error": f"task {final}"}]
+        time.sleep(2)
+    if final != "COMPLETE":
+        print("  bulk move did not complete in time")
+        return [{"key": ",".join(move_keys), "phase": "convert_subtasks",
+                 "result": "failed", "error": "task poll timeout"}]
+
+    results = []
+    for tk, row in candidates:
+        epic = epic_name_to_key.get((row.get("proposed_epic") or "").strip())
+        if not epic:
+            results.append({"key": tk, "phase": "convert_subtasks",
+                            "result": "converted_no_epic"})
+            continue
+        ps, pb = call("PUT", f"/rest/api/3/issue/{tk}",
+                      body={"fields": {"parent": {"key": epic}}})
+        if 200 <= ps < 300:
+            results.append({"key": tk, "phase": "convert_subtasks", "result": "ok"})
+        else:
+            results.append({"key": tk, "phase": "convert_subtasks",
+                            "result": "failed", "error": f"reparent {ps}: {pb[:200]}"})
+    ok = sum(1 for r in results if r["result"] == "ok")
+    print(f"  converted {ok}/{len(candidates)} subtask(s) -> Task under epic")
+    return results
+
+
 def phase_parents(call, dry_run=False):
     print("\n=== PARENTS ===")
     ops = load_diff()["parent_ops"]
@@ -721,8 +833,8 @@ def main():
     parser.add_argument(
         "--phase", default="all",
         help="comma-sep: audit,diff,annotate_worksheet,labels,transitions,"
-             "resolutions,assignees,parents,deprecate_epics,delete_epics,"
-             "empty_backlog,verify,all",
+             "resolutions,assignees,convert_subtasks,parents,deprecate_epics,"
+             "delete_epics,empty_backlog,verify,all",
     )
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -736,8 +848,9 @@ def main():
 
     if args.phase == "all":
         phases = ["audit", "diff", "annotate_worksheet", "labels",
-                  "transitions", "resolutions", "assignees", "parents",
-                  "deprecate_epics", "delete_epics", "empty_backlog", "verify"]
+                  "transitions", "resolutions", "assignees", "convert_subtasks",
+                  "parents", "deprecate_epics", "delete_epics", "empty_backlog",
+                  "verify"]
     else:
         phases = [p.strip() for p in args.phase.split(",")]
 
@@ -757,6 +870,8 @@ def main():
             all_results += phase_resolutions(call, args.dry_run)
         elif p == "assignees":
             all_results += phase_assignees(call, args.dry_run)
+        elif p == "convert_subtasks":
+            all_results += phase_convert_subtasks(call, args.dry_run)
         elif p == "parents":
             all_results += phase_parents(call, args.dry_run)
         elif p == "deprecate_epics":
