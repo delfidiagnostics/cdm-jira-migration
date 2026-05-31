@@ -428,7 +428,7 @@ def phase_annotate_worksheet():
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames
         for r in reader:
-            tk = cdm_to_test.get(r["key"])
+            tk = map_key(cdm_to_test, r["key"])
             if tk and (audit.get(tk, {}).get("issuetype") or "").lower() in SUBTASK_TYPES:
                 tag = f"[subtask: parent stays at {r.get('parent_key','')}; epic inherited]"
                 notes = (r.get("notes") or "").strip()
