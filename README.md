@@ -18,7 +18,7 @@ Reorganizing the **CDM (Clinical Data Management)** Jira project at Delfi Diagno
 | Admin permission (TESTCDM + CDM) | ✅ granted on **both** projects (`ADMINISTER_PROJECTS`, `DELETE_ISSUES`, `EDIT_WORKFLOW`) |
 | **Production CDM run** | ✅ **complete 2026-05-31** — 6 epics created/renamed, 634 labels, 125 transitions, 177 resolutions, 189 assignees, 320 re-parents, 6 obsolete epics deleted; `--phase=verify` = zero deltas. Pre-migration snapshot committed. |
 | CDM `Ongoing` status | ✅ added to CDM workflow (transition id **52**); script's `ongoing_transition` is now project-aware |
-| CDM post-migration hygiene | ✅ Labels required on Task · ⚠️ Parent not yet required (see below) |
+| CDM post-migration hygiene | ✅ Labels required on Task · ⛔ Parent can't be required (Jira-managed field on team-managed projects — UI locks the toggle) |
 
 ## What's blocking us
 
@@ -96,7 +96,8 @@ print({k: v['havePermission'] for k,v in json.loads(urllib.request.urlopen(r).re
 - Verify with `--project=CDM --phase=verify`.
 
 **5. Post-migration hygiene (CDM, UI-only):**
-- **Make Labels and Parent required** on the `Task` work type. ✅ Labels is required (confirmed via createmeta). ⚠️ **Parent is not yet required** — createmeta shows only Summary/Project/Reporter/Labels. If forcing every new task under an epic is desired, set Parent → Required too.
+- **Labels required** on the `Task` work type. ✅ done (confirmed via createmeta).
+- **Parent required** — ⛔ **not possible** on this project. CDM is team-managed and `Parent` is a Jira-managed system field, so the UI locks the "Required" toggle ("Jira created this field. You can't change if it's required"). The API can't override it either. To enforce "every new task under an epic," use the ScriptRunner Behaviour below instead.
 - *(Optional)* **Add a ScriptRunner Behaviour** to enforce the `cat-*` / `proj-*` / `study-*` label structure on Create. ScriptRunner is already installed in this Atlassian instance. Without it, "Required: Labels" only enforces non-empty.
 - ~~**Add `Ongoing` to the CDM workflow**~~ — ✅ done (transition id `52`). The script's `ongoing_transition` is now project-aware in `EPIC_CONFIG` (CDM=`52`, TESTCDM=`3`), so future recurring-work rows transition correctly.
 - *(Optional)* **Disable the Backlog feature** if the team doesn't use it for triage. UI-only — no API toggle for `jsw.agility.backlog`.
@@ -114,5 +115,5 @@ print({k: v['havePermission'] for k,v in json.loads(urllib.request.urlopen(r).re
 - ✅ All of the above applied to CDM (6 epics, 634 labels, 125 transitions, 177 resolutions, 189 assignees, 320 re-parents, 6 conversions, 6 obsolete epics deleted)
 - ✅ `--phase=verify --project=CDM` returns zero deltas
 - ✅ Notifications suppressed (`?notifyUsers=false` on every write)
-- ✅ `Ongoing` added to CDM workflow; Labels required on Task (⚠️ Parent still optional)
+- ✅ `Ongoing` added to CDM workflow; Labels required on Task (Parent can't be required — Jira-managed field; ScriptRunner is the only enforcement path)
 - ✅ Pre-migration snapshot committed (`CDM_PREMIGRATION_SNAPSHOT_2026-05-31T142034.{json,csv}`)
