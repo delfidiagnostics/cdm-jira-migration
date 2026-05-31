@@ -1,0 +1,644 @@
+key,issuetype,status,resolution,assignee_name,assignee_accountId,parent_key,labels,reporter_name,created,summary
+CDM-1,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-02-22,Create Projected Visits Report + Mechanism for Clinical Operations
+CDM-2,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-02-22,"Generate Visualizations/Tables for Distributions of Sex, Age, Smoking between Cancer/Non-Cancer Subjects in L101-NYU"
+CDM-6,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,Functional-Area,Lee Ming Sun,2022-02-17,Science37 Integration With Rave Tested and Approved
+CDM-7,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,Functional-Area,Lee Ming Sun,2022-02-15,L201 CRF Approval
+CDM-9,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,Functional-Area,Lee Ming Sun,2022-02-15,Confirm No Changes are Needed to L101 1/3 Data Cleaning Plan
+CDM-10,Goal,To Do,,,,CDM-46,Corporate,Lee Ming Sun,2022-02-15,Identify 2+ New Features and/or Computational Methods to Improve Prediction Through Machine Learning and Strengthen Knowledge Base with 2+ New Patent Applications and/or Publications
+CDM-11,Task,Done,Done,Clarice Grant,61eaea2938041c00687fb8cb,,Functional-Area,Lee Ming Sun,2022-02-15,Clinical Data Lock SOP
+CDM-12,Goal,To Do,,,,CDM-46,Corporate,Lee Ming Sun,2022-02-15,Achieving Partnership Goals in 2 of 3 Categories
+CDM-18,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,Functional-Area,Lee Ming Sun,2022-02-15,Finalize Data Cleaning Plan or Data Snapshot Plan
+CDM-19,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-79,Functional-Area,Lee Ming Sun,2022-02-15,NYU Retrospective DTS Documents
+CDM-20,Goal,To Do,,,,CDM-46,Corporate,Lee Ming Sun,2022-02-15,Expand Product Portfolio to Multi-Cancer and 1 Other Screening/Diagnostic Opportunities
+CDM-22,Goal,To Do,,,,CDM-46,Corporate,Lee Ming Sun,2022-02-15,L201 FPI (by 04/30) and 25% Enrollment Complete (by 12/31)
+CDM-24,Goal,To Do,,,,CDM-46,Corporate,Lee Ming Sun,2022-02-15,LDT - Complete Clinical Validation and Infrastructure Readiness for LDT Launch in Q1'23 
+CDM-26,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,Functional-Area,Lee Ming Sun,2022-02-15,L201 Initial CDMP April 2022
+CDM-27,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,Functional-Area,Lee Ming Sun,2022-02-15,Approve L101 1/3 Data Release
+CDM-29,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,Functional-Area,Lee Ming Sun,2022-02-15,Approve L101 2/3 Data Release
+CDM-31,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,,Functional-Area,Lee Ming Sun,2022-02-15,Determine Data Lock Mechanism
+CDM-40,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-18,Functional-Area,Lee Ming Sun,2022-02-16,Draft Data Cleaning Plan or Data Snapshot Plan
+CDM-41,Task,Dismissed,Done,,,CDM-79,,Lee Ming Sun,2022-02-22,L101 Payments - Unsuccessful Blood Draw
+CDM-44,Goal,To Do,,,,CDM-46,Functional-Area,Lee Ming Sun,2022-02-22,Hiring on Pace at >75% of Hiring Plan
+CDM-46,Epic,To Do,,,,,Corporate,Lee Ming Sun,2022-02-22,Corporate Goals
+CDM-58,Subtask,To Do,,,,CDM-20,Departmental,Lee Ming Sun,2022-02-23,Multi-Cancer Interim Analysis 12/31: Final Recruitment Strategy By February 2022
+CDM-59,Subtask,To Do,,,,CDM-20,Departmental,Lee Ming Sun,2022-02-23,Multi-cancer Interim Analysis 12/31: PM IA Timeline by Mid-Year
+CDM-60,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-20,Departmental,Lee Ming Sun,2022-02-23,"Multi-cancer Interim Analysis 12/31: Data Cut on September 01, 2022"
+CDM-61,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-20,Departmental,Lee Ming Sun,2022-02-23,Multi-cancer Interim Analysis 12/31: Data Clean Mid-October
+CDM-62,Subtask,To Do,,,,CDM-20,Departmental,Lee Ming Sun,2022-02-23,"Multi-cancer Interim Analysis 12/31: SAP Final by September 01, 2022"
+CDM-63,Subtask,To Do,,,,CDM-20,Departmental,Lee Ming Sun,2022-02-23,TOO Work: Identify and Secure 1 TOO Partnership Agreement (USOR or MCI) by July 2022
+CDM-64,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-22,Departmental,Lee Ming Sun,2022-02-23,4/30 L201 FPI: EDC Database Live by March 2022
+CDM-65,Subtask,To Do,,,,CDM-22,Departmental,Lee Ming Sun,2022-02-23,4/30 L201 FPI: 3 Sites Activated by March 2022
+CDM-66,Subtask,To Do,,,,CDM-22,Departmental,Lee Ming Sun,2022-02-23,4/30 L201 FPI: Website Live
+CDM-67,Subtask,To Do,,,,CDM-22,Departmental,Lee Ming Sun,2022-02-23,25% L201 Enrollment Complete: Science37 Enrolling
+CDM-68,Subtask,To Do,,,,CDM-22,Departmental,Lee Ming Sun,2022-02-23,25% L201 Enrollment Complete: 20 Sites Activated
+CDM-69,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 2/3 Training in Q3: L101-NYU NC/ 2/3 LC Fully Enrolled
+CDM-70,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 2/3 Training in Q3: Data Clean for 2/3
+CDM-71,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 2/3 Training in Q3: Analysis Data Ready for Unblind
+CDM-72,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 2/3 Training in Q3: Classifier Locked / Results Submitted
+CDM-73,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 1/3 Analysis Complete: Remaining LC Fully Enrolled
+CDM-74,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 1/3 Analysis Complete: Data Clean for 1/3
+CDM-75,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 1/3 Analysis Complete: AV/CV Abstracts Submitted Q4
+CDM-76,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 1/3 Analysis Complete: Mock Patient Report
+CDM-77,Subtask,To Do,,,,CDM-24,Departmental,Lee Ming Sun,2022-02-23,L101 1/3 Analysis Complete: Soft Publication Submission
+CDM-78,Subtask,Done,Done,Clarice Grant,61eaea2938041c00687fb8cb,CDM-44,Functional-Area,Lee Ming Sun,2022-02-23,Hire Research DM
+CDM-79,Epic,To Do,,,,,Study,Lee Ming Sun,2022-02-23,DELFI-L101
+CDM-80,Epic,To Do,,,,,Study,Lee Ming Sun,2022-02-23,DELFI-L201
+CDM-81,Task,Dismissed,Done,,,CDM-79,,Lee Ming Sun,2022-02-23,Early 12 Month Follow Up Report
+CDM-84,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2022-02-25,Reports to Program
+CDM-86,Task,Dismissed,Done,,,,,Lee Ming Sun,2022-02-25,CDM Team Discussion Topics
+CDM-87,Subtask,To Do,,,,CDM-86,,Lee Ming Sun,2022-02-25,Data handling for age-related PHI (e.g. ages >= 90)
+CDM-88,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-84,NYU,Lee Ming Sun,2022-02-25,Additional NYU-BLS LIMS Checks
+CDM-89,Subtask,Dismissed,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-84,,Lee Ming Sun,2022-02-25,Check to verify that NYU Screening data has associated CT scans
+CDM-90,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-19,,Lee Ming Sun,2022-02-28,Generate Retrospective DTS Shell
+CDM-91,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-84,,Lee Ming Sun,2022-02-28,Report to flag datapoints buried due to in-form dynamics
+CDM-92,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,,Lee Ming Sun,2022-03-03,Create a spreadsheet for all forms/fields in L201 to facilitate a meeting for critical variables to SDV
+CDM-93,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-84,,Lee Ming Sun,2022-03-03,"Report to check for CA.LNHISYN == ""No"" against reported CT data"
+CDM-110,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2022-03-10,Study Dashboard Updates
+CDM-111,Subtask,Done,Done,,,CDM-110,,Lee Ming Sun,2022-03-10,Priority Subject List Generation
+CDM-112,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-110,,Lee Ming Sun,2022-03-10,Add Assigned CRA to Subject Summary Tab
+CDM-113,Subtask,Done,Done,,,CDM-110,,Lee Ming Sun,2022-03-10,Figure Out How to Distinguish Unclean Subjects Due to Incomplete Enrollment Visit vs Expected 12 Month Follow Up vs Incomplete 12 Month Follow Up (After Entry)
+CDM-114,Subtask,Done,Done,,,CDM-84,,Lee Ming Sun,2022-03-10,CRA Monitoring Tracker for ClinOps
+CDM-115,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Lee Ming Sun,2022-03-30,Intro to R
+CDM-116,Subtask,To Do,,,,CDM-115,,Lee Ming Sun,2022-03-30,Find a R course that goes over R-Shiny
+CDM-117,Subtask,Done,Done,,,CDM-115,,Lee Ming Sun,2022-03-30,Read up on dplyr package
+CDM-120,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,,,Lee Ming Sun,2022-03-30,Review FU dataset component data export to ensure all expected variables are being exported
+CDM-121,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Lee Ming Sun,2022-03-31,Set up AWS Credentials for Accessing S3
+CDM-122,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,,Lee Ming Sun,2022-03-31,EDC Build v2.0
+CDM-123,Subtask,To Do,,,,CDM-122,,Lee Ming Sun,2022-03-31,Edit Check Specifications
+CDM-124,Subtask,To Do,,,,CDM-122,,Lee Ming Sun,2022-03-31,tSDV Specifications
+CDM-125,Subtask,To Do,,,,CDM-122,,Lee Ming Sun,2022-03-31,SUAT
+CDM-126,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Lee Ming Sun,2022-04-01,Update System Access Requests Confluence Page
+CDM-127,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-84,,Lee Ming Sun,2022-04-01,Non-Qualifying Enrollment CT Scans
+CDM-128,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-79,,Lee Ming Sun,2022-04-04,Report Extraction Tracker Metrics
+CDM-129,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-79,,Lee Ming Sun,2022-04-04,L101 Query Summary Report
+CDM-130,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-04-07,Azenta Shipping Manifest Generation
+CDM-131,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-130,,Lee Ming Sun,2022-04-07,Generate First Shipment
+CDM-132,Subtask,Done,Done,,,CDM-130,,Lee Ming Sun,2022-04-07,Generate Second Shipment
+CDM-133,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-04-13,Validation for DELFI-L201 Smoking History Calculator v1.0
+CDM-135,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-04-14,Inclusion #7 Listing for ClinOps
+CDM-136,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-79,,Lee Ming Sun,2022-04-14,Site Payments Updates
+CDM-137,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-04-14,Death Data Capture Clarification
+CDM-138,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,UAT,Eric Dixon,2022-04-18,CDM - L101 Medrio Database Update v.12
+CDM-139,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,UAT,Eric Dixon,2022-04-18,CDM: L101 Database Update v.12: UAT: BC.BCREFID Field update
+CDM-140,UAT Tests,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,UAT,Eric Dixon,2022-04-18,CDM: L101 Database Update v.12: UAT: BC.BCREFID Field update: R1.01
+CDM-141,UAT Tests,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,UAT,Eric Dixon,2022-04-18,CDM: L101 Database Update v.12: UAT: BC.BCREFID Field update: R1.02
+CDM-142,UAT Tests,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,UAT,Eric Dixon,2022-04-18,CDM: L101 Database Update v.12: UAT: BC.BCREFID Field update: R1.03
+CDM-143,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,UAT,Eric Dixon,2022-04-18,CLONE - CDM: L101 Database Update v.12: UAT:
+CDM-144,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-04-26,EDC vs LIMS Reconciliation Report
+CDM-145,Task,Refining,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools,Emily Larsen,2022-04-27,L201 Clean Patient Tracker Development
+CDM-146,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-04-29,"DELFI-L201 Inclusion 2, 3, 4 Review "
+CDM-147,Task,Dismissed,Done,,,CDM-80,DQR_Listings,Lee Ming Sun,2022-05-04,4 Month Follow-Up Visit Tracking
+CDM-148,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-05-10,DELFI-L201 Inclusion 5 Review
+CDM-149,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-05-17,Validation for DELFI-L201 Smoking History Calculator v2.0
+CDM-150,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-05-25,DELFI-L201 Exclusion 1 Review
+CDM-151,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-05-31,DELFI-L201 Exclusion 2 Review
+CDM-152,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Lee Ming Sun,2022-05-31,DELFI-L101 12 Month Cancer Status Review
+CDM-153,Task,Dismissed,Done,,,,,Lee Ming Sun,2022-06-01,DELFI-L101 NYU Queries
+CDM-154,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-79,,Lee Ming Sun,2022-06-02,DELFI-L101 Data Quality Review Manager Updates
+CDM-155,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-06-03,DELFI-L101 Blood Sample Collection Pathology Dates Error Checking
+CDM-157,EDC Requirement,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2022-06-03,TEST ISSUE (L101 Database Update v.12)
+CDM-158,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-06-06,DELFI-L201 Participant Disposition
+CDM-159,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,CDM-Tools|DQR_Listings,Lee Ming Sun,2022-06-06,DELFI-L201 Data Quality Review Manager
+CDM-160,EDC Requirement,To Do,,,,,,Clarice Grant,2022-06-08,testy
+CDM-161,Task,Dismissed,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Lee Ming Sun,2022-06-08,EDC Build Management - Database Specification Comparison
+CDM-162,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2022-06-09,EDC-LIMS Reconciliation Update
+CDM-163,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2022-06-14,Functionalizing l201_dqr_listings for l201datar pipeline
+CDM-164,Task,Dismissed,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-06-23,L201 Subject Validity Verification
+CDM-165,Task,Refining,,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,CPT_Component,Lee Ming Sun,2022-07-01,DELFI-L201 Clario Workflow Status Metrics
+CDM-166,Task,Refining,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,CPT_Component,Lee Ming Sun,2022-07-06,DELFI-L201 EDC Page Status Metrics
+CDM-167,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Lee Ming Sun,2022-07-25,DELFI-L101 Adverse Event Review
+CDM-168,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Vincent Puga-Aragon,2022-07-25,DELFI-L201 Consent Review Listing
+CDM-169,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Vincent Puga-Aragon,2022-07-25,DELFI-L201 AE Listing
+CDM-170,Task,Done,Done,,,,Translational_Research,Erica Peters,2022-08-02,Translational Research: Dashboard v1
+CDM-171,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,CPT_Component,Lee Ming Sun,2022-08-03,DELFI-L201 Subject Usability Table
+CDM-172,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-08-10,L201 Rave EDC Data Entry Metrics
+CDM-174,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CPT_Component,Lee Ming Sun,2022-08-11,DELFI-L201 Subject Information Table
+CDM-176,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,CPT_Component,Lee Ming Sun,2022-08-17,DELFI-L201 EDC Query Status
+CDM-177,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-08-22,L201 EDC Query Metrics
+CDM-178,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-08-24,DELFI-L201 CT Scan Review
+CDM-179,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2022-08-24,DELFI-L201 Blood Specimen Collection Review
+CDM-180,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-80,,Lee Ming Sun,2022-08-30,DELFI-L201 tSDV Module Monitoring
+CDM-181,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Lee Ming Sun,2022-08-31,DELFI-L101 Unassigned Cohort Review
+CDM-182,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2022-09-08,L201 Rave EDC SDV Metrics
+CDM-183,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,Translational_Research,Vincent Puga-Aragon,2022-09-09,Investigate JIRA API for TR Dashboard
+CDM-184,Task,Refining,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-09-20,DELFI-L201 Derived Clario Workflow Data
+CDM-185,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2022-09-20,DELFI-L101 CRA Metrics Summary 
+CDM-186,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2022-09-20,DELFI-L101 Priority Subjects Tracker
+CDM-187,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-09-20,DELFI-L201 S37 Integration Data Change Activity Monitoring
+CDM-188,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2022-09-22,DELFI-L101 CPT Priority column update
+CDM-189,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2022-09-26,DELFI-L101 Site Payment Updates for Site 121 & 153
+CDM-190,Task,Dismissed,Done,,,,,Lee Ming Sun,2022-09-27,Science Engineering & Technology Presentation
+CDM-191,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-152,DQR_Listings,Eric Dixon,2022-09-28,DELFI-L101 12 Month Cancer Outcomes Review Update
+CDM-192,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2022-09-29,DELFI-L101 BUG Fix - CRA Metrics Summary 
+CDM-193,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-09-29,DELFI-L201 Projected 4 Month Follow-Up Listing
+CDM-194,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-09-29,DELFI-L201 Suspicious Nodule Listing
+CDM-195,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-09-29,DELFI-L201 PPD Report
+CDM-196,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-10-07,DELFI-L101 Review Protocol Deviations & Manual Exclusions in Preparation for MCED IA Sample Selection
+CDM-197,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,Translational_Research,Erica Peters,2022-10-07,Translational Research Castor Edit Check Listings
+CDM-198,Subtask,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-348,,Eric Dixon,2022-10-11,DELFI-L101 BUG FIX: Cancer Status Review 
+CDM-199,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2022-10-13,Review L101 pipeline code for protocol amendment 5 changes
+CDM-200,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2022-10-14,DELFI-L101: Cancer Status Review Dropped Review Status Issue
+CDM-201,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2022-10-14,DELFI-L201 Protocol Deviation Review
+CDM-202,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2022-10-14,DELFI-L101: Cancer Status Review - Refactor date read-write code
+CDM-203,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-10-19,DELFI-L101 Sample Timeline Outputs
+CDM-204,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2022-10-19,Clario SFTP to S3 scripts
+CDM-205,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-79,,Lee Ming Sun,2022-10-24,DELFI-L101 Subject Information - Add MCED IA Subjects With Selected Samples
+CDM-206,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-199,,Lee Ming Sun,2022-10-26,DELFI-L101 Generate component datasets for BC_MSK & IC_MSK
+CDM-207,Subtask,To Do,,,,CDM-205,,Eric Dixon,2022-10-28,Add Samples_Selected_2022_MCED_IA column to CPT
+CDM-208,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-199,,Eric Dixon,2022-10-28,DELFI-L101 Export CRF Data
+CDM-209,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-10-28,DELFI-L101 EDC LIMS Reconciliation - Incorporate MSK Data
+CDM-210,Subtask,Dismissed,Done,,,CDM-199,,Lee Ming Sun,2022-10-31,DELFI-L101 Export CRF Metadata - Incorporate MSK Data
+CDM-211,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-02,DELFI-L101 Cancer Status Review - Incorporate MSK Data
+CDM-212,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-02,DELFI-L101 12 Month Cancer Outcomes Review - Incorporate MSK Data
+CDM-213,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-341,,Lee Ming Sun,2022-11-03,DQR Listing: Subjects Pending Discontinuation
+CDM-214,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-03,DELFI-L101 Inclusion 2-4 Review - Incorporate MSK Data
+CDM-215,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-03,DELFI-L101 Inclusion 5 Review - Incorporate MSK Data
+CDM-216,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-03,DELFI-L101 Export CRF Data ic_subjects.tsv
+CDM-217,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-04,DELFI-L101 Exclusion 1 Review - Incorporate MSK Data
+CDM-218,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-04,DELFI-L101 Exclusion 2 Review - Incorporate MSK Data
+CDM-219,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-04,DELFI-L101 	 Medrio Calculated Values - Incorporate MSK Data
+CDM-220,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-04,DELFI-L101 Blood Sample Collection Pathology Dates - Incorporate MSK Data
+CDM-221,Subtask,Dismissed,Done,,,CDM-199,,Eric Dixon,2022-11-04,DELFI-L101 Report Extraction Date Verification - Incorporate MSK Data
+CDM-222,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-07,DELFI-L101 Inclusion 7 Review - Incorporate MSK Data
+CDM-223,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2022-11-07,DELFI-L101 Protocol Deviation Review - Incorporate MSK Data
+CDM-224,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-11-08,DELFI-L201 Suspicious Cases Without Pathology Reports
+CDM-225,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2022-11-16,L201 Jupyter Notebook EDC Metrics
+CDM-226,Task,To Do,,,,,,Lee Ming Sun,2022-11-16,Data Release Process Improvements
+CDM-227,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-262,,Eric Dixon,2022-11-17,DELFI-L101: Clean Patient Tracker - Update Evaluation and Priority Column
+CDM-228,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2022-11-18,DELFI-L101 Refactor l101datar cdm managed files
+CDM-229,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Lee Ming Sun,2022-11-28,DELFI-L101 Exclusion 2 Review
+CDM-230,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-262,,Eric Dixon,2022-12-01,DELFI-L101: Clean Patient Tracker - Update Expected_FU
+CDM-231,Task,Dismissed,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-79,,Eric Dixon,2022-12-02,DELFI-L101: Update Subject Info evaluation for ldt validation
+CDM-232,Task,Done,Done,,,CDM-79,,Eric Dixon,2022-12-08,DELFI-L101: Site Payments 
+CDM-233,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2022-12-16,DELFI-L101: Update FU12_Expected data to 14-Feb-2023
+CDM-234,Subtask,Done,Done,,,CDM-144,,Lee Ming Sun,2023-01-03,Update L201 EDC LIMS Reconciliation for Character Values in BCSPID# Fields
+CDM-235,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2023-01-09,DELFI-L101 Cancer Status Review - fix typo in filter statement
+CDM-236,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-168,,Lee Ming Sun,2023-01-09,Add SDV Status of Consent Form into Listing
+CDM-237,Subtask,Done,Done,,,CDM-224,,Lee Ming Sun,2023-01-09,Add New Column: Cancer Yes/No
+CDM-238,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-01-10,DELFI-L101: Clean Patient Tracker - add LDT Testing Subject List - Monitoring & Cleaning column
+CDM-239,Subtask,Done,Done,,,CDM-168,,Lee Ming Sun,2023-01-13,Reorder Fields for Easier Review
+CDM-240,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-341,,Eric Dixon,2023-01-17,DELF-L101: Pending Discontinuation Review update
+CDM-241,Task,To Do,,,,,,Lee Ming Sun,2023-01-19,DELFI-L201 Pipeline Refactor Update to delfiawsr::read_s3()
+CDM-242,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-199,,Eric Dixon,2023-01-19,DELFI-L101: Incorporate MSK subjects into Non-Cancer Status Review
+CDM-243,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-181,,Eric Dixon,2023-01-19,DELFI-L101: Unassigned Cohort Review
+CDM-244,Subtask,Done,Done,,,CDM-224,,Lee Ming Sun,2023-01-20,Update logic to summarize Clario report to have unique records
+CDM-245,Subtask,Done,Done,,,CDM-195,,Lee Ming Sun,2023-01-20,Update Rave EDC Data Entry to include total late forms for average and max late tables
+CDM-246,Subtask,To Do,,,,CDM-172,,Lee Ming Sun,2023-01-24,[Bug Fix] Expected Visit Date Calculation for 12 Month Follow-Up Visit
+CDM-247,Subtask,Done,Done,,,CDM-224,,Lee Ming Sun,2023-01-24,[Bug Fix] Address review status joining issues
+CDM-248,Task,To Do,,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,,Lee Ming Sun,2023-01-25,DELFI-L201 Re-Enrollment List
+CDM-249,Subtask,Done,Done,,,CDM-201,,Lee Ming Sun,2023-01-26,Update CT and BC windows and Clarify Conditions for CT Scan Upload
+CDM-250,Subtask,Done,Done,,,CDM-168,,Lee Ming Sun,2023-01-31,Update SDV Status Logic
+CDM-251,Subtask,To Do,,,,CDM-224,,Lee Ming Sun,2023-01-31,Add ClinOps Reviewer Column
+CDM-252,Subtask,Done,Done,,,CDM-341,,Eric Dixon,2023-02-01,DELFI-L101: Pending Discontinuation Review - Remove Pending Report Extraction Derivation
+CDM-253,Subtask,Done,Done,,,CDM-152,DQR_Listings,Eric Dixon,2023-02-01,DELFI-L101: 12 Month Cancer Outcomes Review
+CDM-254,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-02-01,DELFI-L101: Report Extraction Date Verification
+CDM-255,Subtask,Done,Done,,,CDM-152,,Eric Dixon,2023-02-01,Typo fix: File Deletion Required?
+CDM-256,Subtask,Done,Done,,,CDM-254,,Eric Dixon,2023-02-01,Typo fix: File Deletion Required?
+CDM-257,Task,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,,Lee Ming Sun,2023-02-03,DELFI-L201 Lung RADS 4 - Expected Pathology
+CDM-258,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2023-02-07,DELFI-L101: Requirements for creating Site 201-299 
+CDM-259,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2023-02-08,DELFI-L101: Projected 12 Month Follow Up Visit Report
+CDM-260,Subtask,Done,Done,,,CDM-166,,Lee Ming Sun,2023-02-08,Update edc_crf_metadata_summarize_page_data() to adjust pending_sdv
+CDM-261,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-02-09,Update NYU FANSS Tube Barcode IDs
+CDM-262,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2023-02-09,DELFI-L101 Clean Patient Tracker
+CDM-263,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-02-09,Update FU date references from 14FEB2023 to 08MAR2023 & 31MAR2023
+CDM-264,Subtask,In Progress,,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-150,,Lee Ming Sun,2023-02-10,DQR: Exclusion 1 Review - handle duplicate records in raw data
+CDM-265,Subtask,In Progress,,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-151,,Lee Ming Sun,2023-02-10,DQR: Exclusion 2 Review - handle duplicate records in raw data
+CDM-266,Subtask,To Do,,,,CDM-166,,Lee Ming Sun,2023-02-13,Update Expected SDV to only be assessed for Entered Pages
+CDM-267,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-148,,Lee Ming Sun,2023-02-16,Update Inclusion 5 Review Logic
+CDM-268,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-02-17,LEMA: Merge new columns
+CDM-269,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2023-02-17,DELFI-L101: Posit Connect CDM Pipeline Development
+CDM-270,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2023-02-17,DELFI-L201 Plasma Volume Verification
+CDM-271,Task,To Do,,,,CDM-80,,Lee Ming Sun,2023-02-17,DELFI-L201 Sample Recollection Due to Hemolysis
+CDM-272,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-02-17,TS: Automate Final Data S3 folder into one Excel workbook
+CDM-273,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-152,DQR_Listings,Eric Dixon,2023-02-21,Add Subject Disposition form status and remove subjects that have completed required forms
+CDM-274,Subtask,Done,Done,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-168,,Lee Ming Sun,2023-02-22,Update SDV Status Logic - account for metric lag for newly entered data
+CDM-275,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-225,,Lee Ming Sun,2023-03-01,Transition L201 Jupyter Notebook EDC Metrics to using PositConnect and Restructure Outputs
+CDM-276,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-03-01,Update 'Evaluation' column for LDT Validation 
+CDM-277,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-03-01,Update 'AV 2023 Samples?' column to only include Cohort C 
+CDM-278,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,CPT_Component,Eric Dixon,2023-03-01,DELFI-L101 Subject Information Table
+CDM-279,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-03-01,Update Samples_Selected_2022_MCED_IA with AV_Cross_Reactivity_Subject_List in CPT
+CDM-280,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-179,,Vincent Puga-Aragon,2023-03-03,Fix duplication of rows in Blood Specimen Collection Listing
+CDM-281,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-03-03,Create Non-cancer Control dataset
+CDM-282,Task,To Do,,,,CDM-80,,Lee Ming Sun,2023-03-07,DELFI-L201 Other Cancer Type Review
+CDM-283,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-03-07,Upload Clario Data to S3
+CDM-284,Task,Dismissed,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-03-08,Create a utility script for restoring old comments
+CDM-285,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2023-03-09,DELFI-L201 Other Cancer Type Review
+CDM-286,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-03-13,DELFI-L101: Site 120 12 Month Internal Form Data Entry Check
+CDM-287,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-168,,Vincent Puga-Aragon,2023-03-14,Bug: Fix duplicate records of Consent Listing
+CDM-288,Subtask,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-159,,Vincent Puga-Aragon,2023-03-14,Add Duplication Check Logic to DQRM
+CDM-289,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2023-03-15,DELFI-L101: Subject Transfer - Site 104 to Site 119
+CDM-290,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-03-16,Update 'AV 2023 Samples?' column to include CDS derived variable group for AV subjects
+CDM-291,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-03-16,Update FU_12M_Expected variable to include CDS derived variable group for AV subjects
+CDM-292,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-03-16,Update Evaluation variable to include CDS derived variable group for AV subjects
+CDM-293,Task,To Do,,,,,,Lee Ming Sun,2023-03-20,DELFI-L201 Clario Workflow Review Tracker
+CDM-294,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-03-21,TS: Merge JHU data sources
+CDM-295,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-03-21,TS: Clean Foda dataset
+CDM-296,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-195,,Vincent Puga-Aragon,2023-03-23,Update filter for late forms listing
+CDM-297,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2023-03-24,DELFI-L101-NYU Screening Data Pipeline Scripts
+CDM-298,Subtask,Done,Done,,,CDM-297,,Lee Ming Sun,2023-03-24,Update pipeline scripts for data extraction
+CDM-299,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2023-03-24,DELFI-L101-NYU Bronchoscopy Data Pipeline Scripts
+CDM-300,Subtask,Done,Done,,,CDM-299,,Lee Ming Sun,2023-03-24,Update pipeline scripts for data extraction
+CDM-301,Task,Dismissed,Done,,,CDM-79,,Lee Ming Sun,2023-03-24,DELFI-L101-NYU Surgery Data Pipeline Scripts
+CDM-302,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2023-03-24,DELFI-L101-NYU Surgery Data Pipeline Scripts
+CDM-303,Subtask,Done,Done,,,CDM-302,,Lee Ming Sun,2023-03-24,Update Cohort Assignment Review Listing
+CDM-304,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-04-07,L201 Clario Workflow Metadata Update
+CDM-305,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2023-04-10,DELFI-L201 EDC Release v3 - Missing Datapoints
+CDM-306,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-166,,Vincent Puga-Aragon,2023-04-10,Assign Tier 1 when tSDV does not assign a tier
+CDM-307,Task,To Do,,Lee Ming Sun,6061edd7b5e5510069241a8f,CDM-80,,Lee Ming Sun,2023-04-10,DELFI-L201 EDC Release v3 - tSDV Alignment
+CDM-308,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,DQR_Listings,Lee Ming Sun,2023-04-10,DELFI-L201 L101 Enrollment Verification Listing
+CDM-309,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-225,,Vincent Puga-Aragon,2023-04-13,Create Bubble Plots for EDC Metrics
+CDM-310,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-04-19,Update FU date reference 31OCT2023
+CDM-311,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-278,,Eric Dixon,2023-04-19,Update FU_12M_Expected & Evaluation variables for Q4 2023 cleaning activities
+CDM-312,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-04-19,Update Evaluation variable to include all subjects with value based on enrollment date
+CDM-313,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-04-19,Update Priority_LDT_Train variable to reference FU_12M_Expected_LDT_Training instead of FU_12M_Expected
+CDM-314,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-04-19,Update Clean Status values to show if FU data is missing for more than for weeks past expected date  
+CDM-315,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-04-19,"Deprecate/Hide columns: ""LDT Testing Subject List - Monitoring and Cleaning"" & ""AV 2023 Samples?"""
+CDM-316,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2023-04-19,DELFI-L101: Site Payments
+CDM-317,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-316,,Eric Dixon,2023-04-19,Update Payments Tracker sheet to include all payment events
+CDM-318,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2023-04-25,DELFI-L201 Suspicious Nodule Case Tracker
+CDM-319,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2022-08-23,"L101: Update export_clean_patient_tracker() to remove ""Priority"" and ""LDT Train 2022 Samples?"" columns."
+CDM-320,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2022-08-23,L101 add Priority column for the LDT validation cleaning efforts to the export_clean_patient_tracker() 
+CDM-321,Task,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2023-01-31,DELFI-L101: Inclusion 2-4 listing issue
+CDM-322,Subtask,To Do,,,,CDM-289,,Eric Dixon,2023-04-28,Apply data quality review and report review records for subjects transferred from Site 104 to Site 119
+CDM-323,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-05-03,L201 tSDV Monitoring Report
+CDM-324,Subtask,Done,Done,,,CDM-181,,Eric Dixon,2023-05-04,Bug: Fix duplicate records for Unassigned Cohort Review listing
+CDM-325,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-05-05,Add Distinct to delfiawsr gsheet read-in
+CDM-326,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-05-08,TS: JHU Pembro updates
+CDM-327,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-286,,Eric Dixon,2023-05-09,Update output to prod file and add distinct() function to google sheet read in function
+CDM-328,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-05-09,TS: JHUPembro further updates
+CDM-329,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Payam Khodabakhshi,2023-03-02,Automate slide generation for the Centralized Data Review meeting
+CDM-330,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-329,,Vincent Puga-Aragon,2023-03-29,Subset and reorder tables by total participants per site
+CDM-331,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-329,,Vincent Puga-Aragon,2023-05-02,Create parallel file to streamline slide generation
+CDM-332,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-285,,Vincent Puga-Aragon,2023-05-10,Add Other Cancer Type to pipeline
+CDM-333,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2023-05-15,DELFI-L101: Prior Cancer History & FU Cancer Review
+CDM-334,Task,Dismissed,Done,,,,,Eric Dixon,2023-05-15,DELFI-L101: Ad hoc Report - Chest CT Scan Review
+CDM-335,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-05-17,Add pathology column and rearrange confirmed cancer column
+CDM-336,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-05-19,TS: JHU Pembro resolve WGS/MAF timepoint gaps
+CDM-337,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-05-19,TS: JHUPembro EPR reports
+CDM-338,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2023-05-19,DELFI-L101: Chest CT Scan Type Reconciliation Review
+CDM-339,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-05-22,TS: Further JHU Pembro edits
+CDM-340,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-05-22,Derived RADS Score Listing
+CDM-341,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2023-05-24,DELFI-L101:  Pending Discontinuation Review
+CDM-342,Subtask,Done,Done,,,CDM-341,,Eric Dixon,2023-05-24,DELFI-L101: Pending Discontinuation Review - remove duplicate rows
+CDM-343,Task,Done,Done,,,CDM-79,,Lee Ming Sun,2023-05-26,DELFI-L101 LDT Training & Validation Clean Status List Generation
+CDM-344,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-05-30,TS: JHUPembro 6 additional patients
+CDM-345,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-05-30,Inclusion #2-4 Duplication Bug for Issue Generation
+CDM-346,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-225,,Vincent Puga-Aragon,2023-05-30,Minor bubble plot updates
+CDM-347,Subtask,Dismissed,Done,,,CDM-339,,Erica Peters,2023-05-31,error
+CDM-348,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-01,DELFI-L101: Cancer Status Review
+CDM-349,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-01,DELFI-L101: Non-Cancer Status Review
+CDM-350,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-01,DELFI-L101: EDC vs LIMS Reconciliation
+CDM-351,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-01,DELFI-L101: Inclusion #2-4 Review
+CDM-352,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-01,DELFI-L101: Inclusion #5 Review
+CDM-353,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-01,DELFI-L101: Medrio Calculated Values
+CDM-354,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-06-01,Add enrollment columns and 4mfu query status columns
+CDM-355,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-225,,Vincent Puga-Aragon,2023-06-02,Update SDV bubble label threshold
+CDM-356,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2023-06-02,DELFI-L101: Priority Subject Tracker - remove duplicates & update filter reference
+CDM-357,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-262,,Eric Dixon,2023-06-05,Update 'Clean Status' for withdrawn subjects
+CDM-358,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-262,,Eric Dixon,2023-06-05,Update Priority column values
+CDM-359,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-06-06,Unique Identifier Creation for rows in DQR Listings
+CDM-360,Subtask,Done,Done,,,CDM-333,,Eric Dixon,2023-06-06,Correct function name for the Prior Cancer History & FU Cancer Review
+CDM-361,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-06-08,TS: Curate LEMA analysis set.
+CDM-362,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-06-08,Merge review status and comments from previous suspicous nodules listing
+CDM-363,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-333,,Eric Dixon,2023-06-08,DELFI-L101: Prior Cancer History & FU Cancer Review: Update s3 file output locations to DQR folders
+CDM-364,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-333,,Eric Dixon,2023-06-09,DELFI-L101: Prior Cancer History & FU Cancer Review - s3 output file creates a new row in the table for cells that have a line return character
+CDM-365,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-06-09,DELFI-L101: AFT Report 
+CDM-366,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-06-13,Add cancer type and provisional cancer status variables
+CDM-367,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Lee Ming Sun,2023-06-13,DELFI-L201 Erroneous Clario 4MFU Visits
+CDM-368,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,,DQR_Listings,Eric Dixon,2023-06-14,DELFI-L101: Refactor Data Quality Review Pipeline Code
+CDM-369,Subtask,To Do,,,,CDM-368,,Eric Dixon,2023-06-14,cdm_s3_export function
+CDM-370,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-148,,Lee Ming Sun,2023-06-15,Add Additional Fields to Inclusion 5 Listing
+CDM-371,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-06-20,DELFI-L201 General Edit Checks Structure
+CDM-372,Subtask,To Do,,,,CDM-371,,Lee Ming Sun,2023-06-21,DELFI-L201 Inactivated Casebooks Check
+CDM-373,Subtask,To Do,,,,CDM-371,,Lee Ming Sun,2023-06-21,DELFI-L201 Suspicious Criteria Checks
+CDM-374,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Lee Ming Sun,2023-06-21,Add Clario Visit Hyperlinks to Enrollment Clario Visit Status and 4MFU Clario Visit Status Fields
+CDM-375,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-195,,Lee Ming Sun,2023-06-21,Add S37 Sub-I Information
+CDM-376,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-225,,Vincent Puga-Aragon,2023-06-23,Add logic to handle sub site columns
+CDM-377,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-06-26,API Learning
+CDM-378,Subtask,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-06-27,Add Participant Disposition Status and Discontinuation Reason
+CDM-379,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-06-27,Clario Enrollment and 12MFU Cancer Case Tracker
+CDM-380,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-06-28,Retired L201 Suspicous Nodules Pathology listing
+CDM-381,Subtask,Done,Done,,,CDM-316,,Eric Dixon,2023-06-28,Update Payment Tracker RE_FU and Follow-Up Payment column derivations
+CDM-382,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-06-28,Update priority column to include Cohort C subjects
+CDM-383,Subtask,Done,Done,,,CDM-316,,Eric Dixon,2023-06-28,Add DELFI-L101: Site Payments to the cdm_monorepo 
+CDM-384,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-06-29,L201 PPD KPIs
+CDM-385,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-07-07,PPD Report Add Total S37 summation row
+CDM-386,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-07-10,Add 'Cleaning Metrics' sheet to CPT to summarize 2023 cleaning goals progress
+CDM-387,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-07-11,L201 Inclusion #5 Duplicate Fix in join df
+CDM-388,Subtask,Dismissed,Done,,,CDM-350,,Eric Dixon,2023-07-17,Bug fix: `Aliquot Suffix` read in as a list
+CDM-389,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2023-07-19,TS: Create Liver checker
+CDM-390,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-07-19,Time Card Pilot
+CDM-391,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Lee Ming Sun,2023-07-19,DELFI-L201 Duplicate Enrollment Review
+CDM-392,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-07-21,Update L201 SURF Read In files to parquet
+CDM-393,Task,Dismissed,Done,,,CDM-79,CPT_Component,Eric Dixon,2023-07-21,DELFI-L101: LIMS Lab Derived Data Table
+CDM-394,Subtask,Dismissed,Done,,,CDM-393,,Eric Dixon,2023-07-21,Read surf files as parquet type instead of .tsv
+CDM-395,Task,Done,Done,,,CDM-79,,Eric Dixon,2023-07-21,DELFI-L101: Monitoring Visit & Visit Report Tracker - IMV Report Metrics
+CDM-396,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-201,,Vincent Puga-Aragon,2023-07-26,Add S37 Sub-Ids
+CDM-397,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-145,,Vincent Puga-Aragon,2023-07-26,Remove Pages write out to gsheets for CPT
+CDM-398,Task,Done,Done,,,CDM-79,,Eric Dixon,2023-08-01,DELFI-L101: Adhoc request - MM review of scan type variable for Cohort A subjects
+CDM-399,Subtask,Done,Done,,,CDM-185,,Eric Dixon,2023-08-02,Add percent totals for imv report metrics
+CDM-400,Subtask,Done,Done,,,CDM-333,,Eric Dixon,2023-08-04,"Re-apply dropped ""ClinOps Reviewer Date"""
+CDM-401,Subtask,Done,Done,,,CDM-185,,Eric Dixon,2023-08-09,Add grand total row for all columns
+CDM-402,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2023-08-09,Medical Monitoring / ClinOps Pending Data Quality Reviews should not show dqr counts that are not ready for review
+CDM-403,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2023-08-23,"Add ""Staging Type"" variable to the Cancer Status Review"
+CDM-404,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2023-08-23,Include all site 102 and site 119 subjects to the priority review listing
+CDM-405,Subtask,Done,Done,,,CDM-365,,Eric Dixon,2023-08-25,Add Cohort Assignment and Cancer Type
+CDM-407,Subtask,Done,Done,,,CDM-185,,Eric Dixon,2023-08-28,Add upcoming and overdue columns for Counts of Report Status columns 
+CDM-408,Task,To Do,,,,,,Vincent Puga-Aragon,2023-08-29,CDR Updates
+CDM-409,Subtask,Done,Done,,,CDM-152,,Eric Dixon,2023-08-29,Remove duplicate records from listing
+CDM-410,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2023-08-29,Bug fix: remove duplicates causing mutate function to fail
+CDM-411,Subtask,Done,Done,,,CDM-145,,Vincent Puga-Aragon,2023-08-30,Add logic for 4MFU and 12MFU Clario Data
+CDM-412,Task,Dismissed,Done,,,CDM-79,,Eric Dixon,2023-08-30,DELFI-L101: Remove duplicates from all google sheet data quality review read in functions
+CDM-413,Subtask,In Progress,,,,CDM-184,,Vincent Puga-Aragon,2023-09-05,Add 4MFU and 12MFU Derived Clario Workflow Data
+CDM-414,Subtask,Dismissed,Done,,,CDM-341,,Eric Dixon,2023-09-07,"Subject 124-001 is pulling in the Unscheduled Visit ""Blood Sample Collection"" eCRF instead of Enrollment Visit eCRF"
+CDM-415,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-09-08,Fix multiple 4MFU visit
+CDM-416,Task,Done,Done,,,CDM-80,,Eric Dixon,2023-09-18,DELFI-L201 Surf Search Posit-Connect Report
+CDM-417,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-09-19,Add latest ALS to AWS directory
+CDM-418,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-09-19,CDR Updates from August Meeting
+CDM-419,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-09-20,Update priority column for end of year milestones 2023
+CDM-420,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-09-20,Update cleaning metrics sheet based on end of year milestones 2023
+CDM-421,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-09-26,CDR Cancer Details
+CDM-422,Subtask,Done,Done,,,CDM-316,,Eric Dixon,2023-09-29,Replace UAT google sheets with Production google sheets 
+CDM-423,Subtask,To Do,,,,CDM-416,,Eric Dixon,2023-10-19,Bug fix: Issue found in Surf_Searcher_Report when generating the tube_barcode_id selection list.
+CDM-424,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2023-10-20,"Update ""Ready for Review"" column to include site 300 and cohort a edge cases "
+CDM-425,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2023-10-26,Add MM tab to Clario Case Tracker
+CDM-426,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-11-01,Provisional Cancer Weekly Summary
+CDM-427,Subtask,Done,Done,,,CDM-152,,Eric Dixon,2023-11-01,"Update ""Ready for Review"" column to include site 300"
+CDM-428,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-11-01,Update Evaluation variable to identify L101 V1 Re-Run subject list
+CDM-429,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-11-02,Programmatic DQR Gsheet
+CDM-430,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2023-11-07,December CDR Updates
+CDM-431,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-11-09,Add cleaning metrics for the L101 V1 Rerun participants 
+CDM-432,Task,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-11-13,General Comments DQR Listing
+CDM-434,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-11-29,Add new priority for Cohort A subjects included in CT
+CDM-435,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-11-29,"Update Clean_Status_FU derivation so that L101 V1 Rerun participants enrolled after 31Oct2022 are no longer labeled ""Not Applicable"""
+CDM-436,Task,Done,Done,,,CDM-79,,Eric Dixon,2023-12-06,DELFI-L101 V1 Rerun Clean Status List Generation 
+CDM-437,Subtask,Done,Done,,,CDM-436,,Eric Dixon,2023-12-06,DELFI-L101 V1 Rerun Clean Status List Generation 08DEC2023
+CDM-438,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-426,,Vincent Puga-Aragon,2023-12-07,Fix order of visit status
+CDM-439,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-80,,Vincent Puga-Aragon,2023-12-11,L201 EDC-LIMS Monthly Metrics
+CDM-440,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2023-12-11,Evaluation Column: Remove references to OCT 31
+CDM-441,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2023-12-13,Update blood_collection_date to new variable name BCDAT
+CDM-442,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2023-12-19,DELFI-L101: Chest CT Scan Type Cohort Indeterminate Reconciliation
+CDM-443,Subtask,Dismissed,Done,,,CDM-436,,Eric Dixon,2024-01-02,DELFI-L101 V2 Rerun L101 V1 Rerun (Second Informal Release) Clean Status List Generation 02JAN2024
+CDM-444,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-01-04,Cleaning Metrics Tab: Remove 2023 EOY Goal related metric columns & Add in Overall Clean Metrics for L101 V1 Rerun release
+CDM-445,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-01-08,Update priority column to remove EOY Goal priorities
+CDM-446,Subtask,Done,Done,Vincent Puga-Aragon,623cee92b75ca80070575861,CDM-318,,Vincent Puga-Aragon,2024-01-08,Add Confirmed Cancer Tracker
+CDM-447,Subtask,Done,Done,,,CDM-152,,Eric Dixon,2024-01-08,Add Staging Type column
+CDM-448,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2024-01-09,DELFI-L101: Lung Cancer TNM vs Stage Review
+CDM-449,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2024-01-12,12MFU Expected Monthly Cumulative Pcts
+CDM-450,Task,To Do,,Vincent Puga-Aragon,623cee92b75ca80070575861,,,Vincent Puga-Aragon,2024-01-12,January CDR Updates
+CDM-451,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2024-01-16,Add Evaluation Column to the tracker
+CDM-452,Subtask,Done,Done,,,CDM-333,,Eric Dixon,2024-01-19,Update listing to only include 12 Month Medical Record Reviews completed and SDV'd by July 14th 2023
+CDM-453,Subtask,Done,Done,,,CDM-448,,Eric Dixon,2024-01-24,Add ADCH derived cancer stage column
+CDM-454,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2024-02-01,Update FU_12M_Expected variable for March 22nd data release date
+CDM-455,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-02-05,Update Clean_Status_FU remove reference to Evaluation
+CDM-456,Subtask,Done,Done,,,CDM-448,,Eric Dixon,2024-02-12,Add cases missing overall stage and m score for review
+CDM-457,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2024-02-14,DELFI-L101: Buried Data Field Report
+CDM-458,Subtask,Done,Done,,,CDM-457,,Eric Dixon,2024-02-14,Update join function to allow for empty tables
+CDM-459,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2024-02-29,Update Ready for Review column for Cohort A participants
+CDM-460,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-03-06,Update Evaluation column and cleaning metrics to include LDT CT/CV participants
+CDM-461,Subtask,Dismissed,Done,,,CDM-262,,Eric Dixon,2024-03-14,Add function to clear the Subject Summary sheet before writing out updated table
+CDM-462,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2024-04-05,Update the export_clinical_data file to include the newly added blood collection fields
+CDM-463,Subtask,Dismissed,Done,,,CDM-436,,Eric Dixon,2024-04-16,DELFI-L101 V2 Rerun L101 V1 Rerun (Formal Release) Clean Status List Generation 17APR2024
+CDM-464,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-05-02,Update Evaluation Column and Priority Column
+CDM-465,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-05-02,Update Cleaning Metrics to remove L101 Rerun and LDT CT-CV sections
+CDM-466,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-05-02,Create Cohort C Cleaning Metrics sheet
+CDM-467,Epic,To Do,,,,,,Erica Peters,2024-06-20,DELFI-L301
+CDM-468,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-06-20,Create Chapter 1 Tracker
+CDM-469,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,,,Pavlova Nalley,2024-06-26,Update metrics/dashboard to reflect 12MFU visit expectation
+CDM-470,Subtask,Done,Done,,,CDM-352,,Eric Dixon,2024-07-02,Add remove_duplicates to gcptools gs_read function to remove duplicate records
+CDM-471,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Pavlova Nalley,2024-07-08,Update 12M FUP Report
+CDM-472,Subtask,Dismissed,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-168,,Pavlova Nalley,2024-07-08,DQR Listings - L201 Add Consent Version
+CDM-473,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-148,,Pavlova Nalley,2024-07-08,DQR Listings - L201 Add consent date to listing
+CDM-474,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-318,,Pavlova Nalley,2024-07-08,DQR Listings - L201 Add a column in 4 and 12 mo tabs to note DELFI re-review complete 
+CDM-475,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,,,Pavlova Nalley,2024-07-08,DQR Listings - L201 Lung Cancer Staging TNM vs Group Stage review
+CDM-476,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,,,Pavlova Nalley,2024-07-08,DQR Listings - L201 Lung cancer histology
+CDM-477,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,,,Pavlova Nalley,2024-07-08,DQR Listings - L201 Check CT scan for similar/duplicate day
+CDM-478,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Pavlova Nalley,2024-07-09,DQR Listings - L201 Calculated Values 
+CDM-479,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Pavlova Nalley,2024-07-09,DQR Listings - L201 Eligibility PD Listing
+CDM-480,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Payam Khodabakhshi,2024-05-08,L201: CPT: Completion Status
+CDM-481,Task,To Do,,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2024-07-12,"TS: Update CPS checker logic BIL, ALB, INR"
+CDM-482,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-07-12,DELFI-L301: Build Chapter 2 Checker
+CDM-483,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-07-15,DELFI-L301: Update Chapter 1 Checker to include new Medrio source file path
+CDM-484,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Pavlova Nalley,2024-07-16,DQR Listings - L201 Reconcile Duplicate Lung Cancers 
+CDM-485,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Pavlova Nalley,2024-07-16,DQR Listings - L201 12 M FUV and Disposition
+CDM-486,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings,Pavlova Nalley,2024-07-16,DELFI-L201: Lung Rads Score Not Reported DQR
+CDM-487,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-07-18,Update Evaluation Column for CV Q3 2024 release
+CDM-488,Subtask,To Do,,,,CDM-262,,Eric Dixon,2024-07-18,Update Clean Status column: Not expected blood sample collection should not impact clean status
+CDM-489,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-07-23,Create cleaning metrics for the CV Q3 2024 release
+CDM-490,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-07-23,Update evaluation column to include sites that are closing out
+CDM-491,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-07-29,Add Follow-up Expected date to 27JUL24
+CDM-492,Task,To Do,,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Pavlova Nalley,2024-07-31,L201: Missing 4 month follow up visit for PPD
+CDM-493,Task,Done,Done,,,CDM-79,CPT_Component,Eric Dixon,2024-07-31,Medrio variables to be added to clinical_l101datar 
+CDM-494,Subtask,Done,Done,,,CDM-493,,Eric Dixon,2024-07-31,Add MUPRDIAG to clinical_l101datar pipeline
+CDM-495,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-07-31,Update Clean Status Column to reference new expected follow-up date
+CDM-496,Subtask,To Do,,,,CDM-262,,Eric Dixon,2024-07-31,Update Cleaning Metrics - CVQ3_L101 to include % of cases with at lease 1 evaluable aliquot
+CDM-497,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2024-08-06,Bug fix: gen_ret_status_counts function
+CDM-498,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-08-06,Update evaluations column to reference final sample selection listing from CDS
+CDM-499,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-08-06,Add combined cleaning metrics table for CVQ3 participants
+CDM-500,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-08-07,L301: Create L301 Bulk Upload Pre-Checker
+CDM-501,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-08-07,Update priority column to reference upcoming site visit schedule
+CDM-502,Subtask,Dismissed,Done,,,CDM-442,,Eric Dixon,2024-08-08,Create a new sheet to track the Chest CT Scan type for Cohort B participants in the L101 CV Q3 2024 release.
+CDM-503,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2024-08-08,DELFI-L101: Chest CT Scan Type CV Q3 2024 Review
+CDM-504,Subtask,Done,Done,,,CDM-503,,Eric Dixon,2024-08-09,Refactor code for CV_Q3_2024 scan type review
+CDM-505,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-08-12,L301: Update Chapter 1 Checker for DARTNet
+CDM-506,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-08-12,L301: Update Chapter 2 Checker for DARTNet
+CDM-507,Subtask,Done,Done,,,CDM-365,,Eric Dixon,2024-08-20,Fix aft report generation to include gcptools and awstools
+CDM-508,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Pavlova Nalley,2024-08-23,DQR Listings - L201 Disposition Cross Check
+CDM-509,Task,Dismissed,Done,,,CDM-79,,Eric Dixon,2024-09-05,DELFI-L101 CV Q3 2024 Clean Subjects List Generation
+CDM-510,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-09-17,"Update Evaluation Column, Priority Column, and Add Cleaning Metrics table for site closure and cro onboarding"
+CDM-511,Task,To Do,,Pavlova Nalley,712020:4dffda00-7b04-49db-93f2-6c50d18d8218,CDM-80,,Pavlova Nalley,2024-09-19,L201 Metric Report Update Missing Forms
+CDM-512,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Pavlova Nalley,2024-09-24,L201 Remove sites 1084 and 1054 from all metrics reports and dashboards
+CDM-513,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2024-09-27,Create L301 Clean Patient Tracker
+CDM-514,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2024-09-27,Create System Query Report
+CDM-515,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-09,Create DQR: Lung cancer diagnosis of 2022 or later.
+CDM-516,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings,Emily Larsen,2024-10-18,L201 DQR Protocol Deviation Listing Updates
+CDM-517,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-21,Create participant id creation tracker
+CDM-518,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-21,Create Outcomes collector and sorter
+CDM-519,Task,To Do,,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-22,DQR: date of last practice visit query manager
+CDM-520,Task,To Do,,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-22,DQR: enrollment date manager
+CDM-521,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-22,DQR: outcomes data checker
+CDM-522,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-22,DQR: FLL data checker
+CDM-523,Task,To Do,,,,CDM-80,DQR_Listings,Eric Dixon,2024-10-25,DELIF-L201: Duplicate records found on Late Forms Listing
+CDM-524,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-10-29,L301: Various small fixes.
+CDM-525,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,DQR_Listings,Eric Dixon,2024-11-06,DELFI-L101: GRN Report
+CDM-526,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2024-11-13,SSHC specific clean patient tracker
+CDM-527,Subtask,Done,Done,,,CDM-516,,Eric Dixon,2024-11-18,Add script to cdm_monorepo that uploads ppd deviations file to s3
+CDM-528,Subtask,Done,Done,,,CDM-493,,Eric Dixon,2024-11-20,Add new fields from Medrio v21 update
+CDM-529,Task,To Do,,,,,,Pavlova Nalley,2024-11-20,L201 DQR Listings - Similar Participant Data Review
+CDM-530,Task,To Do,,,,,,Pavlova Nalley,2024-11-20,L201 DQR Listings - Patient Profiles
+CDM-531,Task,To Do,,,,,,Pavlova Nalley,2024-11-20,L201 DQR Listings - Exclusion 3-8 
+CDM-532,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools,Eric Dixon,2024-11-20,DELFI-L201: EDC Incomplete Forms Table
+CDM-533,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2024-11-20,Remove NYU FANSS participants from populating CPT
+CDM-534,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2024-12-02,4ITLR: create AJCC lung cancer check
+CDM-535,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,,,Alissa Konicki,2024-12-05,Onom: Add Imaging export checks to DQR
+CDM-536,Task,In Progress,,Payam Khodabakhshi,624761f91da0e100713b0ac3,,,Alissa Konicki,2024-12-09,Onom DQR Checks: (1) Primary Outcomes tab
+CDM-537,Subtask,Done,Done,,,CDM-516,,Eric Dixon,2024-12-11,Write exports of full DELFI Protocol Deviations to s3
+CDM-538,Task,To Do,,,,,,Pavlova Nalley,2024-12-12,L201 CPT Update - Participant Numbers
+CDM-539,Task,To Do,,,,,,Pavlova Nalley,2024-12-12,L201 CPT Update - Inactivated Participants
+CDM-540,Task,To Do,,,,,,Pavlova Nalley,2024-12-12,L201 CPT Update - Sort Order for Participants
+CDM-541,Task,To Do,,,,,,Pavlova Nalley,2024-12-12,L201 CPT Update - Missing Participants
+CDM-542,Task,To Do,,,,,,Pavlova Nalley,2024-12-12,L201 CPT Update - Overall Clean Status
+CDM-543,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Pavlova Nalley,2024-12-12,L201 CPT New Requests x6
+CDM-544,Task,To Do,,,,CDM-80,,Eric Dixon,2024-12-16,DELFI-L201: Refactor CDM files to incorporate Clario Reports v2.0
+CDM-545,Task,In Progress,,Payam Khodabakhshi,624761f91da0e100713b0ac3,,,Alissa Konicki,2024-12-16,Onom DQR Checks: (2) Baseline Characteristics 
+CDM-546,Task,Dismissed,Done,,,CDM-79,,Eric Dixon,2024-12-18,DELFI-L101: Premier Report Extraction Adhoc report
+CDM-547,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2024-12-20,Update Review Ready variable to remove report and crf SDV requirement
+CDM-548,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2024-12-20,Add new fields from cohort assignment eCRF for review
+CDM-549,Subtask,Done,Done,,,CDM-152,,Eric Dixon,2024-12-20,Update Review Ready variable to remove Report and CRF SDV requirement
+CDM-550,Subtask,Done,Done,,,CDM-152,,Eric Dixon,2024-12-20,Add new fields from 12 Month Medical Record Review eCRF for review
+CDM-551,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-01-08,L301: Create data stitcher
+CDM-552,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-01-23,Form Status report
+CDM-553,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-01-24,Add FLL tracker and Outcomes Wrangler to Dagster pipeline
+CDM-554,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-01-27,DQR: Years Since Quit = 0
+CDM-555,Subtask,In Progress,,,,CDM-503,,Eric Dixon,2025-01-31,DELFI-L101: Chest CT Scan Type CV Q3 2024 Review - Remove Evaluation from final join 
+CDM-556,Subtask,Done,Done,,,CDM-448,,Eric Dixon,2025-01-31,DELFI-L101 Lung Cancer Diagnosis TNM & Stage Review: Remove Evaluation from final join 
+CDM-557,Subtask,Done,Done,,,CDM-181,,Eric Dixon,2025-02-03,Add Cohort Indeterminate Cases to track conversion to the alternative workflow
+CDM-558,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-02-03,Update CRO Sites Transition & Site Closures google sheet url
+CDM-559,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-02-05,L301: Ops MA data crawler
+CDM-560,Subtask,Dismissed,Done,Spencer King,712020:91cab0d6-a9b6-47d6-87a2-fb3186b0d344,CDM-145,,Emily Larsen,2025-02-05,"Records are appearing for invalid participant IDs, duplicate records where one is not a valid record, etc. "
+CDM-561,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-02-07,"Update Priority Column to incorporate ""Premier IMV Date"" column from the DELFI-L101: Site Management Tracker."
+CDM-562,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2025-02-11,General Comments Form should not be counted in Incomplete Pages column in the CPT.
+CDM-563,Subtask,Dismissed,Done,,,CDM-350,,Eric Dixon,2025-02-13,Add gcptools function to clear sheet prior to write function
+CDM-564,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-02-19,DQR: Update EMR data currency logic to indicate whether we've received transfers for each month since 01Oct2024
+CDM-565,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-02-19,Update CPT Metrics for CV 2025 and Database Lock
+CDM-566,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2025-02-20,DELFI-L101: Protocol Deviation Review
+CDM-567,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-566,,Eric Dixon,2025-02-20,Upload Premier Deviation records to the DELFI-L101 s3 location 
+CDM-568,Subtask,Done,Done,,,CDM-566,,Eric Dixon,2025-02-20,Update the Protocol Deviation Review to include pd's identified by premier for cross-functional team review. 
+CDM-569,Task,Done,Done,,,CDM-79,DQR_Listings,Eric Dixon,2025-03-11,DELFI-L101: Report Extraction Tracker
+CDM-570,Subtask,Done,Done,,,CDM-569,,Eric Dixon,2025-03-11,Add priority column into the Report Extraction Tracker
+CDM-571,Subtask,Done,Done,,,CDM-278,,Eric Dixon,2025-03-12,Update Evaluation to include all CRO sites 
+CDM-572,Subtask,Done,Done,,,CDM-350,,Eric Dixon,2025-03-13,dt_crf_lims_5() generating a list during tidyr pivot function
+CDM-573,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2025-03-20,"Update the ""Report Extraction Status (Enrollment)"" & ""Report Extraction Status (12 Month)"" to note when all reports are extracted or no report is available"
+CDM-574,Subtask,To Do,,,,CDM-186,,Eric Dixon,2025-03-25,Update dqr review status column for MM and ClinOps
+CDM-575,Subtask,Done,Done,,,CDM-186,,Eric Dixon,2025-03-25,Add page status listing of premier sites
+CDM-576,Subtask,To Do,,,,CDM-186,,Eric Dixon,2025-03-26,add query reports
+CDM-577,Subtask,Done,Done,,,CDM-569,,Eric Dixon,2025-03-26,Add Premier Review Columns
+CDM-578,Subtask,Done,Done,,,CDM-349,,Eric Dixon,2025-04-04,"Add ""Imaging Type"" to Non-Cancer Status Review"
+CDM-579,Subtask,Done,Done,,,CDM-181,,Eric Dixon,2025-04-10,Update ClinOps Reviwer columns to CDM Reviewer columns
+CDM-580,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-79,,Eric Dixon,2025-04-21,DELFI-L101: Request to refrain aliquot shipment - Participant List
+CDM-581,Subtask,To Do,,,,CDM-448,,Eric Dixon,2025-05-01,"Add M1 and M1d to ""Derived Cancer Stage (Based on TNM)"" column as ""IV"""
+CDM-582,Subtask,To Do,,,,CDM-186,,Eric Dixon,2025-05-01,Update premier page status listing columns
+CDM-583,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Emily Larsen,2025-05-01,L201 Clario Case Tracker Update
+CDM-584,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Erica Peters,2025-05-08,L201 Tube Kit Order PDF scraper
+CDM-585,Task,Done,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-80,,Erica Peters,2025-05-08,L201 Tube Order PDF scraper
+CDM-586,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,L201,Emily Larsen,2025-05-08,L201 Clario Case Tracker - Add Nodule Review Tracking tabs
+CDM-587,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-583,,Eric Dixon,2025-05-09,"Duplicate ""Nodule Review Visit Status"" columns fix"
+CDM-588,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Payam Khodabakhshi,2025-05-12,Scrape the remaining Therapak orders
+CDM-589,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Payam Khodabakhshi,2025-05-12,Create a final report for combined Therapak order forms
+CDM-590,Task,To Do,,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-05-12,Add functions to cdm pipeline
+CDM-591,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-79,,Eric Dixon,2025-05-14,DELFI-L101: Data Quality Review Manager - Replace ClinOps reviews with CDM Reviews
+CDM-592,Subtask,To Do,,,,CDM-186,,Eric Dixon,2025-05-14,update clinops review to cdm reviews
+CDM-593,Subtask,Done,Done,,,CDM-348,,Eric Dixon,2025-05-20,"Add Subject Status, Reason for withdrawal, Inclusion/Exclusion Met, and Sample Collection Performed columns"
+CDM-594,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,L201,Emily Larsen,2025-05-21,Update to the Clario Case Tracker tab
+CDM-595,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-05-22,Update DELFI-L101 Monitoring Visit & Visit Report Tracker link
+CDM-596,Subtask,To Do,,,,CDM-185,,Eric Dixon,2025-05-23,Update CRA Metrics function for DELFI-L101 Monitoring Visit & Visit Report Tracker link  
+CDM-597,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings|L201,Emily Larsen,2025-05-28,DELFI-L201: Subsolid Nodule Listing - PPD Ad Hoc Listing
+CDM-598,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,L201,Emily Larsen,2025-05-29,Update Clario Recon Report to align with modified Clario data transfers
+CDM-599,Subtask,Done,Done,,,CDM-457,,Eric Dixon,2025-06-10,Include STAGETYP field and update write out length
+CDM-600,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-06-12,Update Overall Clean Status for participants without Blood Samples
+CDM-601,Task,To Do,,Spencer King,712020:91cab0d6-a9b6-47d6-87a2-fb3186b0d344,CDM-80,L201,Emily Larsen,2025-06-13,L201 DQR Reconciling EDC and Clario Enrollment CT data
+CDM-602,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-06-25,Update dt_CPT_Site (CPT Site Summary sheet) clean columns so that the status includes all participants
+CDM-603,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-07-05,Update clean status for participants with samples without volume
+CDM-604,Subtask,To Do,,,,CDM-186,,Eric Dixon,2025-07-11,Remove role dependent assignment mutate statements
+CDM-605,Task,Dismissed,Done,Erica Peters,627d4ac1f29dcb0068f9a5e1,,,Erica Peters,2025-07-17,Add data stitcher to `analyses`
+CDM-606,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-07-17,Update clean status for samples that were shipped but did not arrive at Azenta
+CDM-607,Subtask,Done,Done,,,CDM-262,,Eric Dixon,2025-07-18,Update clean status for participants that were withdrawn but did not complete the blood sample collection eCRF
+CDM-608,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings|L201,Emily Larsen,2025-08-04,DELFI-L201 Kit Expiration and Sample Collection Date Review
+CDM-609,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings,Eric Dixon,2025-08-26,DELFI-L201: Clario Enrollment CT Nodule Extractions DQR
+CDM-610,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings,Eric Dixon,2025-09-10,DELFI-L201: Clario Case Tracker - LTFUVI Case Tracker
+CDM-611,Task,Done,Done,,,CDM-80,,Eric Dixon,2025-09-11,"DELFI-L201: Add LT_CON, RECON, and VISDT_LT parque data to pipeline"
+CDM-612,Task,To Do,,,,CDM-80,,Eric Dixon,2025-09-15,Enrollment LDCT ADaM Derivation
+CDM-613,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings,Eric Dixon,2025-09-17,DELFI-L201: Lung RADS Not Reported Listing - PPD Ad Hoc Listing
+CDM-614,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings,Eric Dixon,2025-09-17,DELFI-L201: Lung RADS 0 Listing - PPD Ad Hoc Listing
+CDM-615,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings,Eric Dixon,2025-09-17,DELFI-L201: 12M Negative Biopsy Listing - PPD Ad Hoc Listing
+CDM-616,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings,Emily Larsen,2025-09-18,DELFI-L201: LTFUV1 Expected - PPD Ad Hoc Listing
+CDM-617,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-609,,Eric Dixon,2025-09-29,Fix spelling error for nolocot variable and correct mutate logic for other specify not expected column
+CDM-618,Subtask,To Do,,,,CDM-340,,Eric Dixon,2025-10-17,DELFI-L201 Derived RADS Score Review: Fix duplicate record issue
+CDM-619,Subtask,To Do,,,,CDM-158,,Eric Dixon,2025-10-17,DELFI-L201 Participant Disposition Review: Fix duplicate record issue
+CDM-620,Task,To Do,,,,CDM-80,,Eric Dixon,2025-10-22,DELFI-L201: Fix API request limit issue caused while running cdm_export_ppd_adhoc_site_reports.R 
+CDM-621,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools,Eric Dixon,2025-10-24,DELFI-L201: Status Data for ClinOps Reporting Tool
+CDM-622,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,Ad_Hoc_Report|CDM-Tools|DQR_Listings,Eric Dixon,2025-10-24,DELFI-L201: Clario Case Tracker - Nodule Review Tracker
+CDM-623,Subtask,To Do,,,,CDM-622,,Eric Dixon,2025-10-24,DELFI-L201: Add new columns to confirm that the clario forms are complete and to confirm that the oversight review has resolved
+CDM-624,Subtask,To Do,,,,CDM-622,,Eric Dixon,2025-10-28,DELFI-L201: Add Clario Latest Raw last run time
+CDM-625,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Eric Dixon,2025-10-28,DELFI-L201 Status Data for ClinOps Reporting Ad Hoc Report
+CDM-626,Task,To Do,,,,CDM-80,,Eric Dixon,2025-10-30,DELFI-L201: Clario Case Tracker - 12MFU Case Tracker
+CDM-627,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-626,,Eric Dixon,2025-10-30,Fix clario_case_tracker_adsl_12mfu_data_processing() filter issue
+CDM-628,Subtask,To Do,,,,CDM-625,,Eric Dixon,2025-11-14,LTFU Expected Cases: Performed vs Pending Metrics
+CDM-629,Task,To Do,,,,CDM-80,,Eric Dixon,2025-11-20,DELFI-L201: Protocol Team Ad hoc request
+CDM-630,Subtask,Done,Done,,,CDM-620,,Eric Dixon,2025-12-01,DELFI-L201: Increase sleep duration and set reports to run on Saturdays only
+CDM-631,Task,To Do,,Erica Peters,627d4ac1f29dcb0068f9a5e1,CDM-467,,Erica Peters,2025-12-08,Updates and fixes for L301 DBL
+CDM-632,Task,To Do,,,,CDM-80,,Eric Dixon,2025-12-18,DELFI-L201 LTFU Visit Admin Letter Ad Hoc Site Listing
+CDM-633,Task,To Do,,,,CDM-80,DQR_Listings,Eric Dixon,2026-01-07,DELFI-L201: Medical History Amendment 3 Field Entry
+CDM-634,Task,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-80,,Eric Dixon,2026-01-20,DELFI-L201: Seqster Data Request v1
+CDM-635,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,DQR_Listings,Eric Dixon,2026-02-01,DELFI-L101: PPD Report - Missing Data - EDC Release v4
+CDM-636,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Eric Dixon,2026-02-01,DELFI-L201: Update Config to reference latest DBMOD supplemental files
+CDM-637,Task,To Do,,,,,,Eric Dixon,2026-02-01,DELFI-L201: Clario Case Tracker - MM Clario Case Tracker
+CDM-638,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings,Eric Dixon,2026-02-02,DELFI-L201: Clario Case Tracker - Confirmed Lung Cancers
+CDM-639,Subtask,To Do,,,,CDM-638,,Eric Dixon,2026-02-02,Fix - confirmed cancers and non-cancers are not populating in the tables.
+CDM-640,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings,Eric Dixon,2026-02-02,DELFI-L201: Clario Case Tracker - Confirmed Non-Lung Cancers
+CDM-641,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools|DQR_Listings,Eric Dixon,2026-02-02,DELFI-L201: Clario Case Tracker - MM Provisional Case Tracker 
+CDM-642,Subtask,To Do,,,,CDM-641,,Eric Dixon,2026-02-02,Updated MM Provisional Case Tracker to include LTFUV cases
+CDM-643,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-174,CDM-Tools,Eric Dixon,2026-02-05,Add new columns to subject information table
+CDM-644,Subtask,To Do,,,,CDM-174,,Eric Dixon,2026-02-06,DELFI-L201 Clean Patient Tracker - edc page status development
+CDM-645,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-02-19,"Add additional columns for LTFU visit dates, logic for 12 month Not Applicable forms, and Site Level summary sheet"
+CDM-646,Task,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-80,,Tony Wu,2026-02-23,Create a daily report for missing pages
+CDM-647,Task,Done,Done,,,,,Eric Dixon,2026-02-24,DELFI-L201: Inactive Participant List - Add site number column
+CDM-648,Task,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-80,,Tony Wu,2026-02-26,Remove filter for missing pages CPT tab
+CDM-649,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-610,,Eric Dixon,2026-02-26,"Add MM Comments column to the 4 Month Case Tracker, 12 Month Case Tracker, and LTFU Case Tracker"
+CDM-650,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,IVD_L201_Validation|threshold_release,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - Clinical Data Cleaning Plan
+CDM-651,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-650,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Analysis - Draft CDCP & send to team for review
+CDM-652,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-650,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Analysis - Team review of draft CDCP
+CDM-653,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-650,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Analysis - Incorporate feedback on CDCP
+CDM-654,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-650,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Analysis - Finalize and Sign CDCP
+CDM-655,Task,Refining,,,,CDM-80,IVD_L201_Validation|threshold_release,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - Cleaning Activities
+CDM-656,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-655,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - Create Clean Patient Tracker for study level clean status metrics
+CDM-657,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-655,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - Add clean patient tracker columns for clean status specific to the threshold release
+CDM-658,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-655,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - All Data Quality Reviews in Reviewed-Queried State and all queries issued
+CDM-659,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-655,,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - All Data Quality Reviews in Reviewed Status and Answered Queries Closed
+CDM-660,Task,To Do,,,,CDM-80,IVD_L201_Validation|threshold_release,Eric Dixon,2026-02-26,DELFI-L201: Threshold Release - Clinical Data Snapshot Activities
+CDM-661,Subtask,To Do,,,,CDM-660,,Eric Dixon,2026-02-26,Generate s3 folder locations for L201 Clinical Data
+CDM-662,Subtask,To Do,,,,CDM-660,,Eric Dixon,2026-02-26,Draft and circulate the Clinical Data Snapshot Release Approval for team review
+CDM-663,Subtask,To Do,,,,CDM-660,,Eric Dixon,2026-02-26,Finalize and Sign the Clinical Data Snapshot Release Approval form
+CDM-664,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-616,,Eric Dixon,2026-02-26,DELFI-L201: The deprecate ad hoc site specific google sheet write out
+CDM-665,Subtask,To Do,,,,CDM-660,,Eric Dixon,2026-02-26,Complete Snapshot of Clinical Data Sets and supplemental files. 
+CDM-666,Task,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-80,,Tony Wu,2026-03-02,Resolve multiple cancer records for Clario derivation in l201datar
+CDM-667,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-03-03,Add unresolved queries sheet and pending sdv pages sheet
+CDM-668,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-03-03,Create clean status column for threshold requirements based on the Clinical Data Cleaning Plan
+CDM-669,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-610,,Eric Dixon,2026-03-03,"Add new manually actioned column called ""Staging Information"" to the 4 Month Case Tracker, 12 Month Case Tracker, and LTFU Case Tracker"
+CDM-670,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Eric Dixon,2026-03-04,Investigate and remove participants without eval flags from CPT
+CDM-671,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,,,Eric Dixon,2026-03-05,DELFI-L201: Ad hoc site 1037 report
+CDM-672,Subtask,Done,Done,Payam Khodabakhshi,624761f91da0e100713b0ac3,CDM-597,,Eric Dixon,2026-03-11,Sub-Solid Nodule Flag
+CDM-673,Task,Done,Done,,,CDM-80,review,Sarah Merrill,2026-03-18,L201 Ad Hoc Listing Request for SEQSTER TRB
+CDM-674,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-03-18,Add LTFU D912 completion / data entry status columns to CPT
+CDM-675,Task,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-80,CDM-Tools|DQR_Listings,Tony Wu,2026-03-18,IE - PD Listing: New Sheet in Protocol Deviation Review DQR
+CDM-676,Epic,To Do,,,,,IVD_L201_Validation,Shawn Gallagher,2026-03-23,L201 Data Snapshot for CV Readout
+CDM-677,Epic,To Do,,,,,IVD_L201_Validation,Shawn Gallagher,2026-03-23,Data Snapshots for AV studies
+CDM-678,Epic,To Do,,,,,IVD_L201_Validation,Shawn Gallagher,2026-03-23,AV and CV data sets for IVD Classifier Locking
+CDM-679,Epic,To Do,,,,,4ITLR_Dataset,Shawn Gallagher,2026-03-23,4ITLR clinical participant and sample processing pipeline
+CDM-680,Epic,To Do,,,,,4ITLR_Dataset,Shawn Gallagher,2026-03-23,4ITLR clinical and analytical dataset
+CDM-681,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-174,,Eric Dixon,2026-03-23,update subsolid_nodule_flag with ADSL SSNFL variable
+CDM-682,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-03-24,"Remove site 1047, 1009, 1045 from Threshold Analysis flag"
+CDM-683,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Eric Dixon,2026-03-24,Add Overall Clean Status column & Clean metrics table
+CDM-684,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-03-25,Sites 1009 and 1045 are closing early and should not be included in the LTFUV D912 expected flag
+CDM-685,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-03-30,Sites 1009 and 1045 are closing early and did not implement protocol v4 and therefore should be considered clean even if the medical history fields are not completed.
+CDM-686,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-675,,Eric Dixon,2026-04-01,IE - PD Listing sheet name/link is not populating in the Data Quality Review Manager
+CDM-687,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Eric Dixon,2026-04-02,Add Pages Requiring PI Signature to Clean Patient Tracker
+CDM-688,Subtask,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-04-09,Remove site 1047 from the site filter for the threshold analysis flag
+CDM-689,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Eric Dixon,2026-04-17,Remove Pending PI Signature Pages from clean status column derivation
+CDM-690,Subtask,Done,Done,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Eric Dixon,2026-04-22,Update Subjects sheet to include Overall Status columns
+CDM-691,Subtask,To Do,,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Tony Wu,2026-04-30,Update LTFU Clean Status to Account for Sub-Solid Nodule Subjects
+CDM-692,Subtask,Done,Done,,,CDM-673,,Eric Dixon,2026-04-30,"Add columns for data entry completed (count & percent), percent for completed per protocol cols, suspicious nodule cols, and Add new sheet for site 1037 sub sites."
+CDM-693,Subtask,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-673,,Eric Dixon,2026-05-06,Update columns `Number of participants with LTFUV D912 Data Entered` & `Number of participants with LTFUV D912 Completed Per Protocol`
+CDM-694,Subtask,To Do,,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-145,,Eric Dixon,2026-05-06,Update ltfu_expected_flag in the CPT so that lung cancer diagnoses are noted as not requiring LTFU Visits
+CDM-695,Subtask,In Progress,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-145,,Eric Dixon,2026-05-06,Add columns to the Sites sheet that summarizes counts and percents of the LTFU Visit Completion Cases
+CDM-696,Subtask,To Do,,,,CDM-673,,Eric Dixon,2026-05-07,Correct enrolled counts and ltfu completed counts per site
+CDM-697,Task,In Progress,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,CDM-Tools,Eric Dixon,2026-05-11,DELFI-L201: Medical Monitoring Non-Cancer Case Review
+CDM-698,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Eric Dixon,2026-05-15,DELFI-L201: Ad Hoc TRB Request - Distribution of LTFU Record dates between 22-24 months
+CDM-699,Task,Done,Done,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Eric Dixon,2026-05-15,DELFI-L201 Ad Hoc TRB Request - Distribution of the Last Known Alive Date provided on Disposition Form
+CDM-700,Task,To Do,,,,CDM-80,,Eric Dixon,2026-05-15,DELFI-L201: Ad Hoc TRB Request - Distribution of suspected lung cancers by Time from Enrollment CT to Lung Cancer Dx
+CDM-701,Task,To Do,,,,CDM-80,,Eric Dixon,2026-05-15,DELFI-L201: Ad Hoc TRB Request - Distribution of confirmed lung cancers by Time from Enrollment CT to Lung Cancer Dx 
+CDM-702,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Eric Dixon,2026-05-15,DELFI-L201: Ad Hoc TRB Request - LDCT prior to enrollment 
+CDM-703,Subtask,To Do,,,,CDM-610,,Eric Dixon,2026-05-19,Update referenced variable names and values pulled in from the clario_latest_raw file for LTFU sheets
+CDM-704,Task,To Do,,Eric Dixon,61df05f8ce3652006a2c82d2,CDM-80,,Payam Khodabakhshi,2026-05-20,New variables to be added to ADSL
+CDM-705,Task,To Do,,Tony Wu,712020:3d0c4367-a9fa-439d-a411-7df0463e6e99,CDM-80,,Tony Wu,2026-05-20,DELFI-L201: Ad Hoc TRB Request- Confirmation of self-reported Lung cancer
+CDM-706,Task,Done,Done,Alissa Konicki,63067d409278161d1937ce75,CDM-80,,Daniel Civello,2026-05-21,TRB-006	Age x Sex x Smoking history distribution
