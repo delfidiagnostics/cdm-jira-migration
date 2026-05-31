@@ -22,14 +22,14 @@ Canonical source: `CDM_TAXONOMY_SUMMARY.md`. Visual: `CDM_TAXONOMY_VISUAL.html`.
 - `study-*` (exactly 1 per issue): `l101`, `l201`, `l301`, `4itlr`, `onom`, `cross`
 
 ### Statuses (5)
-TESTCDM workflow has all five; production CDM still has only four pending an admin workflow edit to add `Ongoing`.
+Both TESTCDM and production CDM now have all five in their workflows (`Ongoing` was added to CDM 2026-05, transition id `52`).
 
 | Status | Resolution on close | Notes |
 |---|---|---|
 | `To Do` | — | Identified, not started |
 | `In Progress` | — | Actively being worked |
 | `Done` | `Done` | Closed successfully |
-| `Ongoing` | — | Recurring service work; on CDM, `phase_transitions` falls back to `In Progress` until the status is added to the CDM workflow |
+| `Ongoing` | — | Recurring service work; live in both workflows (CDM transition id `52`, TESTCDM `3`). Zero worksheet rows use it today. |
 | `Dismissed` | `Won't Do` | Won't be done (workflow auto-sets Resolution = `Done` on close; `phase_resolutions` corrects it) |
 
 Worksheet `proposed_status` uses these names directly. `STATUS_TO_TRANSITION` also accepts `Completed` ≡ `Done` and `Cancelled` ≡ `Dismissed` as aliases for backwards compatibility with older worksheet copies. Zero worksheet rows currently use `Ongoing`.

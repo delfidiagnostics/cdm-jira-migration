@@ -104,7 +104,7 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 
 ## 5. Migration rules at a glance
 
-> **Implementation status (2026-05-31)**: all rules below are applied to **TESTCDM** (the clone) and verified zero-delta via `cdm_migration.py --phase=verify`. Production **CDM** has not been touched. The full pipeline is now scripted end-to-end — including epic create/rename (`phase_preflight_epics`) and Subtask→Task promotion (`phase_convert_subtasks`) — and parameterized for production via `--project=CDM`. The worksheet tracks all **643** live CDM tickets (634 original + 9 issued 2026-05). The only remaining manual production pre-flight is muting the CDM notification scheme. See `README.md` for the cold-start runbook and `CLAUDE.md` for phase/architecture detail.
+> **Implementation status (2026-05-31): complete.** All rules below were applied to **TESTCDM** (the dry-run clone) and then to **production CDM** — `cdm_migration.py --project=CDM --phase=all` ran clean (0 failures) and `--phase=verify` returns zero deltas. The full pipeline is scripted end-to-end, including epic create/rename (`phase_preflight_epics`) and Subtask→Task promotion (`phase_convert_subtasks`); notifications were suppressed via `?notifyUsers=false`. `Ongoing` is now in the CDM workflow. See `README.md` for status and `CLAUDE.md` for phase/architecture detail.
 
 **Pre-flight:**
 

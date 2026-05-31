@@ -20,25 +20,11 @@ Reorganizing the **CDM (Clinical Data Management)** Jira project at Delfi Diagno
 | CDM `Ongoing` status | ✅ added to CDM workflow (transition id **52**); script's `ongoing_transition` is now project-aware |
 | CDM post-migration hygiene | ✅ Labels required on Task · ⛔ Parent can't be required (Jira-managed field on team-managed projects — UI locks the toggle) |
 
-## What's blocking us
+## Status: complete ✅
 
-Admin permission — the historical blocker — is **now granted on both TESTCDM and production CDM**. The remaining work before the **production CDM run** is the pre-flight + a small script parameterization, plus the team confirming comfort with running:
+The migration is **done on both TESTCDM (dry-run) and production CDM** (2026-05-31). `--project=CDM --phase=all` ran clean — 0 failures, and `--phase=verify` returns zero deltas. The full pipeline is scripted and idempotent (epic create/rename, labels, transitions, resolutions, assignees, subtask→task conversion, re-parenting, obsolete-epic deletion, backlog drain); notifications were suppressed via `?notifyUsers=false`, and a pre-migration snapshot is committed for rollback.
 
-1. ~~**Add `--project=CDM`** support to the script~~ — ✅ done. Identity key-resolution (no mapping CSV), project-scoped state dir, and `PRESERVE_EPIC_KEYS`/`OBSOLETE_EPIC_KEYS` repointed to CDM keys all live in `EPIC_CONFIG["CDM"]`.
-2. ~~**Epic create/rename/consolidate**~~ — ✅ scripted as `phase_preflight_epics` (runs first in `--phase=all`): renames `CDM-676 → CASCADE (L201) Readout`, `CDM-677 → IVD Lung PMA Submission`, `CDM-679 → 4ITLR Readout`; creates `Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`; the empty leftovers `CDM-678`/`CDM-680` are deleted by `delete_epics`. Dry-run verified against CDM. (No longer a manual admin step.)
-3. **Notification suppression is now automatic** — every PUT write passes `?notifyUsers=false` (works because admin is granted) and the bulk-move sets `sendBulkNotification:false`, so the run is silent without touching the project's notification scheme. No manual mute, no revert. This is the "rules we set" for the assignee writes that were deliberately deferred on TESTCDM.
-4. **6 Subtask→Task conversions** run automatically via `phase_convert_subtasks` (CDM-644, 681, 691, 694, 695, 703) before `parents`.
-
-Nothing left to do manually pre-run — the whole migration is in the script.
-
-## Where we're going
-
-1. ~~**Get admin permission** on TESTCDM + CDM~~ — ✅ done (granted on both).
-2. ~~**Finish TESTCDM cleanup**~~ — ✅ done: obsolete epics deleted; statuses kept as `Done`/`Dismissed` (the team chose not to rename to `Completed`/`Cancelled`); `Ongoing` added; subtask→task conversion proven.
-3. ~~**Pre-flight production CDM** (epic create/rename)~~ — ✅ scripted as `phase_preflight_epics`; dry-run verified against CDM.
-4. ~~**Parameterize the script** to take `--project=CDM`~~ — ✅ done (identity key mapping, project-scoped state, CDM epic key sets in `EPIC_CONFIG`).
-5. **Run production**: `python3 cdm_migration.py --project=CDM --phase=all` (notifications suppressed by the script). Expect ~600 ops + 6 epics created/renamed in ~1 minute.
-6. **Verify**: `--project=CDM --phase=verify` → target zero deltas.
+Nothing outstanding in the script. Remaining items are optional team/UI choices: requiring Parent on Task is **not possible** (Jira-managed field — use ScriptRunner if enforcement is wanted), and an optional ScriptRunner Behaviour could enforce the label pattern on Create. See the team-facing **[CDM_TEAM_GUIDE.md](CDM_TEAM_GUIDE.md)** for how tickets should be created going forward.
 
 ## Run it
 
