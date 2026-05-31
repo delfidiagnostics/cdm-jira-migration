@@ -67,10 +67,11 @@ Prefixes (`cat-`, `proj-`, `study-`) make JQL queries unambiguous and bulk opera
 | `proj-data-release` | Clinical data threshold/snapshot release governance — CDCP drafting, cleaning plans, snapshot sign-offs, release approval forms, S3 folder setup tied to a formal data release event |
 | `proj-cv` | Clinical Validation workstream — CV data sets, CV readout artifacts |
 | `proj-av` | Analytical Validation workstream — AV data sets, AV readouts |
+| `proj-other` | Catch-all for operational/admin/training work with no natural data-workstream fit — e.g. SOP authoring, hiring, training (Intro to R), team-process tasks. Keeps the "1+ proj per issue" rule satisfiable for ops items. |
 
-**Why 11 labels**: each is grounded in actual CDM workstreams and is cross-study by design (vendor / CRO / study-specific names like Clario, CDR, PPD live in the summary, not the label). Stack labels freely when a ticket spans systems (e.g. `proj-cpt` + `proj-data-release` for threshold-release cleaning of CPT data). Case-tracker work (Clario, Suspicious Nodule, etc.) lives under `proj-metrics` since the deliverable is a tracker/dashboard.
+**Why 12 labels**: the first 11 are grounded in actual CDM data workstreams and are cross-study by design (vendor / CRO / study-specific names like Clario, CDR, PPD live in the summary, not the label). `proj-other` was added as the catch-all so operational/admin tasks still carry a `proj-*` label. Stack labels freely when a ticket spans systems (e.g. `proj-cpt` + `proj-data-release` for threshold-release cleaning of CPT data). Case-tracker work (Clario, Suspicious Nodule, etc.) lives under `proj-metrics` since the deliverable is a tracker/dashboard.
 
-### 3c. `study-*` (study identifier) — 0+ per issue
+### 3c. `study-*` (study identifier) — exactly 1 per issue
 
 | Label | Covers |
 |---|---|
@@ -103,7 +104,7 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 
 ## 5. Migration rules at a glance
 
-> **Implementation status (2026-05-20)**: all rules below have been applied to **TESTCDM** (the clone) and verified zero-delta via `cdm_migration.py --phase=verify`. Production **CDM** has not been touched. The same script and rules apply to CDM when ready; see `README.md` for the cold-start runbook.
+> **Implementation status (2026-05-31)**: all rules below are applied to **TESTCDM** (the clone) and verified zero-delta via `cdm_migration.py --phase=verify`. Production **CDM** has not been touched. The full pipeline is now scripted end-to-end — including epic create/rename (`phase_preflight_epics`) and Subtask→Task promotion (`phase_convert_subtasks`) — and parameterized for production via `--project=CDM`. The worksheet tracks all **643** live CDM tickets (634 original + 9 issued 2026-05). The only remaining manual production pre-flight is muting the CDM notification scheme. See `README.md` for the cold-start runbook and `CLAUDE.md` for phase/architecture detail.
 
 **Pre-flight:**
 
@@ -112,11 +113,13 @@ Every ticket gets exactly one `study-*` label (use `study-cross` when no single 
 
 **Structural changes:**
 
+*Both steps below are now scripted in `phase_preflight_epics` (idempotent, runs first in `--phase=all`); the Era-3 epics CDM-676..680 are empty shells, so consolidation is just rename-the-survivor + delete-the-empties.*
+
 1. **Create**: Departmental Ops epic, Pre-2026 Legacy epic, Reimbursement & Clinical Evidence epic.
 2. **Rename / consolidate**:
    - [CDM-676](https://delfidiagnostics.atlassian.net/browse/CDM-676) → "**CASCADE (L201) Readout**"
-   - [CDM-677](https://delfidiagnostics.atlassian.net/browse/CDM-677) + [CDM-678](https://delfidiagnostics.atlassian.net/browse/CDM-678) → consolidate into "**IVD Lung PMA Submission**" (keep one, redirect other)
-   - [CDM-679](https://delfidiagnostics.atlassian.net/browse/CDM-679) + [CDM-680](https://delfidiagnostics.atlassian.net/browse/CDM-680) → consolidate into "**4ITLR Readout**"
+   - [CDM-677](https://delfidiagnostics.atlassian.net/browse/CDM-677) → "**IVD Lung PMA Submission**"; [CDM-678](https://delfidiagnostics.atlassian.net/browse/CDM-678) (empty) deleted by `delete_epics`
+   - [CDM-679](https://delfidiagnostics.atlassian.net/browse/CDM-679) → "**4ITLR Readout**"; [CDM-680](https://delfidiagnostics.atlassian.net/browse/CDM-680) (empty) deleted by `delete_epics`
 
 **Cleanup pass:**
 
