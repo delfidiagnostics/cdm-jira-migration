@@ -3,6 +3,7 @@
 .testcdm-cache/
 .testcdm-state/
 .testcdm-current/
+.cdm-current/
 batches/
 recovery_batches/
 exec_batches/

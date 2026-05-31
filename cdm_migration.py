@@ -35,31 +35,61 @@ from urllib import request as urlreq, error as urlerr
 from urllib.parse import urlencode
 
 ROOT = Path(__file__).parent
-STATE_DIR = ROOT / ".testcdm-current"
 WORKSHEET = ROOT / "CDM_TRIAGE_WORKSHEET.csv"
 MAPPING = ROOT / "CDM_TESTCDM_KEY_MAPPING.csv"
-REMAINING_OPS = ROOT / "remaining_ops.json"
-LOG_PATH = ROOT / "cdm_migration_log.json"
 
-PROJECT = "TESTCDM"
-
-PRESERVE_EPIC_KEYS = {
-    "TESTCDM-630",  # CASCADE (L201) Readout
-    "TESTCDM-631",  # IVD Lung PMA Submission
-    "TESTCDM-633",  # 4ITLR Readout
-    "TESTCDM-635",  # Reimbursement & Clinical Evidence
-    "TESTCDM-636",  # Departmental Ops
-    "TESTCDM-637",  # Pre-2026 Legacy
+# Per-project config. TESTCDM is the dry-run clone whose new-taxonomy epics already
+# exist (630-637), so it needs no preflight. CDM is production: its 6 epics are
+# created/renamed at runtime by phase_preflight_epics. The 5 Era-3 epics
+# (CDM-676..680) are empty shells; 3 are renamed to survive, 2 are folded into
+# `obsolete` for deletion. `map_identity` means worksheet key == live key (no clone
+# mapping CSV); TESTCDM goes through CDM_TESTCDM_KEY_MAPPING.csv instead.
+EPIC_CONFIG = {
+    "TESTCDM": {
+        "map_identity": False,
+        "preserve": {
+            "TESTCDM-630", "TESTCDM-631", "TESTCDM-633",
+            "TESTCDM-635", "TESTCDM-636", "TESTCDM-637",
+        },
+        "obsolete": [
+            "TESTCDM-1", "TESTCDM-29", "TESTCDM-282",
+            "TESTCDM-521", "TESTCDM-632", "TESTCDM-634",
+        ],
+        "preflight_rename": {},   # epics already exist; nothing to rename
+        "preflight_create": [],   # nothing to create
+    },
+    "CDM": {
+        "map_identity": True,
+        "preserve": {"CDM-676", "CDM-677", "CDM-679"},  # renamed Era-3 survivors
+        "obsolete": [
+            "CDM-46",   # Corporate Goals
+            "CDM-79",   # DELFI-L101
+            "CDM-80",   # DELFI-L201
+            "CDM-467",  # DELFI-L301
+            "CDM-678",  # empty Era-3 epic, consolidated into PMA
+            "CDM-680",  # empty Era-3 epic, consolidated into 4ITLR
+        ],
+        "preflight_rename": {
+            "CDM-676": "CASCADE (L201) Readout",
+            "CDM-677": "IVD Lung PMA Submission",
+            "CDM-679": "4ITLR Readout",
+        },
+        "preflight_create": [
+            "Reimbursement & Clinical Evidence",
+            "Departmental Ops",
+            "Pre-2026 Legacy",
+        ],
+    },
 }
 
-OBSOLETE_EPIC_KEYS = [
-    "TESTCDM-1",    # Corporate Goals (was CDM-46)
-    "TESTCDM-29",   # DELFI-L101    (was CDM-79)
-    "TESTCDM-282",  # DELFI-L201    (was CDM-80)
-    "TESTCDM-521",  # DELFI-L301    (was CDM-467)
-    "TESTCDM-632",  # [CONSOLIDATED] AV/CV -> PMA
-    "TESTCDM-634",  # [CONSOLIDATED] 4ITLR dataset
-]
+# Active project + derived globals. Defaults to TESTCDM; main() overrides from
+# --project and recomputes the project-scoped state dir + epic key sets.
+PROJECT = "TESTCDM"
+STATE_DIR = ROOT / f".{PROJECT.lower()}-current"
+REMAINING_OPS = ROOT / "remaining_ops.json"
+LOG_PATH = ROOT / "cdm_migration_log.json"
+PRESERVE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["preserve"]
+OBSOLETE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["obsolete"]
 
 # Worksheet proposed_status -> (acceptable workflow status names, transition id).
 # Canonical taxonomy uses Done/Dismissed (matching Jira's workflow names — we
@@ -188,7 +218,7 @@ def phase_audit(call):
         print(f"  page {pages}: +{len(issues)} (total {len(audit)})")
         if is_last or not next_token:
             break
-    print(f"Audited {len(audit)} TESTCDM issues in {time.time()-t0:.1f}s")
+    print(f"Audited {len(audit)} {PROJECT} issues in {time.time()-t0:.1f}s")
     with open(STATE_DIR / "audit.json", "w") as f:
         json.dump(audit, f, indent=2)
     return audit
@@ -210,12 +240,21 @@ def load_worksheet():
 
 
 def load_mapping():
+    # CDM (production) runs on its own keys — identity, no clone mapping CSV.
+    if EPIC_CONFIG[PROJECT].get("map_identity"):
+        return None
     cdm_to_test = {}
     with open(MAPPING) as f:
         for r in csv.DictReader(f):
             if r["cdm_key"]:
                 cdm_to_test[r["cdm_key"]] = r["testcdm_key"]
     return cdm_to_test
+
+
+def map_key(mapping, cdm_key):
+    """Resolve a worksheet (CDM) key to the live key in the target project.
+    Identity for CDM (mapping is None); via the clone CSV for TESTCDM."""
+    return cdm_key if mapping is None else mapping.get(cdm_key)
 
 
 def build_epic_name_to_key(audit):
@@ -259,7 +298,7 @@ def phase_diff():
 
     for row in worksheet:
         cdm_key = row["key"]
-        tk = cdm_to_test.get(cdm_key)
+        tk = map_key(cdm_to_test, cdm_key)
         if not tk or tk in skip_keys:
             continue
         cur = audit.get(tk)
@@ -597,7 +636,7 @@ def phase_convert_subtasks(call, dry_run=False):
     for row in worksheet:
         if (row.get("type") or "").lower() in SUBTASK_TYPES:
             continue
-        tk = cdm_to_test.get(row["key"])
+        tk = map_key(cdm_to_test, row["key"])
         if not tk or tk in skip_keys:
             continue
         cur = audit.get(tk)
@@ -738,6 +777,82 @@ def phase_empty_backlog(call, dry_run=False):
     return results
 
 
+def phase_preflight_epics(call, dry_run=False):
+    """Create + rename the 6 new-taxonomy epics so build_epic_name_to_key can
+    resolve them at diff time. Plan is per-project in EPIC_CONFIG:
+      - rename: existing epic key -> new summary (e.g. CDM-676 -> CASCADE …)
+      - create: fresh Epic for each name not already present
+    Idempotent: a rename whose target already matches is skipped; a create whose
+    name already exists is skipped. The leftover empty Era-3 epics are removed by
+    phase_delete_epics (they're listed in `obsolete`). Runs before audit so the
+    renames/creates are visible to every downstream phase. No-op for TESTCDM."""
+    print("\n=== PREFLIGHT EPICS (create + rename) ===")
+    cfg = EPIC_CONFIG.get(PROJECT, {})
+    renames = cfg.get("preflight_rename", {})
+    creates = cfg.get("preflight_create", [])
+    if not renames and not creates:
+        print(f"  no epic preflight configured for {PROJECT}; nothing to do")
+        return []
+
+    # Live epics by summary -> key (for create-idempotency).
+    s, b = call("GET", "/rest/api/3/search/jql?" + urlencode(
+        {"jql": f"project = {PROJECT} AND issuetype = Epic",
+         "fields": "summary", "maxResults": 100}))
+    live = {}
+    if s == 200:
+        for i in json.loads(b).get("issues", []):
+            live[(i.get("fields") or {}).get("summary") or ""] = i["key"]
+    else:
+        print(f"  WARN: epic listing failed {s}; create-idempotency degraded")
+
+    results = []
+    for key, new_name in renames.items():
+        gs, gb = call("GET", f"/rest/api/3/issue/{key}?fields=summary")
+        if gs == 404:
+            print(f"  {key}: NOT FOUND — cannot rename to {new_name!r}")
+            results.append({"key": key, "phase": "preflight_epics",
+                            "result": "failed", "error": "404 not found"})
+            continue
+        cur = (json.loads(gb).get("fields") or {}).get("summary") if gs == 200 else None
+        if cur == new_name:
+            print(f"  {key}: already named {new_name!r}")
+            results.append({"key": key, "phase": "preflight_epics", "result": "ok"})
+            continue
+        if dry_run:
+            print(f"  {key}: [dry-run] rename {cur!r} -> {new_name!r}")
+            continue
+        ps, pb = call("PUT", f"/rest/api/3/issue/{key}",
+                      body={"fields": {"summary": new_name}})
+        if 200 <= ps < 300:
+            print(f"  {key}: renamed -> {new_name!r}")
+            results.append({"key": key, "phase": "preflight_epics", "result": "ok"})
+        else:
+            print(f"  {key}: rename failed {ps} {pb[:200]}")
+            results.append({"key": key, "phase": "preflight_epics",
+                            "result": "failed", "error": f"{ps}: {pb[:200]}"})
+
+    for name in creates:
+        if name in live:
+            print(f"  create {name!r}: already exists ({live[name]})")
+            results.append({"key": live[name], "phase": "preflight_epics", "result": "ok"})
+            continue
+        if dry_run:
+            print(f"  create {name!r}: [dry-run] would create Epic in {PROJECT}")
+            continue
+        cs, cb = call("POST", "/rest/api/3/issue", body={"fields": {
+            "project": {"key": PROJECT}, "issuetype": {"name": "Epic"},
+            "summary": name}})
+        if 200 <= cs < 300:
+            newk = json.loads(cb).get("key")
+            print(f"  create {name!r}: created {newk}")
+            results.append({"key": newk, "phase": "preflight_epics", "result": "ok"})
+        else:
+            print(f"  create {name!r}: failed {cs} {cb[:200]}")
+            results.append({"key": name, "phase": "preflight_epics",
+                            "result": "failed", "error": f"{cs}: {cb[:200]}"})
+    return results
+
+
 def phase_deprecate_epics(call, dry_run=False):
     """Prepend '(DEPRECATED) ' to each obsolete epic's summary. Idempotent."""
     print("\n=== DEPRECATE OBSOLETE EPICS (summary prefix) ===")
@@ -832,12 +947,21 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--phase", default="all",
-        help="comma-sep: audit,diff,annotate_worksheet,labels,transitions,"
-             "resolutions,assignees,convert_subtasks,parents,deprecate_epics,"
-             "delete_epics,empty_backlog,verify,all",
+        help="comma-sep: preflight_epics,audit,diff,annotate_worksheet,labels,"
+             "transitions,resolutions,assignees,convert_subtasks,parents,"
+             "deprecate_epics,delete_epics,empty_backlog,verify,all",
     )
+    parser.add_argument("--project", default="TESTCDM", choices=sorted(EPIC_CONFIG),
+                        help="target project: TESTCDM (dry-run clone) or CDM (production)")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
+
+    global PROJECT, STATE_DIR, PRESERVE_EPIC_KEYS, OBSOLETE_EPIC_KEYS
+    PROJECT = args.project
+    STATE_DIR = ROOT / f".{PROJECT.lower()}-current"
+    PRESERVE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["preserve"]
+    OBSOLETE_EPIC_KEYS = EPIC_CONFIG[PROJECT]["obsolete"]
+    print(f"Project: {PROJECT}  (state dir: {STATE_DIR.name})")
 
     env = load_env()
     base = env["ATLASSIAN_BASE_URL"].rstrip("/")
@@ -847,16 +971,18 @@ def main():
     call = make_call(base, auth)
 
     if args.phase == "all":
-        phases = ["audit", "diff", "annotate_worksheet", "labels",
-                  "transitions", "resolutions", "assignees", "convert_subtasks",
-                  "parents", "deprecate_epics", "delete_epics", "empty_backlog",
-                  "verify"]
+        phases = ["preflight_epics", "audit", "diff", "annotate_worksheet",
+                  "labels", "transitions", "resolutions", "assignees",
+                  "convert_subtasks", "parents", "deprecate_epics",
+                  "delete_epics", "empty_backlog", "verify"]
     else:
         phases = [p.strip() for p in args.phase.split(",")]
 
     all_results = []
     for p in phases:
-        if p == "audit":
+        if p == "preflight_epics":
+            all_results += phase_preflight_epics(call, args.dry_run)
+        elif p == "audit":
             phase_audit(call)
         elif p == "diff":
             phase_diff()

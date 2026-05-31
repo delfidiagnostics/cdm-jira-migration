@@ -22,20 +22,21 @@ Reorganizing the **CDM (Clinical Data Management)** Jira project at Delfi Diagno
 
 Admin permission — the historical blocker — is **now granted on both TESTCDM and production CDM**. The remaining work before the **production CDM run** is the pre-flight + a small script parameterization, plus the team confirming comfort with running:
 
-1. **Admin creates the 3 new epics** in CDM: `Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`.
-2. **Admin renames/consolidates** existing Era-3 epics: `CDM-676 → CASCADE (L201) Readout`; `CDM-677+678 → IVD Lung PMA Submission`; `CDM-679+680 → 4ITLR Readout`. Epic names must match the worksheet's `proposed_epic` values **verbatim** (a mismatch silently drops parenting, no error).
-3. **Admin mutes the CDM notification scheme** for the run window (avoids ~480 update emails). This is the "rules we set" for the assignee writes that were deliberately deferred on TESTCDM.
-4. **Add `--project=CDM`** support to the script (small change — currently the project key is a constant) and update the worksheet→CDM-key resolution (identity, no mapping CSV). This must also repoint `PRESERVE_EPIC_KEYS` / `OBSOLETE_EPIC_KEYS` to the CDM epic keys — otherwise the 9 Epic rows generate invalid parent writes.
-5. **6 Subtask→Task conversions** are pending on production (CDM-644, 681, 691, 694, 695, 703). `phase_convert_subtasks` handles these headlessly; they cannot be re-parented to an epic until promoted.
+1. ~~**Add `--project=CDM`** support to the script~~ — ✅ done. Identity key-resolution (no mapping CSV), project-scoped state dir, and `PRESERVE_EPIC_KEYS`/`OBSOLETE_EPIC_KEYS` repointed to CDM keys all live in `EPIC_CONFIG["CDM"]`.
+2. ~~**Epic create/rename/consolidate**~~ — ✅ scripted as `phase_preflight_epics` (runs first in `--phase=all`): renames `CDM-676 → CASCADE (L201) Readout`, `CDM-677 → IVD Lung PMA Submission`, `CDM-679 → 4ITLR Readout`; creates `Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`; the empty leftovers `CDM-678`/`CDM-680` are deleted by `delete_epics`. Dry-run verified against CDM. (No longer a manual admin step.)
+3. **Admin mutes the CDM notification scheme** for the run window (avoids ~480 update emails). This is the "rules we set" for the assignee writes that were deliberately deferred on TESTCDM. *(Still manual — no API.)*
+4. **6 Subtask→Task conversions** run automatically via `phase_convert_subtasks` (CDM-644, 681, 691, 694, 695, 703) before `parents`.
+
+Remaining genuinely-manual pre-flight: just **#3 (mute notifications)**. Everything else is in the script.
 
 ## Where we're going
 
 1. ~~**Get admin permission** on TESTCDM + CDM~~ — ✅ done (granted on both).
 2. ~~**Finish TESTCDM cleanup**~~ — ✅ done: obsolete epics deleted; statuses kept as `Done`/`Dismissed` (the team chose not to rename to `Completed`/`Cancelled`); `Ongoing` added; subtask→task conversion proven.
-3. **Pre-flight production CDM**: admin creates the 3 new epics (`Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`) and consolidates/renames the existing Era-3 epics in CDM. Mirror of what was done in TESTCDM. (Admin permission is now in hand, so this can be scripted or done in the UI.)
-4. **Parameterize the script** to take `--project=CDM` and treat the key mapping as identity (no clone). ~30 minutes of work.
-5. **Run production**: `python3 cdm_migration.py --phase=all` against CDM. Expect ~600 ops in ~1 minute.
-6. **Verify**: `--phase=verify` → target zero deltas.
+3. ~~**Pre-flight production CDM** (epic create/rename)~~ — ✅ scripted as `phase_preflight_epics`; dry-run verified against CDM.
+4. ~~**Parameterize the script** to take `--project=CDM`~~ — ✅ done (identity key mapping, project-scoped state, CDM epic key sets in `EPIC_CONFIG`).
+5. **Run production**: mute notifications, then `python3 cdm_migration.py --project=CDM --phase=all`. Expect ~600 ops + 6 epics created/renamed in ~1 minute.
+6. **Verify**: `--project=CDM --phase=verify` → target zero deltas.
 
 ## Run it
 
@@ -87,11 +88,10 @@ print({k: v['havePermission'] for k,v in json.loads(urllib.request.urlopen(r).re
 **3. TESTCDM cleanup → ✅ already complete.** Admin permission is granted; the 6 obsolete epics are deleted, statuses are kept as `Done`/`Dismissed` (no rename), `Ongoing` is on the workflow, and subtask→task conversion is proven. Vestigial `Refining`/`Backlog` statuses remain (removing them needs instance-wide Jira Admin to edit the workflow graph first). `--phase=verify` returns zero deltas. Nothing left to do on TESTCDM.
 
 **4. Production CDM run:**
-- Have admin pre-flight CDM: create 3 new epics (`Reimbursement & Clinical Evidence`, `Departmental Ops`, `Pre-2026 Legacy`); rename `CDM-676` to `CASCADE (L201) Readout`; consolidate `CDM-677+678` into `IVD Lung PMA Submission`; consolidate `CDM-679+680` into `4ITLR Readout`. Epic names must match the worksheet verbatim.
-- Add a `--project=CDM` flag to `cdm_migration.py` so it can skip the TESTCDM mapping (change in `phase_diff` / `phase_annotate_worksheet`) and repoint `PRESERVE_EPIC_KEYS` / `OBSOLETE_EPIC_KEYS` to the CDM epic keys.
-- Have admin mute the CDM notification scheme for the run window.
-- Run `python3 cdm_migration.py --project=CDM --phase=all`. The `convert_subtasks` phase promotes the 6 pending Subtask→Task rows (CDM-644, 681, 691, 694, 695, 703) before `parents`.
-- Verify with `--phase=verify`.
+- Mute the CDM notification scheme for the run window (the only remaining manual pre-flight; no API).
+- Preview: `python3 cdm_migration.py --project=CDM --phase=preflight_epics --dry-run` (shows the 3 renames + 3 creates), then `--project=CDM --phase=audit,diff` for the full op preview (read-only).
+- Run `python3 cdm_migration.py --project=CDM --phase=all`. Order: `preflight_epics` (create/rename the 6 epics) → audit/diff → labels/transitions/resolutions/assignees → `convert_subtasks` (promotes CDM-644, 681, 691, 694, 695, 703) → `parents` → deprecate/delete the obsolete epics → `empty_backlog` → `verify`.
+- Verify with `--project=CDM --phase=verify`.
 
 **5. Post-migration hygiene (CDM, UI-only):**
 - **Make Labels and Parent required** on the `Task` work type (Project Settings → Issue Types → Task → mark Labels and Parent as Required). Forces every new ticket to land under one of the 6 epics with at least one label.
