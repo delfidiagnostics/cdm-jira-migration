@@ -1,4 +1,5 @@
 .env
+.claude/settings.local.json
 .cdm-cache/
 .testcdm-cache/
 .testcdm-state/
